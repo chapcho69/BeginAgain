@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#f38b0e</color> <!-- Orange -->
+    <color name="colorSecondary">#B2DFDB</color> <!-- Pastel Teal -->
+    <color name="btn_save">#2196F3</color> <!-- Blue -->
+    <color name="btn_delete">#F44336</color> <!-- Red -->
+    <color name="btn_edit">#f38b0e</color> <!-- Orange -->
+    <color name="btn_record">#4CAF50</color> <!-- Green -->
+    <color name="btn_history">#795548</color> <!-- Brown -->
+    <color name="btn_add">#009688</color> <!-- Teal -->
+    <color name="pastel_blue">#90CAF9</color> <!-- Pastel Blue -->
+</resources>

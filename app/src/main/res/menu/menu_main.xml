@@ -1,0 +1,51 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.olivearchi.goodroutine.MainActivity">
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/ic_home"
+        android:orderInCategory="10"
+        android:title="홈"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_backup"
+        android:orderInCategory="115"
+        android:title="데이터 보관"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_restore"
+        android:orderInCategory="116"
+        android:title="데이터 복구"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_word_mgmt"
+        android:orderInCategory="117"
+        android:title="단어장 관리"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_rename_app"
+        android:orderInCategory="120"
+        android:title="App 명칭 수정"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_tts_speed"
+        android:orderInCategory="125"
+        android:title="TTS 속도 설정"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_tts_voice"
+        android:orderInCategory="126"
+        android:title="TTS 목소리 설정"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="130"
+        android:title="About"
+        app:showAsAction="never" />
+</menu>

@@ -1,0 +1,1238 @@
+Abandon|버리다, 포기하다|He decided to abandon the plan.|2
+Abundant|풍부한|The country has abundant natural resources.|2
+Accumulate|축적하다|We need to accumulate more data.|2
+Accurate|정확한, 정밀한, 올바른, 맞는|His description was accurate.|1
+Achieve|성취하다, 이루다, 얻다, 달성하다|You can achieve anything.|1
+Adjust|조정하다, 맞추다, 적응하다, 수정하다, 조절하다|I need to adjust the seat.|1
+Adopt|채택하다, 입양하다, 취하다, 받아들이다|They decided to adopt a child.|1
+Advantage|이점, 장점, 우위, 유리|Experience is a big advantage.|1
+Advocate|옹호하다, 지지자|He is an advocate for peace.|3
+Affect|영향을 미치다, 작용하다, 감동시키다, 손상시키다|The news will affect the market.|1
+Afford|여유가 있다, 감당하다, 제공하다, 허락하다, 할 여유가 있다|I can't afford a new car.|1
+Aggressive|공격적인|He has an aggressive style.|2
+Alike|비슷한|They look very alike.|1
+Alternative|대안|There is no other alternative.|2
+Ambition|야망|His ambition is to be a doctor.|1
+Analyze|분석하다, 검토하다, 조사하다, 해석하다|We need to analyze the results.|2
+Anxiety|불안|She felt a lot of anxiety.|2
+Approach|접근하다, 다가가다, 방법, 처리하다|A storm is approaching.|1
+Appropriate|적절한|Wear appropriate clothes.|2
+Artificial|인공적인|Artificial intelligence is useful.|2
+Aspect|측면, 양상, 관점, 외관|Consider every aspect of the plan.|2
+Aspiration|열망|She has high aspirations.|3
+Assemble|조립하다, 모으다|We need to assemble the furniture.|2
+Assert|주장하다|He continued to assert his innocence.|3
+Assume|가정하다, 추정하다, 맡다, 추측하다|Don't assume anything.|2
+Assure|보장하다|I assure you it's safe.|2
+Attach|붙이다, 첨부하다, 연결하다, 부착하다|Please attach the file.|1
+Attitude|태도, 자세, 관점, 마음가짐|Keep a positive attitude.|1
+Attribute|특성, ~의 탓으로 돌리다|Patience is a key attribute.|3
+Audience|청중, 관객, 시청자, 독자|The audience clapped.|1
+Authentic|진본의, 진짜의|Is this authentic food?|3
+Available|이용할 수 있는, 구할 수 있는, 사용 가능한, 유효한, 이용 가능한|Is this seat available?|1
+Avoid|피하다, 방지하다, 막다, 회피하다|Avoid making mistakes.|1
+Aware|알고 있는, 의식하는, 깨달은, 인지한|I am aware of the problem.|1
+Ban|금지하다|Smoking is banned here.|1
+Barrier|장벽, 장애물, 방해, 제한|Language is a barrier.|2
+Behavior|행동, 태도, 행위, 품행|His behavior was strange.|1
+Beneficial|이로운|Exercise is beneficial.|2
+Benevolent|자비로운|A benevolent leader.|3
+Beyond|~을 넘어, ~이상, 저편에, ~밖에, 너머에|It's beyond my control.|1
+Bias|편견|He has a bias against us.|2
+Boundary|경계|Respect the boundary.|2
+Brief|간결한|Give me a brief summary.|1
+Brilliant|훌륭한, 빛나는|A brilliant idea.|1
+Budget|예산, 재정, 경비, 비용|We are on a tight budget.|1
+Capability|능력|He has the capability.|2
+Capacity|용량, 능력, 수용력, 역량|The room is at full capacity.|2
+Capture|붙잡다, 포획하다, 획득하다, 기록하다, 포착하다|Capture the moment.|1
+Challenge|도전, 과제, 난제, 문제|Face the challenge.|1
+Characteristic|특징|Kindness is his characteristic.|2
+Circumstance|환경, 상황|Under no circumstances.|2
+Clarify|명확히 하다|Can you clarify that?|2
+Cognitive|인지의|Cognitive development.|3
+Coherent|일관성 있는|A coherent plan.|2
+Coincidence|우연의 일치|What a coincidence!|2
+Collaborate|협력하다|Let's collaborate on this.|2
+Collective|집단적인|A collective effort.|2
+Combine|결합하다, 합치다, 연합하다, 섞다|Combine the ingredients.|1
+Comfort|편안함, 위로, 안락, 위안|She found comfort in music.|1
+Command|명령하다, 지휘하다, 통제하다, 지시하다|The general gave a command.|1
+Commence|시작하다|The ceremony will commence.|3
+Commitment|헌신, 약속|A deep commitment.|2
+Common|공통의, 흔한, 일반적인, 보통의|A common mistake.|1
+Communicate|의사소통하다, 전달하다, 교류하다, 연락하다, 소통하다|We need to communicate.|1
+Community|공동체, 지역사회, 집단, 사회|A safe community.|1
+Compare|비교하다, 대조하다, 견주다, 비유하다|Compare the two.|1
+Compassion|동정심|Show some compassion.|2
+Compete|경쟁하다, 겨루다, 시합하다, 대결하다|They compete fairly.|1
+Complex|복잡한, 난해한, 복합체, 콤플렉스|A complex problem.|1
+Complicate|복잡하게 만들다|Don't complicate things.|2
+Component|구성 요소, 부품, 성분, 부분|An essential component.|2
+Comprehend|이해하다|I cannot comprehend this.|2
+Concentrate|집중하다, 전념하다, 응축하다, 농축하다|Concentrate on your work.|1
+Concept|개념|A basic concept.|2
+Concern|걱정, 우려, 관심, 관련, 관심사|Safety is our concern.|1
+Conclude|결론짓다, 끝내다, 마치다, 판단하다|To conclude my speech.|1
+Concrete|구체적인|Give me a concrete example.|2
+Condition|조건, 상태, 환경, 사정, 상황|A poor condition.|1
+Conduct|수행하다, 지휘하다, 행동하다, 전도하다, 실시하다|Conduct an experiment.|2
+Confidence|자신감|He has confidence.|1
+Confirm|확인하다, 승인하다, 입증하다, 확정하다|Confirm your booking.|1
+Conflict|갈등, 충돌, 분쟁, 대립|Resolve the conflict.|1
+Conform|순응하다|Conform to the rules.|3
+Consequence|결과|Face the consequences.|2
+Considerable|상당한|A considerable amount.|2
+Consist|구성되다, 이루어지다, 존재하다, 있다|Consist of three parts.|1
+Consistent|일관된|A consistent result.|2
+Constant|지속적인, 변함없는, 끊임없는, 상수|Constant noise.|1
+Construct|건설하다, 구성하다, 조립하다, 세우다|Construct a building.|1
+Consume|소비하다, 먹다, 사용하다, 소모하다|Don't consume too much sugar.|2
+Contact|연락하다, 접촉하다, 교류하다, 연결하다|Contact me later.|1
+Contemporary|현대의|Contemporary art.|2
+Context|맥락|Understand the context.|2
+Contrast|대조|In contrast to this.|1
+Contribute|기여하다, 공헌하다, 기부하다, 제공하다|Contribute to the team.|1
+Convenience|편의|For your convenience.|1
+Convey|전달하다|Convey a message.|2
+Convince|설득하다|Convince him to stay.|1
+Core|핵심|The core value.|2
+Corporate|기업의, 법인의, 단체의, 조직의|Corporate culture.|2
+Corresponding|상응하는|A corresponding increase.|2
+Crucial|결정적인, 중대한|A crucial decision.|2
+Cultivate|경작하다, 기르다|Cultivate the soil.|2
+Curiosity|호기심|A strong curiosity.|1
+Current|현재의, 지금의, 전류, 흐름|The current situation.|1
+Debate|토론|A heated debate.|1
+Decade|10년|Over the last decade.|1
+Decline|감소하다, 거절하다, 쇠퇴하다, 하락하다|The economy is in decline.|1
+Dedicated|헌신적인|A dedicated teacher.|2
+Deficit|적자|A trade deficit.|3
+Define|정의하다, 규정하다, 설명하다, 한정하다|Define the word.|1
+Deliberate|의도적인|A deliberate choice.|3
+Democracy|민주주의|A direct democracy.|1
+Demonstrate|증명하다, 보여주다, 시위하다, 설명하다, 입증하다|Demonstrate your skill.|2
+Deny|부인하다, 거절하다, 거부하다, 억제하다|He denied the charge.|1
+Depend|의존하다, 달려있다, 좌우되다, 신뢰하다|It depends on you.|1
+Depress|우울하게 하다|The news depressed me.|1
+Derive|끌어내다, 유래하다|Derive pleasure from work.|3
+Describe|묘사하다, 설명하다, 기술하다, 표현하다|Describe the scene.|1
+Deserve|받을 만하다|You deserve a rest.|1
+Designate|지정하다|Designate a leader.|3
+Desperate|절박한|A desperate situation.|2
+Despite|에도 불구하고|Despite the rain.|1
+Destination|목적지, 여행지, 도착지, 행선지|Reach your destination.|1
+Detect|탐지하다|Detect a signal.|2
+Determine|결정하다, 판단하다, 측정하다, 규정하다|Determine the cause.|1
+Device|장치, 기구, 도구, 방법|A useful device.|1
+Devote|바치다|Devote time to study.|2
+Dialogue|대화|Constructive dialogue.|2
+Differentiate|구별하다|Differentiate between them.|3
+Dignity|존엄|Maintain your dignity.|2
+Diligence|부지런함|Success through diligence.|1
+Diminish|줄어들다|Our resources diminished.|2
+Disaster|재난|A natural disaster.|1
+Discriminate|차별하다|Don't discriminate.|3
+Display|전시하다, 보여주다, 진열하다, 표시하다|Display the picture.|1
+Distinguish|구별하다|Distinguish right from wrong.|2
+Distribute|분배하다, 배포하다, 유통하다, 퍼뜨리다, 배포하다|Distribute the leaflets.|2
+Diverse|다양한|A diverse culture.|2
+Domestic|국내의, 가정의|Domestic violence.|2
+Dominant|지배적인|A dominant position.|2
+Draft|초안, 기초, 설계, 작성하다|Write a rough draft.|1
+Dramatic|극적인|A dramatic change.|1
+Durable|내구성이 있는|Durable materials.|2
+Dynamic|역동적인|A dynamic leader.|2
+Eager|간절히 바라는|Eager to learn.|1
+Economic|경제의|Economic growth.|1
+Efficient|효율적인, 능률적인, 유능한, 실속있는|An efficient worker.|1
+Elaborate|정교한|An elaborate plan.|3
+Elegant|우아한|An elegant dress.|1
+Element|요소|A key element.|1
+Eliminate|제거하다|Eliminate the risk.|2
+Eloquent|유창한|An eloquent speaker.|3
+Embrace|포용하다|Embrace new ideas.|2
+Emerge|나타나다|New problems emerged.|2
+Emphasis|강조|Put emphasis on quality.|2
+Empower|권한을 부여하다|Empower the people.|3
+Enable|가능하게 하다, 허용하다, 촉진하다, 권한을 주다|This tool enables us.|2
+Encounter|만나다, 부딪히다, 직면하다, 조우하다, 맞닥뜨리다|Encounter an obstacle.|2
+Encourage|격려하다, 장려하다, 촉진하다, 용기를 주다|Encourage your team.|1
+Endure|견디다, 참다, 지속하다, 버티다|Endure the pain.|2
+Energy|에너지|Save energy.|1
+Enforce|집행하다|Enforce the law.|2
+Enhance|향상시키다, 강화하다, 높이다, 개선하다|Enhance your skills.|2
+Enormous|거대한, 엄청난, 막대한, 광대한|An enormous house.|2
+Ensure|보장하다, 확실히 하다, 보증하다, 확인하다|Ensure your safety.|2
+Enterprise|기업, 사업, 모험, 진취성|A large enterprise.|2
+Enthusiasm|열정|Show some enthusiasm.|2
+Entire|전체의, 전부의, 완전한, 온전한|The entire world.|1
+Environment|환경, 주변, 상황, 분위기|Protect the environment.|1
+Equivalent|동등한|An equivalent amount.|2
+Era|시대|A new era.|2
+Essential|필수적인|An essential item.|1
+Establish|설립하다, 확립하다, 세우다, 수립하다|Establish a company.|1
+Estimate|추정하다, 견적하다, 평가하다, 예상하다, 추산하다|Estimate the cost.|1
+Ethical|윤리적인|Ethical behavior.|2
+Evaluate|평가하다, 검토하다, 분석하다, 측정하다|Evaluate the project.|2
+Eventually|결국|Eventually, he won.|1
+Evidence|증거, 자료, 근거, 입증|Lack of evidence.|1
+Evident|분명한|It's evident that...|2
+Evolution|진화|The evolution of species.|2
+Exaggerate|과장하다|Don't exaggerate.|2
+Exceed|초과하다, 넘다, 능가하다, 앞서다|Exceed the limit.|2
+Excellent|훌륭한, 큰, 위대한, 멋진, 우수한|An excellent choice.|1
+Exclude|제외하다, 배제하다, 차단하다, 막다|Exclude the outliers.|2
+Exotic|이국적인|Exotic fruits.|2
+Expand|확장하다, 늘리다, 팽창하다, 확대하다|Expand the business.|1
+Expectation|기대|Meet the expectation.|1
+Experience|경험, 체험, 경력, 체득|Life experience.|1
+Experiment|실험|Scientific experiment.|1
+Expert|전문가, 숙련자, 전문적인, 능숙한|An industry expert.|1
+Exploit|착취하다, 이용하다|Exploit resources.|3
+Explore|탐험하다, 조사하다, 탐구하다, 답사하다|Explore the caves.|1
+Exposure|노출|Sun exposure.|2
+External|외부의|External factors.|2
+Extinct|멸종된|Extinct animals.|2
+Extraordinary|비범한|An extraordinary man.|2
+Facility|시설, 설비, 편의, 기관|A medical facility.|2
+Factor|요인, 원인, 요소, 인자|A major factor.|1
+Faith|신뢰, 믿음|Have faith in God.|1
+Familiar|익숙한, 친숙한, 잘 아는, 익히 아는|A familiar face.|1
+Fantastic|환상적인|A fantastic view.|1
+Fatal|치명적인|A fatal accident.|2
+Feature|특징, 기능, 특집, 출연하다|Key feature.|1
+Flexible|유연한|Flexible hours.|2
+Focus|집중하다, 초점, 관심, 중점|Focus on the goal.|1
+Formal|공식적인, 형식적인, 정식의, 격식을 갖춘|Formal clothes.|1
+Formation|형성|The formation of rocks.|2
+Fortunate|운 좋은|You are fortunate.|1
+Foundation|기초, 토대, 재단, 설립, 근거|A solid foundation.|1
+Fragment|파편|A fragment of glass.|2
+Frequent|빈번한, 잦은, 자주 일어나는, 상습적인|Frequent visits.|1
+Frugal|절약하는|Lead a frugal life.|2
+Frustrate|좌절시키다|The news frustrated me.|2
+Fundamental|근본적인|A fundamental change.|2
+Gather|모으다|Gather information.|1
+General|일반적인, 보편적인, 대체적인, 장군|General knowledge.|1
+Generate|생산하다, 발생시키다, 창출하다, 만들다, 생성하다|Generate power.|2
+Generous|관대한|A generous man.|1
+Genuine|진짜의|A genuine person.|1
+Gesture|제스처|A kind gesture.|1
+Global|세계적인|Global warming.|1
+Gorgeous|아주 멋진|A gorgeous view.|1
+Gradual|점진적인|Gradual improvement.|2
+Gratitude|감사|Express gratitude.|2
+Guarantee|보장하다|I guarantee it.|2
+Guideline|지침, 방침, 규칙, 기준, 가이드라인|Follow the guidelines.|2
+Horizontal|수평의|A horizontal line.|2
+Host|주최하다, 사회자, 주인, 숙주, 주최자|Our host was very kind.|1
+Household|가정의|Household chores.|1
+Huge|거대한, 엄청난, 막대한, 광대한|A huge success.|1
+Humanity|인류, 인간성|Crimes against humanity.|2
+Humor|유머|A good sense of humor.|1
+Hunt|사냥하다|Animals hunt for food.|1
+Hypothesis|가설|Test the hypothesis.|3
+Identity|정체성|Loss of identity.|1
+Idle|게으른, 가동되지 않는|The machines are idle.|2
+Ignite|점화하다|Ignite the fuel.|3
+Ignore|무시하다, 간과하다, 소홀히 하다, 외면하다|Don't ignore the warning.|1
+Illness|질병|Mental illness.|1
+Illuminate|비추다, 밝히다|The sun illuminates the room.|3
+Illustration|삽화, 예증|A clear illustration.|2
+Immediate|즉각적인, 즉시의, 긴급한, 직접적인|Immediate response.|1
+Immigrate|이주해오다|They immigrated to Korea.|2
+Immune|면역의|Immune system.|2
+Impact|영향, 충격, 효과, 결과|Significant impact.|1
+Impatient|조급한|Don't be so impatient.|1
+Imperial|제국의|Imperial palace.|3
+Implement|실행, 이행, 도입, 적용, 이행하다|Implement a plan.|2
+Implication|영향, 함축|Economic implications.|2
+Implicit|암시된|Implicit agreement.|3
+Imply|암시하다, 의미하다, 내포하다, 넌지시 말하다|Silence implies consent.|2
+Import|수입하다, 들여오다, 의미하다, 중요하다|Import goods.|1
+Impose|부과하다|Impose a tax.|3
+Impossible|불가능한|Mission impossible.|1
+Impress|인상을 주다|Impress the audience.|1
+Improve|향상시키다, 개선하다, 증진하다, 발전하다|Improve the quality.|1
+Incentive|장려책, 장려금, 유인, 동기, 혜택|Economic incentive.|2
+Incident|사건|Isolate the incident.|1
+Incline|기울다|Incline to agree.|2
+Include|포함하다, 들어있다, 포괄하다, 함유하다|Include all costs.|1
+Income|소득, 수입, 이익, 매출|High income.|1
+Increase|증가하다, 늘리다, 상승하다, 확대하다|Increase the price.|1
+Incredible|놀라운|Incredible story.|1
+Indeed|정말로|A very good friend indeed.|1
+Independent|독립적인|Independent nation.|1
+Index|지표, 지수|Consumer price index.|2
+Indicate|나타내다, 지시하다, 보여주다, 암시하다|Studies indicate that...|1
+Indifferent|무관심한|He is indifferent to politics.|2
+Indigenous|토착의|Indigenous people.|3
+Individual|개인의, 개별의, 독특한, 개체|Individual rights.|1
+Induce|유발하다|Induce sleep.|3
+Indulge|탐닉하다, 마음껏 하다|Indulge in a hobby.|3
+Industry|산업, 공업, 업계, 근면|Heavy industry.|1
+Inevitable|피할 수 없는|Death is inevitable.|2
+Infect|감염시키다|Infect with a virus.|1
+Infer|추론하다|Infer meaning.|2
+Infinite|무한한|Infinite space.|2
+Inflation|인플레이션|Control inflation.|2
+Influence|영향|Peer influence.|1
+Inform|알리다, 통지하다, 보고하다, 공지하다|Inform the police.|1
+Infrastructure|사회 기반 시설|Build infrastructure.|2
+Ingenious|영리한, 독창적인|An ingenious idea.|3
+Ingredient|재료|Food ingredients.|1
+Inhabit|거주하다|Inhabit the area.|2
+Inherent|내재된|Inherent risk.|3
+Inherit|상속받다|Inherit a fortune.|2
+Inhibit|억제하다|Inhibit growth.|3
+Initial|처음의, 최초의, 시작의, 원래의|Initial stage.|1
+Initiate|개시하다|Initiate a reform.|3
+Inject|주입하다|Inject medicine.|2
+Injure|부상을 입히다|Injure one's leg.|1
+Innate|타고난|Innate ability.|3
+Innocent|무죄의|Proven innocent.|1
+Innovate|혁신하다|Company that innovates.|2
+Input|입력|Data input.|1
+Inquiry|조사|Official inquiry.|2
+Insane|제정신이 아닌|Drive me insane.|2
+Insight|통찰, 식견, 이해, 지식, 통찰력|Valuable insight.|2
+Insist|주장하다|Insist on coming.|1
+Inspect|검사하다, 점검하다, 조사하다, 살피다|Inspect the factory.|2
+Inspire|영감을 주다|Inspire others.|1
+Install|설치하다, 장착하다, 임명하다, 배치하다|Install a program.|1
+Instance|사례, 예, 경우, 실례|For instance.|1
+Instant|즉각적인|Instant coffee.|1
+Instinct|본능|Natural instinct.|1
+Institute|기관, 협회, 연구소, 설립하다|Research institute.|2
+Instruct|지시하다, 설명하다, 교육, 사용법|Instruct the class.|1
+Instrument|도구, 악기|Surgical instrument.|1
+Insult|모욕하다|Don't insult me.|1
+Insurance|보험, 보장, 보증, 안전장치|Health insurance.|1
+Intact|온전한|Remain intact.|3
+Integrate|통합하다, 융합, 결합, 합병|Integrate systems.|2
+Integrity|정직, 성실|A man of integrity.|3
+Intellectual|지적인|Intellectual property.|2
+Intelligent|똑똑한, 영리한, 세련된, 멋진|Intelligent life.|1
+Intend|의도하다, 계획하다, 작정하다, 뜻하다|What do you intend to do?|1
+Intense|강렬한|Intense heat.|2
+Intent|의도|Criminal intent.|2
+Interact|상호작용하다|Interact with people.|2
+Interest|관심, 흥미, 이자, 이익|Pay interest.|1
+Interfere|간섭하다, 방해하다, 개입하다, 참견하다, 방해하다|Don't interfere.|2
+Interior|내부|Car interior.|2
+Internal|내부의|Internal medicine.|2
+Interpret|해석하다, 통역하다, 설명하다, 이해하다|Interpret a dream.|2
+Interrupt|중단시키다|Don't interrupt.|1
+Interval|간격|Regular intervals.|2
+Intervene|개입하다|Police intervened.|3
+Intimate|친밀한|Intimate friend.|2
+Intricate|복잡한|Intricate design.|3
+Intrinsic|고유한|Intrinsic value.|3
+Introduce|소개하다, 도입하다, 발표하다, 전하다|Introduce yourself.|1
+Invade|침공하다|Invade a country.|2
+Invalid|무효한|Invalid password.|2
+Invent|발명하다|Invent a machine.|1
+Invest|투자하다, 쓰다, 부여하다, 쏟다|Invest in stocks.|1
+Investigate|수사하다|Investigate a crime.|2
+Invite|초대하다, 부르다, 요청하다, 권유하다|Invite to a party.|1
+Involve|관련되다, 포함하다, 참여하다, 연루되다|Involve a risk.|1
+Irony|아이러니|Sense of irony.|2
+Irrelevant|무관한|Irrelevant question.|2
+Isolate|고립시키다|Isolate the patient.|2
+Issue|문제, 발행하다, 발표하다, 논점, 쟁점, 이슈|Major issue.|1
+Item|항목, 물품, 품목, 기사|New item.|1
+Joint|공동의|Joint venture.|2
+Journal|일기, 잡지|Academic journal.|1
+Journey|여행, 여정, 길, 탐험|Long journey.|1
+Judge|판사, 판단하다, 심사하다, 재판하다|Judge by appearance.|1
+Judicial|사법의|Judicial system.|3
+Just|공정한, 방금|Just cause.|1
+Justice|정의|Court of justice.|1
+Justify|정당화하다|Justify the means.|2
+Keen|날카로운, 열망하는|Keen interest.|2
+Label|라벨|Warning label.|1
+Labor|노동|Child labor.|1
+Lack|부족, 결핍, 없음, 결여|Lack of information.|1
+Landscape|풍경, 경치, 전경, 지형|Mountain landscape.|1
+Language|언어, 말, 말투, 문체|Foreign language.|1
+Large|큰, 대규모의, 광대한, 많은|Large size.|1
+Last|마지막, 지속하다, 끝, 최근의, 마지막의, 지속되다|Last chance.|1
+Latent|잠재적인|Latent power.|3
+Launch|시작하다, 출시하다|Launch a product.|1
+Law|법, 법률, 규칙, 법학|Break the law.|1
+Layer|층|Layers of clouds.|1
+Lead|이끌다, 지도하다, 선두, 지휘하다|Lead the way.|1
+Leaf|잎|Autumn leaves.|1
+League|리그|Sports league.|1
+Lean|기울다|Lean on me.|1
+Learn|배우다, 습득하다, 알게 되다, 익히다|Learn a skill.|1
+Lease|임대하다|Lease an office.|2
+Lecture|강의|University lecture.|1
+Legal|법적인, 합법적인, 법률의, 정당한|Legal advice.|1
+Legend|전설|Local legend.|1
+Legitimate|합법적인|Legitimate business.|3
+Leisure|여가|Leisure time.|1
+Lend|빌려주다, 대출하다, 제공하다, 주다|Lend a hand.|1
+Length|길이|Arm's length.|1
+Lens|렌즈|Camera lens.|1
+Lesson|교훈, 수업|Valuable lesson.|1
+Lethal|치명적인|Lethal weapon.|3
+Level|수준, 단계, 높이, 평평하게 하다|Level of difficulty.|1
+Liability|책임, 부채, 의무, 불리함, 부채, 책임|Legal liability.|3
+Liberal|자유주의의|Liberal arts.|2
+Liberty|자유|Statue of Liberty.|2
+Library|도서관, 자료실, 서재, 집합|Public library.|1
+License|면허, 허가, 자격증, 허용하다|Driver's license.|1
+Lie|거짓말하다, 눕다|Lie on the bed.|1
+Life|삶, 생활, 생명, 인생|Quality of life.|1
+Light|빛, 가벼운, 밝은, 불을 켜다|Speed of light.|1
+Like|좋아하다, 같은|Look like him.|1
+Limit|제한하다, 한계, 범위, 제약, 제한|Speed limit.|1
+Line|선, 줄, 노선, 문장|Straight line.|1
+Link|연결하다, 관련짓다, 고리, 관계, 연결|Web link.|1
+Liquid|액체|Liquid water.|1
+List|목록, 명단, 리스트, 기재하다|Shopping list.|1
+Listen|듣다, 경청하다, 귀 기울이다, 청취하다|Listen to music.|1
+Literacy|읽고 쓰는 능력|Digital literacy.|2
+Literal|글자 그대로의|Literal meaning.|2
+Literary|문학의|Literary works.|2
+Literature|문학|English literature.|1
+Little|작은, 적은, 조금, 어린|Little boy.|1
+Live|살다, 거주하다, 생존하다, 실시간의|Live alone.|1
+Load|짐, 싣다|Heavy load.|1
+Loan|대출, 융자, 빌려주다, 차용|Student loan.|1
+Local|지역의, 현지의, 지방의, 국지적인|Local area.|1
+Locate|위치하다, 찾다, 설치하다, 정하다, 위치시키다|Locate the house.|1
+Logic|논리|Human logic.|1
+Long|긴, 오래된, 길게, 오랫동안|Long time.|1
+Look|보다, 바라보다, 모습, 외모|Look at me.|1
+Loose|느슨한|Loose tooth.|1
+Lose|잃다, 패하다, 놓치다, 손실|Lose weight.|1
+Loss|상실|Profit and loss.|1
+Lot|많은, 다수, 부지, 운명|A lot of people.|1
+Loud|시끄러운|Loud music.|1
+Love|사랑하다, 좋아하다, 애정, 열정, 사랑|I love you.|1
+Low|낮은, 작은, 저렴한, 부족한|Low price.|1
+Loyal|충실한|Loyal customer.|1
+Luck|운, 행운, 우연, 기회|Good luck.|1
+Lucky|운 좋은|Lucky day.|1
+Lunch|점심, 중식, 오찬, 식사|Have lunch.|1
+Luxury|사치|Luxury goods.|1
+Machine|기계, 장치, 자동화하다, 설비|Washing machine.|1
+Mad|미친|Drive me mad.|1
+Magazine|잡지, 패션지|Fashion magazine.|1
+Magic|마법|Black magic.|1
+Magnet|자석|Magnet pole.|1
+Magnitude|규모|Order of magnitude.|3
+Main|주요한|Main entrance.|1
+Maintain|유지하다, 관리하다, 지속하다, 주장하다|Maintain health.|1
+Major|주요한, 중대한, 전공, 장조|Major problem.|1
+Make|만들다, 제작하다, 하다, 형성하다|Make progress.|1
+Male|남성|Male voice.|1
+Manage|관리하다, 운영하다, 다루다, 해내다|Manage a business.|1
+Manifest|나타내다|Manifest itself.|3
+Manipulate|조종하다|Manipulate the market.|2
+Manner|방식, 매너|Table manners.|1
+Many|많은, 다수의, 여러, 수많은|Many books.|1
+Map|지도, 약도, 도표, 계획|Road map.|1
+March|행진하다|Military march.|1
+Margin|여백, 이윤, 여유, 차이, 한계|Profit margin.|2
+Marine|해양의|Marine biology.|2
+Mark|표시하다|Check mark.|1
+Market|시장, 판매하다, 홍보하다, 유통하다|Stock market.|1
+Marriage|결혼, 혼인, 연결, 결합|Happy marriage.|1
+Mass|덩어리, 대중|Mass media.|1
+Master|거장, 숙달하다|Master a language.|1
+Match|경기, 시합, 어울리다, 맞추다|Tennis match.|1
+Material|재료, 물질, 자료, 원료|Raw material.|1
+Matter|문제, 사안, 중요하다, 물질|It doesn't matter.|1
+Mature|성숙한|Mature person.|1
+Maximum|최대|Maximum speed.|1
+Maybe|아마도|Maybe later.|1
+Mayor|시장|City mayor.|1
+Meal|식사|Hot meal.|1
+Mean|의미하다, 뜻하다, 중간의, 비열한|What do you mean?|1
+Meaning|의미|Literal meaning.|1
+Measure|측정하다, 재다, 조치, 수단|Take measures.|1
+Mechanic|정비공|Auto mechanic.|1
+Mechanism|기제, 메커니즘|Defense mechanism.|2
+Medal|메달|Gold medal.|1
+Media|언론, 매체, 미디어, 수단|Social media.|1
+Medical|의학의, 의료의, 병원의, 진료의|Medical center.|1
+Medicine|약, 의학|Take medicine.|1
+Medium|매체, 중간의|Medium size.|1
+Meet|만나다, 회의하다, 충족하다, 맞닥뜨리다|Meet a friend.|1
+Melt|녹다|Ice melts.|1
+Member|회원, 구성원, 일원, 참가자|Staff member.|1
+Memory|기억|Short-term memory.|1
+Mental|정신의|Mental health.|1
+Mention|언급하다, 말하다, 거론하다, 지적하다|Don't mention it.|1
+Menu|메뉴, 식단, 목록, 선택지|Lunch menu.|1
+Merit|장점|Merits and demerits.|2
+Message|메시지, 전달, 통신, 알림|Text message.|1
+Metal|금속|Scrap metal.|1
+Method|방법, 수단, 방식, 체계|Teaching method.|1
+Metric|미터법의|Metric system.|2
+Microscope|현미경|Look through a microscope.|2
+Middle|중간, 중앙, 중도, 중심|Middle class.|1
+Might|~일지도 모른다, 힘, 권력, 가능성|It might rain.|1
+Migrate|이동하다|Birds migrate south.|2
+Mild|온화한|Mild weather.|1
+Military|군사의|Military service.|1
+Milk|우유|Glass of milk.|1
+Mill|공장, 방앗간|Steel mill.|2
+Mind|마음, 정신, 생각, 주의하다|Change your mind.|1
+Mine|나의 것, 광산|Gold mine.|1
+Mineral|광물|Vitamins and minerals.|1
+Minimum|최소|Minimum wage.|1
+Minister|장관|Prime Minister.|1
+Minor|사소한|Minor mistake.|1
+Minority|소수|Ethnic minority.|2
+Minute|분, 잠깐, 순간, 회의록, 미세한|In a minute.|1
+Miracle|기적|Economic miracle.|1
+Mirror|거울|Look in the mirror.|1
+Miss|놓치다, 그리워하다, 실패하다, 미스|Miss the bus.|1
+Mission|임무|Space mission.|1
+Mistake|실수|Make a mistake.|1
+Mix|섞다|Mix ingredients.|1
+Mobile|이동식의|Mobile phone.|1
+Mode|방식|Flight mode.|1
+Model|모델, 형식, 본보기, 모형|Role model.|1
+Moderate|적절한, 완화하다|Moderate exercise.|2
+Modern|현대의, 근대의, 최신의, 세련된|Modern art.|1
+Modest|겸손한, 적당한|Modest house.|2
+Modify|수정하다|Modify a plan.|2
+Moist|습한|Moist air.|2
+Moment|순간, 잠깐, 때, 기회|Wait a moment.|1
+Monarchy|군주제|Absolute monarchy.|3
+Money|돈, 자금, 재산, 화폐|Earn money.|1
+Monitor|감시하다|Computer monitor.|1
+Monkey|원숭이|Smart monkey.|1
+Monster|괴물|Sea monster.|1
+Month|월, 달, 기간, 한 달|Once a month.|1
+Mood|기분, 분위기, 심리, 감정|Bad mood.|1
+Moon|달|Full moon.|1
+Moral|도덕적인|Moral support.|1
+More|더 많은, 추가의, 더욱, 그 이상의|More time.|1
+Morning|아침, 오전, 새벽, 날의 시작|Good morning.|1
+Mortal|치명적인, 필멸의|Mortal wound.|3
+Most|가장, 대부분, 최고의, 거의, 가장 많은|Most people.|1
+Mother|어머니, 엄마, 모성, 근원|Love your mother.|1
+Motion|움직임, 동작, 제안, 발의, 운동|Slow motion.|1
+Motivate|동기부여하다|Motivate students.|1
+Motive|동기|Ulterior motive.|2
+Mountain|산, 산맥, 산지, 봉우리|Climb a mountain.|1
+Mouse|마우스, 쥐|Computer mouse.|1
+Mouth|입|Open your mouth.|1
+Move|움직이다, 이사하다, 감동시키다, 행동하다|Move house.|1
+Movie|영화|Watch a movie.|1
+Much|많은, 대단히, 매우, 훨씬|How much?|1
+Mud|진흙|Stick in the mud.|1
+Multiple|다수의|Multiple choice.|1
+Multiply|곱하다, 증식하다|Multiply by ten.|1
+Murder|살인|Attempted murder.|1
+Muscle|근육|Build muscle.|1
+Museum|박물관, 미술관, 전시관, 기념관|History museum.|1
+Music|음악, 곡, 소리, 예술|Listen to music.|1
+Muslim|이슬람교도|Muslim world.|1
+Must|반드시, 해야 한다, 필수, 의무|Must go now.|1
+Mutual|상호간의|Mutual trust.|2
+My|나의|My book.|1
+Mystery|미스터리|Solve a mystery.|1
+Myth|신화|Greek myths.|1
+Nail|손톱, 못|Hammer a nail.|1
+Naked|벌거벗은|Naked eye.|1
+Name|이름, 명칭, 지명하다, 호칭|What is your name?|1
+Narrative|이야기|Personal narrative.|2
+Narrow|좁은|Narrow street.|1
+Nasty|끔찍한, 못된|Nasty habit.|2
+Nation|국가, 민족, 나라, 국민|Nation state.|1
+Native|원주민의|Native speaker.|1
+Natural|자연의, 천연의, 타고난, 당연한|Natural gas.|1
+Nature|자연, 본질, 성격, 천성|Human nature.|1
+Near|가까운, 근처의, 접근하다, 거의|Near the station.|1
+Nearly|거의|Nearly finished.|1
+Neat|깔끔한|Neat handwriting.|1
+Necessary|필수적인, 필요한, 불가피한, 당연한|Necessary evil.|1
+Neck|목|Neck tie.|1
+Need|필요, 요구, 부족, 필요하다|Need help.|1
+Negative|부정적인|Negative impact.|1
+Neglect|소홀히 하다, 무시하다, 태만, 방치|Child neglect.|2
+Negotiate|협상하다|Negotiate a deal.|2
+Neighbor|이웃|Next-door neighbor.|1
+Neither|어느 쪽도 아니다|Neither of them.|1
+Nerve|신경|Optic nerve.|1
+Nervous|긴장한|Feel nervous.|1
+Nest|둥지|Birds' nest.|1
+Net|그물|Fishing net.|1
+Network|네트워크, 망, 연결, 통신망|Social network.|1
+Neutral|중립적인|Neutral ground.|2
+Never|절대, 결코, 한 번도, 결코 ~않다, 절대 아니다|Never say never.|1
+New|새로운, 신규의, 최근의, 참신한|New year.|1
+News|뉴스, 소식, 보도, 정보|Good news.|1
+Next|다음의, 옆의, 다가오는, 차기|Next week.|1
+Nice|좋은, 멋진, 친절한, 훌륭한|Nice to meet you.|1
+Night|밤, 야간, 저녁, 야간의|Good night.|1
+Noble|고귀한|Noble cause.|1
+Nobody|아무도 아니다|Nobody home.|1
+Noise|소음|Loud noise.|1
+Noisy|시끄러운|Noisy kids.|1
+Nominate|지명하다|Nominate for president.|2
+None|아무것도 아니다|None of business.|1
+Nonsense|말도 안 되는 소리|Stop talking nonsense.|1
+Normal|정상적인, 보통의, 일반적인, 평범한|Back to normal.|1
+North|북쪽, 북부, 북향, 북부지역|North Pole.|1
+Nose|코|Running nose.|1
+Note|메모, 노트, 기록, 주목하다|Take notes.|1
+Nothing|아무것도 아니다|Nothing to say.|1
+Notice|공지, 알림, 통지, 주목하다, 알아차리다|Notice the change.|1
+Notify|알리다|Notify the school.|2
+Notion|생각, 관념|False notion.|2
+Novel|소설, 참신한|Novel idea.|1
+Now|지금|Now or never.|1
+Nowadays|요즘|Nowadays people use apps.|1
+Nuclear|핵의|Nuclear power.|1
+Nuisance|성가신 것|Public nuisance.|3
+Number|숫자, 번호, 수, 인원|Phone number.|1
+Numerous|다수의|Numerous people.|2
+Nurse|간호사|School nurse.|1
+Nutrient|영양소|Essential nutrients.|2
+Nutrition|영양|Proper nutrition.|2
+Obey|복종하다|Obey the law.|1
+Object|물체, 대상, 목적, 반대하다|Flying object.|1
+Objective|객관적인, 목표|Primary objective.|2
+Obligation|의무, 책임, 약속, 채무|Fulfill obligation.|2
+Oblige|강요하다|Feel obliged to help.|3
+Obscure|모호한|Obscure meaning.|3
+Observe|관찰하다, 지켜보다, 준수하다, 발언하다|Observe nature.|1
+Obstacle|장애물|Overcome obstacle.|2
+Obtain|얻다, 획득하다, 취득하다, 달성하다|Obtain a permit.|2
+Obvious|명백한|Obvious reason.|1
+Occasion|경우, 행사|Special occasion.|1
+Occupy|차지하다|Occupy the building.|1
+Occur|발생하다, 일어나다, 생기다, 출현하다|Accidents occur.|1
+Ocean|대양|Pacific Ocean.|1
+Odd|이상한, 홀수의|Odd number.|1
+Offend|기분 상하게 하다|Didn't mean to offend.|2
+Offer|제안하다, 제공하다, 입찰하다, 권하다, 제공하다|Offer help.|1
+Office|사무실, 기관, 직무, 부서|Head office.|1
+Officer|관리, 임원, 장교, 공무원|Police officer.|1
+Official|공식적인, 공무의, 직원의, 공인된|Official website.|1
+Often|자주, 종종, 빈번히, 흔히|Often late.|1
+Oil|석유, 기름|Cooking oil.|1
+Old|오래된, 늙은|Old man.|1
+Omit|누락시키다|Omit details.|2
+Once|한 번, 일단, 이전에, 옛날에|Once a day.|1
+One|하나, 한 사람, 일, 첫째|One way.|1
+Only|오직, 단지, 유일한, 겨우|Only child.|1
+Open|열다, 개방하다, 시작하다, 공개하다|Open the door.|1
+Operate|운영하다, 작동하다, 수술하다, 관리하다|Operate a machine.|1
+Opinion|의견, 견해, 생각, 판단|Public opinion.|1
+Opponent|상대|Political opponent.|2
+Opportunity|기회, 가능성, 호기, 잠재력, 찬스|Job opportunity.|1
+Oppose|반대하다|Oppose the plan.|1
+Opposite|반대의|Opposite direction.|1
+Optic|시각의|Optic fiber.|2
+Option|선택, 대안, 옵션, 선택권|No other option.|1
+Oracle|신탁, 현자|Modern oracle.|3
+Oral|구두의|Oral exam.|2
+Orange|오렌지색|Sweet orange.|1
+Orbit|궤도|Earth's orbit.|2
+Order|주문하다, 명령하다, 순서, 질서|Out of order.|1
+Ordinary|보통의, 평범한, 일반적인, 통상의|Ordinary people.|1
+Organ|장기|Internal organs.|1
+Organic|유기농의|Organic food.|1
+Organize|조직하다, 준비하다, 정리하다, 구성하다|Organize a party.|1
+Orient|지향하다|Customer oriented.|2
+Origin|기원|Point of origin.|1
+Original|원래의, 독창적인,원본의, 최초의|Original copy.|1
+Ornament|장식|Christmas ornament.|2
+Other|다른, 그 밖의, 나머지, 타인|Other people.|1
+Otherwise|그렇지 않으면|Work hard, otherwise...|1
+Ought|해야 한다|Ought to know.|1
+Our|우리의|Our school.|1
+Out|밖으로, 밖에, 나가다, 소멸하다|Go out.|1
+Outcome|결과, 성과, 성과물, 결말|Final outcome.|2
+Outline|개요|Project outline.|1
+Output|생산량, 출력|Data output.|2
+Outside|밖, 외부, 바깥쪽, 외부의|Play outside.|1
+Outstanding|뛰어난|Outstanding player.|2
+Over|위에, 넘어, 끝난, 지나서, 너머, 위에|Over the bridge.|1
+Overcome|극복하다|Overcome difficulties.|1
+Overlook|간과하다|Overlook a mistake.|2
+Overseas|해외의|Study overseas.|1
+Owe|빚지다|Owe money.|1
+Own|자신의, 소유하다, 개인적인, 자기 것|Own a car.|1
+Oxygen|산소|Lack of oxygen.|1
+Pace|속도|Keep pace with.|1
+Pack|짐을 싸다|Pack your bags.|1
+Package|꾸러미|Care package.|1
+Pain|고통, 아픔, 괴로움, 통증|Feel pain.|1
+Paint|칠하다|Paint the wall.|1
+Pair|쌍|A pair of shoes.|1
+Palace|궁전|Buckingham Palace.|1
+Pale|창백한|Turn pale.|1
+Pan|냄비|Frying pan.|1
+Panel|패널|Control panel.|2
+Panic|공황|Don't panic.|1
+Paper|종이, 신문, 논문, 서류|Daily paper.|1
+Parade|행진|Street parade.|1
+Parallel|평행한|Parallel lines.|2
+Parameter|매개변수|Set parameters.|3
+Pardon|용서, 사면|Pardon me.|1
+Parent|부모, 양육자, 보호자, 근원|Single parent.|1
+Park|공원, 주차하다|National park.|1
+Parliament|의회|Members of Parliament.|2
+Part|부분, 역할, 일부, 부품|Take part in.|1
+Partial|부분적인|Partial success.|2
+Participant|참가자|Active participant.|2
+Particle|입자|Dust particle.|2
+Particular|특정한|In particular.|1
+Partner|파트너, 동반자, 협력자, 짝, 동료|Business partner.|1
+Party|파티, 모임, 정당, 단체의|Political party.|1
+Pass|통과하다, 지나가다, 합격하다, 전달하다|Pass the exam.|1
+Passage|통로, 구절|A narrow passage.|1
+Passenger|승객|Plane passenger.|1
+Passion|열정|Music is my passion.|1
+Passive|수동적인|Passive resistance.|2
+Passport|여권, 신분증, 통행증, 허가증|Valid passport.|1
+Past|과거, 지난, 지나간, 과거의|In the past.|1
+Path|길|Path to success.|1
+Patience|인내|Lose patience.|1
+Patient|인내심 있는, 환자|Be patient.|1
+Pattern|패턴|Pattern recognition.|1
+Pause|중단하다|Pause the video.|1
+Pay|지불하다, 급여, 보상하다, 보수|Pay cash.|1
+Peace|평화, 화합, 안정, 평온|Peace of mind.|1
+Peak|정점|At its peak.|1
+Peel|껍질을 벗기다|Peel an orange.|1
+Peer|또래|Peer pressure.|2
+Penalty|처벌, 벌금, 제재, 불이익|Death penalty.|1
+Pencil|연필|Lead pencil.|1
+People|사람들, 국민, 민중, 인류|Young people.|1
+Perceive|인지하다|Perceive a difference.|2
+Percent|퍼센트|Ten percent.|1
+Perfect|완벽한|Perfect match.|1
+Perform|수행하다, 공연하다, 실행하다, 작동하다|Perform a task.|1
+Perhaps|아마도|Perhaps tomorrow.|1
+Period|기간, 시기, 시대, 마침표|Time period.|1
+Permanent|영구적인|Permanent job.|2
+Permission|허가|With permission.|1
+Permit|허가하다, 허용하다, 면허, 허가증|Work permit.|1
+Persist|지속하다, 고집하다|Problems persist.|2
+Person|사람, 개인, 인물, 인격|Private person.|1
+Personal|개인의, 사적인, 개별적인, 본인의|Personal opinion.|1
+Perspective|관점|Fresh perspective.|2
+Persuade|설득하다|Persuade him to stay.|1
+Phase|단계|Initial phase.|2
+Phenomenon|현상|Natural phenomenon.|2
+Philosophy|철학|Moral philosophy.|1
+Phone|전화, 휴대폰, 통화하다, 전화기|Mobile phone.|1
+Photo|사진, 사진촬영, 사진기록, 사진자료|Family photo.|1
+Phrase|구절|Common phrase.|1
+Physical|신체의|Physical health.|1
+Physics|물리학|Laws of physics.|1
+Piano|피아노|Play the piano.|1
+Pick|고르다, 선택하다, 따다, 집다|Pick a card.|1
+Picture|사진, 그림|Take a picture.|1
+Piece|조각|A piece of cake.|1
+Pig|돼지|Guinea pig.|1
+Pile|더미|Pile of books.|1
+Pill|알약|Sleeping pill.|1
+Pilot|조종사|Fighter pilot.|1
+Pin|핀|Safety pin.|1
+Pink|분홍색|Bright pink.|1
+Pipe|파이프|Water pipe.|1
+Pitch|투구, 음높이|Perfect pitch.|1
+Pity|유감, 동정|What a pity!|1
+Place|장소, 위치, 자리, 놓다|Public place.|1
+Plain|평원, 평이한|Plain English.|1
+Plan|계획, 설계, 프로그램, 의도|Action plan.|1
+Plane|비행기, 항공기, 평면, 비행하다|Cargo plane.|1
+Planet|행성|Planet Earth.|1
+Plant|식물, 공장, 설비, 심다|Manufacturing plant.|1
+Plastic|플라스틱|Plastic bottle.|1
+Plate|접시|License plate.|1
+Platform|플랫폼, 승강장, 단, 무대|Platform nine.|1
+Play|놀다, 연주하다, 경기하다, 작동하다|Play fair.|1
+Pleasant|즐거운|Mild and pleasant.|1
+Please|기쁘게 하다, 제발, 원하다, 만족시키다|Yes, please.|1
+Pleasure|기쁨|My pleasure.|1
+Plenty|풍부한|Plenty of time.|1
+Plot|음모, 줄거리|Movie plot.|1
+Plug|플러그|Spark plug.|1
+Plus|더하기|Two plus two.|1
+Pocket|주머니|Pocket money.|1
+Poem|시|Write a poem.|1
+Poet|시인|Great poet.|1
+Point|지점, 가리키다, 점, 요점|Point of view.|1
+Poison|독|Rat poison.|1
+Pole|극, 기둥|North Pole.|1
+Police|경찰|Police station.|1
+Policy|정책, 방침, 규정, 보험증권|Insurance policy.|1
+Polish|닦다, 폴란드의|Nail polish.|1
+Polite|공손한|Be polite.|1
+Political|정치의|Political science.|1
+Pollute|오염시키다|Pollute the river.|1
+Pool|수영장|Swimming pool.|1
+Poor|가난한, 부족한, 열악한, 불쌍한|Poor health.|1
+Pop|팝, 펑 소리가 나다|Pop music.|1
+Popular|인기 있는, 대중적인, 유명한, 널리 퍼진|Popular culture.|1
+Population|인구, 주민, 집단, 개체군|World population.|1
+Port|항구|Seaport.|1
+Portion|부분|Large portion.|1
+Position|위치, 지위, 입장, 자세|Sitting position.|1
+Positive|긍정적인, 확실한, 명확한, 양성의|Stay positive.|1
+Possess|소유하다|Possess a weapon.|1
+Possible|가능한, 잠재적인, 실현 가능한, 있을 수 있는|As soon as possible.|1
+Post|우편, 게시하다|Post office.|1
+Pot|냄비, 항아리|Flower pot.|1
+Potato|감자|Sweet potato.|1
+Potential|잠재적인|Potential energy.|2
+Pound|파운드|Ten pounds.|1
+Pour|붓다|Pour coffee.|1
+Powder|가루|Milk powder.|1
+Power|힘, 권력, 에너지, 전력|Solar power.|1
+Practical|실용적인|Practical experience.|1
+Practice|연습, 실행하다, 관행, 실습|Daily practice.|1
+Praise|칭찬하다|High praise.|1
+Pray|기도하다|Pray for peace.|1
+Preach|설교하다|Preach the gospel.|2
+Precious|소중한|Precious metals.|1
+Precise|정확한|Precise measurements.|2
+Predict|예측하다|Predict the weather.|1
+Prefer|선호하다|I prefer tea.|1
+Pregnant|임신한|Six months pregnant.|1
+Prejudice|편견|Racial prejudice.|2
+Preliminary|예비의|Preliminary rounds.|2
+Prepare|준비하다, 대비하다, 예비하다, 조리하다|Prepare for battle.|1
+Prescribe|처방하다|Prescribe antibiotics.|2
+Presence|존재, 출석|In the presence of.|1
+Present|현재의, 선물, 제시하다, 발표하다|Present tense.|1
+Preserve|보존하다|Preserve nature.|1
+President|대통령|US President.|1
+Press|누르다, 언론, 압박하다, 출판|Press the button.|1
+Pressure|압력, 스트레스, 누름, 강요|Blood pressure.|1
+Presume|추정하다|Presume innocent.|2
+Pretend|인 체하다|Pretend to sleep.|1
+Pretty|예쁜|Pretty woman.|1
+Prevail|승리하다, 만연하다|Truth will prevail.|3
+Prevent|막다, 방지하다, 예방하다, 저지하다|Prevent cancer.|1
+Previous|이전의|Previous experience.|1
+Price|가격, 요금, 가치, 비용|Market price.|1
+Pride|자부심|National pride.|1
+Priest|신부, 성직자|High priest.|1
+Primary|주요한, 초등의|Primary school.|1
+Prime|최상의|Prime minister.|1
+Primitive|원시의|Primitive culture.|2
+Prince|왕자|Crown prince.|1
+Principal|교장, 주요한|School principal.|1
+Principle|원칙|Basic principles.|1
+Print|인쇄하다|Finger print.|1
+Prior|이전의|Prior knowledge.|2
+Priority|우선순위|High priority.|1
+Prison|교도소|Go to prison.|1
+Private|개인적인, 사적인, 비밀의, 전용의|Private life.|1
+Privilege|특권|Rank and privilege.|2
+Prize|상|Nobel Prize.|1
+Probable|있을 법한|Probable cause.|1
+Problem|문제, 과제, 난제, 고민|Math problem.|1
+Process|과정, 절차, 진행, 처리하다|Natural process.|1
+Produce|생산하다, 제작하다, 만들다, 산출하다|Produce goods.|1
+Product|제품, 상품, 산출물, 결과|New product.|1
+Professional|전문적인, 직업의, 전문가, 프로|Professional golfer.|1
+Professor|교수|History professor.|1
+Profit|이익, 수익, 이윤, 이득|Gross profit.|1
+Program|프로그램, 계획, 과정, 방송|TV program.|1
+Progress|진전, 발전, 향상, 진행|Make progress.|1
+Prohibit|금지하다|Prohibit smoking.|2
+Project|프로젝트, 계획, 사업, 예측하다, 계획, 투사하다|Project manager.|1
+Prominent|유명한, 두드러진|Prominent figure.|2
+Promise|약속하다, 보장하다, 서약하다, 희망, 약속|Keep a promise.|1
+Promote|촉진하다, 승진시키다, 홍보하다, 장려하다, 홍보하다, 승진시키다|Promote a brand.|1
+Prompt|즉각적인|Prompt action.|2
+Pronounce|발음하다|Pronounce a word.|1
+Proof|증거, 입증, 확인, 검증|Bullet proof.|1
+Proper|적절한|Proper nutrition.|1
+Property|재산, 소유물, 부동산, 특성|Private property.|1
+Proportion|비율|In proportion to.|2
+Proposal|제안, 계획, 청혼, 발의|Submit a proposal.|1
+Propose|제안하다|Propose a toast.|1
+Prospect|전망, 가능성, 잠재고객, 희망|Future prospects.|2
+Prosper|번영하다|Prosperous city.|2
+Protect|보호하다, 지키다, 방어하다, 막다|Protect environment.|1
+Protein|단백질|High protein.|1
+Protest|항의하다|Silent protest.|1
+Proud|자랑스러운|Proud of you.|1
+Prove|증명하다, 입증하다, 보여주다, 확인하다|Prove a point.|1
+Provide|제공하다, 공급하다, 준비하다, 규정하다|Provide service.|1
+Province|지방|Central province.|1
+Provision|규정, 조항, 공급, 준비, 공급, 조항|Provision of food.|2
+Psychology|심리학|Child psychology.|1
+Public|공공의, 대중의, 공적인, 일반인|Public transport.|1
+Publish|출판하다, 발행하다, 공표하다, 게시하다|Publish a book.|1
+Pull|끌다, 잡아당기다, 빼내다, 견인하다, 당기다|Push and pull.|1
+Pump|펌프|Gas pump.|1
+Punch|때리다|Punch a hole.|1
+Punctual|시간을 엄수하는|Be punctual.|2
+Punish|처벌하다|Punish a child.|1
+Pupil|학생, 눈동자|Primary pupils.|1
+Puppy|강아지|Puppy love.|1
+Purchase|구매, 매입, 사다, 취득하다, 구매하다|Make a purchase.|1
+Pure|순수한|Pure gold.|1
+Purple|보라색|Purple heart.|1
+Purpose|목적, 의도, 용도, 취지|On purpose.|1
+Pursue|추구하다|Pursue a career.|2
+Push|밀다, 누르다, 촉진하다, 강요하다|Push the limit.|1
+Put|놓다|Put on clothes.|1
+Puzzle|수수께끼|Jigsaw puzzle.|1
+Qualification|자격, 능력, 조건, 자질|Job qualification.|2
+Quality|품질, 자질, 특성, 우수성, 질|High quality.|1
+Quantity|양, 수량, 분량, 다수|Large quantity.|1
+Quarrel|말다툼|Family quarrel.|1
+Quarter|분기, 사분의 일, 지역, 숙소, 4분의 1|A quarter of an hour.|1
+Queen|여왕|Prom queen.|1
+Question|질문, 문제, 의문, 심문하다|Ask a question.|1
+Quick|빠른, 신속한, 즉각적인, 영리한|Quick response.|1
+Quiet|조용한, 고요한, 평온한, 차분한|Keep quiet.|1
+Quit|그만두다|Quit a job.|1
+Quite|꽤, 상당히, 완전히, 정말, 꽤, 아주|Quite good.|1
+Quote|인용하다|Famous quote.|1
+Rabbit|토끼|White rabbit.|1
+Race|경주, 경쟁, 인종, 달리다|Human race.|1
+Radical|급진적인|Radical change.|2
+Radio|라디오|Listen to radio.|1
+Rail|철도|Rail track.|1
+Rain|비|Heavy rain.|1
+Raise|올리다, 모으다, 양육하다, 제기하다, 올리다, 기르다|Raise hands.|1
+Random|무작위의|Random choice.|1
+Range|범위, 영역, 구간, 산맥|Mountain range.|1
+Rank|계급|High rank.|1
+Rapid|빠른, 신속한, 단단한, 금식하다, 빠른|Rapid growth.|1
+Rare|드문|Rare species.|1
+Rate|비율, 요금, 속도, 평가하다|Heart rate.|1
+Rather|꽤, 오히려|Rather cold.|1
+Ratio|비율|Sex ratio.|2
+Rational|합리적인|Rational thinking.|2
+Raw|날것의|Raw meat.|1
+Reach|도달하다, 이르다, 연락하다, 범위|Reach out.|1
+React|반응하다|React to news.|1
+Read|읽다, 독해하다, 해석하다, 공부하다|Read a book.|1
+Ready|준비된, 즉시의, 기꺼이, 손쉬운|Ready to go.|1
+Real|진짜의, 현실의, 실제의, 진정한|Real world.|1
+Realistic|현실적인|Realistic goal.|1
+Reality|현실|Reality show.|1
+Realize|깨닫다, 인식하다, 실현하다, 알아차리다|Realize a dream.|1
+Rear|뒤쪽의|Rear window.|1
+Reason|이유, 원인, 근거, 이성|Give a reason.|1
+Rebel|반역자|Young rebel.|2
+Recall|기억해내다|Total recall.|1
+Receive|받다, 수령하다, 얻다, 접수하다|Receive a gift.|1
+Recent|최근의, 근래의, 신규의, 새로운|Recent news.|1
+Reception|접수, 프런트, 환영, 응대, 환영회, 수신|Wedding reception.|1
+Recipe|요리법|New recipe.|1
+Recognize|인정하다, 인식하다, 알아보다, 승인하다|Recognize a face.|1
+Recommend|추천하다, 권고, 조언, 제안|Highly recommend.|1
+Record|기록, 증거, 경력, 녹음하다, 기록, 음반|World record.|1
+Recover|회복하다, 수리하다, 고치다, 보수하다|Recover from illness.|1
+Recruit|채용하다, 모집하다, 영입하다, 신병, 채용하다|Recruit new members.|2
+Red|빨간색|Bright red.|1
+Reduce|줄이다, 감소시키다, 축소하다, 낮추다|Reduce costs.|1
+Refer|언급하다, 참조하다, 맡기다, 관련되다, 참조하다|Refer to a map.|1
+Reflect|반영하다, 비추다, 숙고하다, 반사하다|Reflect light.|1
+Reform|개혁, 개선, 수정, 변화|Political reform.|2
+Refresh|상쾌하게 하다|Refresh memory.|1
+Refuse|거절하다, 거부하다, 거절, 폐기물|Refuse help.|1
+Regard|간주하다, 관심|Kind regards.|1
+Region|지역, 지방, 영역, 구역|Local region.|1
+Register|등록하다, 기록하다, 명부, 기재하다|Register a car.|1
+Regret|후회하다, 노여움|No regrets.|1
+Regular|정기적인, 규칙적인, 보통의, 일반적인|Regular exercise.|1
+Regulate|규제하다|Regulate traffic.|2
+Reinforce|강화하다|Reinforce a wall.|2
+Reject|거부하다|Reject an offer.|1
+Relate|관련되다, 연관시키다, 이야기하다, 설명하다|Relate to people.|1
+Relative|친척, 상대적인|Close relative.|1
+Relax|휴식하다|Relax and enjoy.|1
+Release|발표하다, 출시하다, 풀어주다, 석방하다, 출시하다, 석방하다|Press release.|1
+Relevant|관련된|Relevant info.|2
+Reliable|믿음직한, 신뢰성, 안정성, 확실성, 의존성|Reliable source.|2
+Relief|안도, 구호|Pain relief.|1
+Religion|종교|World religions.|1
+Rely|의존하다, 신뢰하다, 기대다, 믿다|Rely on technology.|1
+Remain|남다, 유지하다, 머무르다, 잔존하다|Remain calm.|1
+Remark|발언, 주목|No remark.|1
+Remedy|치료법|Home remedy.|2
+Remember|기억하다, 상기하다, 회상하다, 기념하다|I remember you.|1
+Remind|상기시키다|Remind me later.|1
+Remote|먼, 외딴|Remote control.|1
+Remove|제거하다, 없애다, 치우다, 철거하다|Remove stains.|1
+Render|만들다, 주다|Render service.|3
+Renew|갱신하다|Renew a contract.|2
+Rent|임대하다, 빌리다, 세, 집세|Rent a car.|2
+Repair|수리하다, 고치다, 보수하다, 회복하다|Repair a watch.|1
+Repeat|반복하다, 되풀이하다, 재생하다, 복습하다|Repeat after me.|1
+Replace|대체하다, 교체하다, 바꾸다, 대신하다|Replace a bulb.|1
+Reply|대답하다, 응답하다, 답장하다, 회신하다|No reply.|1
+Report|보고하다, 보고서, 신고하다, 기사|Daily report.|1
+Represent|대표하다|Represent a country.|1
+Reproduce|번식하다, 복제하다|Reproduce sounds.|2
+Republic|공화국|Republic of Korea.|1
+Reputation|명성|Good reputation.|2
+Request|요청하다|By request.|1
+Require|요구하다, 필요로 하다, 필수로 하다, 명령하다|Require a permit.|1
+Rescue|구조하다|Mountain rescue.|1
+Research|연구하다, 조사하다, 탐구하다, 검토하다|Scientific research.|1
+Resemble|닮다|Resemble my father.|1
+Reserve|예약하다, 예정, 보류, 제한|Reserve a table.|1
+Reside|거주하다|Reside in Seoul.|3
+Resign|사임하다|Resign from office.|2
+Resist|저항하다|Resist temptation.|1
+Resolve|해결하다, 결심하다|Resolve a conflict.|2
+Resource|자원, 재원, 수단, 자료|Human resources.|1
+Respect|존경하다, 존중하다, 관련, 측면|Show respect.|1
+Respond|응답하다, 대답하다, 반응하다, 대처하다|Respond to calls.|1
+Responsible|책임이 있는, 책임감 있는, 신뢰할 수 있는, 원인이 되는, 책임 있는|Be responsible.|1
+Rest|휴식, 쉬다, 나머지, 멈추다|Take a rest.|1
+Restore|복구하다|Restore order.|2
+Restrict|제한하다|Restrict access.|2
+Result|결과, 성과, 성과물, 결말|Exam result.|1
+Resume|재개하다, 이력서|Resume work.|2
+Retail|소매, 판매, 유통, 소매업|Retail store.|2
+Retain|유지하다|Retain heat.|2
+Retire|은퇴하다|Retire at 65.|1
+Return|돌아오다, 반환하다, 복귀하다, 수익|Return a book.|1
+Reveal|드러내다, 밝히다, 폭로하다, 노출하다|Reveal a secret.|2
+Review|검토하다, 리뷰하다, 평가하다, 재검토, 복습, 비평|Book review.|1
+Revise|수정하다|Revise a plan.|2
+Revive|회생시키다|Revive a patient.|2
+Revolution|혁명|Digital revolution.|1
+Reward|보상, 상, 보답, 보수|Reward for hard work.|1
+Rhythm|리듬|Sense of rhythm.|1
+Rice|쌀, 밥|Fried rice.|1
+Rich|부유한, 풍부한, 진한, 귀중한|Rich man.|1
+Ride|타다, 승차, 여행, 운행|Ride a bike.|1
+Right|옳은, 권리, 정확한, 오른쪽|All right.|1
+Rigid|엄격한|Rigid rules.|3
+Ring|반지, 울리다|Wedding ring.|1
+Rise|오르다, 상승하다, 일어나다, 떠오르다|Sun rise.|1
+Risk|위험, 리스크, 위태로움, 모험|Health risk.|1
+Rival|경쟁자|Bitter rivals.|2
+River|강, 물, 수분, 바닷물|Cross a river.|1
+Road|길, 자동차여행, 드라이브, 탐방|Country road.|1
+Rob|강탈하다|Rob a bank.|1
+Robot|로봇|Industrial robot.|1
+Rock|바위|Hard rock.|1
+Role|역할, 임무, 기능, 배역|Lead role.|1
+Roll|구르다|Rock and roll.|1
+Roman|로마의|Roman Empire.|1
+Romantic|낭만적인|Romantic dinner.|1
+Roof|지붕, 옥상|Under one roof.|1
+Room|방, 공간, 여지, 여유|Living room.|1
+Root|뿌리|The root cause.|1
+Rope|밧줄|Tight rope.|1
+Rough|거친|Rough surface.|1
+Round|둥근|Round table.|1
+Route|경로|Trade route.|1
+Routine|일상|Daily routine.|1
+Row|열, 배를 젓다|Front row.|1
+Royal|왕실의|Royal family.|1
+Rub|문지르다|Rub your eyes.|1
+Rubber|고무|Rubber band.|1
+Rude|무례한|Rude behavior.|1
+Rule|규칙, 규정, 지배하다, 판결하다|Break the rules.|1
+Rumor|소문|False rumor.|1
+Run|달리다, 운영하다, 흐르다, 출마하다|Run a race.|1
+Rural|시골의|Rural area.|1
+Rush|서두르다|Rush hour.|1
+Sacred|신성한|Sacred place.|2
+Sacrifice|희생|Supreme sacrifice.|1
+Salary|급여, 월급, 보수, 임금|Monthly salary.|1
+Sample|샘플|Blood sample.|1
+Satisfy|만족시키다|Satisfy hunger.|1
+Scale|규모|Large scale.|1
+Scare|겁주다|Scare away.|1
+Scene|장면|Crime scene.|1
+Schedule|일정, 시간표, 계획, 예정하다|Bus schedule.|1
+Scholar|학자|Rhodes scholar.|1
+Science|과학, 학문, 지식, 이론|Natural science.|1
+Score|점수|Exam score.|1
+Search|검색|Search engine.|1
+Section|부분, 구역, 절, 부문|Final section.|1
+Sector|부문|Private sector.|2
+Secure|안전한, 확실한, 확보하다, 보장하다|Secure building.|2
+Security|보안, 안전, 경비, 검문|Job security.|1
+Seek|추구하다|Seek advice.|1
+Selection|선택|Natural selection.|1
+Senior|선배|Senior citizen.|1
+Sense|감각, 느낌, 분별, 의미|Common sense.|1
+Sensitive|민감한|Sensitive skin.|1
+Sentence|문장|Life sentence.|1
+Separate|분리하다, 나누다, 별개의, 떼어놓다|Separate ways.|1
+Sequence|순서|In sequence.|2
+Serious|진지한, 심각한, 중대한, 엄숙한|Serious illness.|1
+Session|기간|Training session.|2
+Settle|해결하다|Settle down.|1
+Severe|심각한|Severe winter.|2
+Shadow|그림자|Cast a shadow.|1
+Shallow|얕은|Shallow water.|2
+Share|공유하다, 나누다, 지분, 몫|Market share.|1
+Sharp|날카로운|Sharp knife.|1
+Shelter|피난처|Homeless shelter.|1
+Shift|변화|Night shift.|1
+Significant|중요한|Significant change.|2
+Silence|침묵|Silence is golden.|1
+Similar|비슷한|Similar results.|1
+Simple|간단한, 단순한, 소박한, 쉬운|Simple life.|1
+Sincere|진실한|Yours sincerely.|1
+Situation|상황, 사태, 환경, 입장|Tense situation.|1
+Skill|기술, 능력, 재능, 숙련|Soft skills.|1
+Slight|약간의|Slight difference.|1
+Smooth|부드러운, 연한, 온화한, 약한|Smooth skin.|1
+Social|사회적인, 사교적인, 공동의, 사회성 있는|Social network.|1
+Society|사회, 단체, 협회, 집단|High society.|1
+Solar|태양의|Solar system.|1
+Solid|고체의|Solid ground.|1
+Solution|해결, 해답, 용액, 방안, 해결책|Perfect solution.|1
+Sophisticated|세련된|Sophisticated taste.|3
+Source|원천, 출처, 근원, 자료|Reliable source.|1
+Space|공간, 우주, 자리, 간격|Inner space.|1
+Specific|구체적인, 특정한, 명확한, 독특한|Be specific.|1
+Spectacular|장관인|Spectacular view.|2
+Speech|연설|Make a speech.|1
+Spontaneous|자발적인|Spontaneous reaction.|3
+Stable|안정된|Stable prices.|2
+Staff|직원, 스태프, 인원, 간부|Staff meeting.|1
+Standard|표준, 기준, 규격, 수준|Standard time.|1
+Statistic|통계|Official stats.|2
+Status|상태|Marital status.|2
+Steady|안정된|Steady growth.|1
+Stimulate|자극하다|Stimulate growth.|2
+Strategy|전략, 계획, 방책, 전술|Exit strategy.|1
+Strength|힘|Core strength.|1
+Stress|스트레스, 압력, 누름, 강요|Under stress.|1
+Structure|구조, 체계, 조직, 건물|Social structure.|1
+Struggle|투쟁하다|Power struggle.|1
+Subject|주제, 과목, 대상, 종속시키다|Math is my subject.|1
+Submit|제출하다|Submit a report.|1
+Substitute|대체하다|Sub teacher.|2
+Subtle|미묘한|Subtle hint.|3
+Succeed|성공하다|Succeed in life.|1
+Success|성공, 성과, 승리, 달성|Key to success.|1
+Sufficient|충분한|Sufficient sleep.|2
+Suggest|제안하다, 권하다, 암시하다, 추천하다|Suggest a plan.|1
+Summary|요약|In summary.|1
+Superior|우월한|Superior quality.|2
+Support|지원하다, 지지하다, 후원하다, 부양하다|Technical support.|1
+Supreme|최고의|Supreme Court.|2
+Surface|표면|Work surface.|1
+Surplus|잉여|Budget surplus.|3
+Surprise|놀라게 하다, 놀람, 뜻밖의 일, 충격|Surprise party.|1
+Surrender|항복하다|Unconditional surrender.|2
+Surround|둘러싸다|Surround yourself.|1
+Survey|조사|Market survey.|1
+Survive|생존하다|Survive the winter.|1
+Sustain|유지하다|Sustain life.|2
+Symbol|상징|Status symbol.|1
+Sympathy|동정|Deepest sympathy.|2
+System|체계, 제도, 시스템, 방식|Nervous system.|1
+Target|목표, 대상, 과녁, 목적|On target.|1
+Task|과제, 업무, 일, 작업|Daily task.|1
+Taste|맛|Bad taste.|1
+Tax|세금, 과세하다, 부담, 세무|Income tax.|1
+Teach|가르치다, 교육하다, 훈련하다, 알려주다|Teach a lesson.|1
+Technique|기법|Study technique.|1
+Technology|기술, 공학, 과학, 기법|High tech.|1
+Temporary|임시의|Temporary job.|2
+Tendency|경향|Natural tendency.|2
+Tense|긴장한|Tense situation.|1
+Terminal|터미널, 공항건물, 종착역, 말단|Bus terminal.|1
+Terrific|멋진|Terrific job.|1
+Theme|주제|Theme song.|2
+Theory|이론|In theory.|1
+Therefore|그러므로|I think, therefore I am.|1
+Thorough|철저한|Thorough search.|2
+Threat|위협|Serious threat.|1
+Thrive|번성하다|Thrive on work.|3
+Tide|조수|Turn the tide.|1
+Tidy|깔끔한|Keep tidy.|1
+Tight|조이는|Tight budget.|1
+Tolerance|관용|Zero tolerance.|2
+Topic|주제|Hot topic.|1
+Trace|추적하다|Trace back.|1
+Tradition|전통|Follow tradition.|1
+Tragedy|비극|Greek tragedy.|1
+Transfer|이동하다|Bank transfer.|1
+Transform|변형시키다|Digital transform.|2
+Transition|전환|Smooth transition.|2
+Translate|번역하다|Lost in translation.|1
+Transparent|투명한|Transparent glass.|2
+Transport|수송|Public transport.|1
+Treasure|보물|Treasure island.|1
+Treaty|조약|Peace treaty.|2
+Tremendous|엄청난|Tremendous pressure.|2
+Trend|경향, 추세, 유행, 방향|Current trend.|1
+Trial|재판|Trial and error.|1
+Trigger|유발하다|Trigger warning.|2
+Triumph|승리|Final triumph.|2
+Trouble|문제|In trouble.|1
+Trust|신뢰, 신탁, 믿음, 책임|In God we trust.|1
+Typical|전형적인|Typical day.|1
+Ultimate|궁궁적인|Ultimate goal.|2
+Unable|할 수 없는|Unable to help.|1
+Undergo|겪다|Undergo surgery.|3
+Underlie|기초가 되다|Underlying problem.|3
+Undertake|떠맡다|Undertake a task.|3
+Unique|독특한|Unique experience.|1
+Unite|결합하다|Unite the nation.|1
+Universe|우주|The entire universe.|1
+Update|업데이트|System update.|1
+Urgent|긴급한|Urgent matter.|1
+Usage|사용법|Common usage.|1
+Utility|유용성|Utility bill.|3
+Vague|모호한|Vague idea.|2
+Valid|유효한|Valid passport.|2
+Valuable|귀중한|Valuable lesson.|1
+Value|가치, 가격, 평가하다, 중요성|Core value.|1
+Vanish|사라지다|Vanish into thin air.|1
+Variable|변수|Multiple variables.|2
+Variety|다양성|Wide variety.|1
+Vary|다양하다|Prices vary.|1
+Vast|광대한|Vast majority.|2
+Vehicle|탈것|Motor vehicle.|1
+Venture|사업, 모험, 투자, 위험|Joint venture.|2
+Verify|확인하다|Verify code.|2
+Version|버전|Old version.|1
+Vertical|수직의|Vertical line.|2
+Vessel|용기|Blood vessel.|2
+Via|통하여|Travel via Paris.|2
+Victim|희생자|Crime victim.|1
+Victory|승리|Sweet victory.|1
+View|견해, 관점, 전망, 보다|Room with a view.|1
+Virtual|가상의|Virtual reality.|2
+Virtue|미덕|Patience is a virtue.|2
+Visible|보이는|Clearly visible.|1
+Vision|비전, 시력, 통찰력, 상상력|20/20 vision.|1
+Visual|시각의|Visual aids.|1
+Vital|중요한|Vital signs.|2
+Vocabulary|어휘|Rich vocabulary.|1
+Voluntary|자발적인|Voluntary work.|2
+Volunteer|자원봉사자|A loyal volunteer.|1
+Wage|임금, 급료, 노임, 급여|Minimum wage.|1
+Warn|경고하다|Warn you.|1
+Waste|낭비하다|Nuclear waste.|1
+Wealth|부|Health is wealth.|1
+Weapon|무기|Secret weapon.|1
+Weather|날씨|Whether the weather.|1
+Welfare|복지|Child welfare.|2
+Whereas|반면에|Wealthy, whereas poor.|2
+Widespread|널리 퍼진|Widespread disease.|2
+Wisdom|지혜|Word of wisdom.|1
+Withdraw|철회하다|Withdraw money.|2
+Witness|목격자|Eye witness.|1
+Wonderful|멋진|Wonderful world.|1
+Worth|가치 있는|Self worth.|1
+Wound|상처|Deep wound.|1
+Yield|수익, 산출, 양보하다, 생산하다, 산출하다|Yield a profit.|2
+Zone|구역|Comfort zone.|1

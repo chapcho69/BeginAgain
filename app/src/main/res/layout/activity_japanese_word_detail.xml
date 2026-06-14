@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_japanese_detail"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="일본어 상세" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="24dp"
+            app:layout_constraintBottom_toTopOf="@id/layout_japanese_btns"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <!-- 1. Word Area (Including Reading) -->
+                <TextView
+                    android:id="@+id/text_japanese_word"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="48sp"
+                    android:textStyle="bold"
+                    tools:text="単語" />
+
+                <TextView
+                    android:id="@+id/text_japanese_reading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#666666"
+                    android:textSize="20sp"
+                    tools:text="たんご" />
+
+                <View
+                    android:layout_width="60dp"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#f38b0e" />
+
+                <!-- 2. Meaning Area -->
+                <TextView
+                    android:id="@+id/text_japanese_meaning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:gravity="center"
+                    android:textColor="#1976D2"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    tools:text="단어" />
+
+                <!-- 3. Example Area -->
+                <TextView
+                    android:id="@+id/text_japanese_example"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:background="#F8F9FA"
+                    android:padding="20dp"
+                    android:textColor="#333333"
+                    android:textSize="18sp"
+                    android:lineSpacingExtra="6dp"
+                    android:elevation="1dp"
+                    tools:text="例文がここに表示されます。" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/layout_japanese_btns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            app:layout_constraintBottom_toTopOf="@id/adView">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_japanese_prev"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:layout_marginEnd="4dp"
+                android:text=""
+                app:icon="@drawable/ic_triangle_left"
+                app:iconSize="32dp"
+                app:iconPadding="0dp"
+                app:iconGravity="textStart"
+                app:backgroundTint="#FFD600" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_japanese_tts"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:layout_marginEnd="4dp"
+                android:text="듣기"
+                app:backgroundTint="#f38b0e"
+                app:icon="@drawable/ic_headset" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_japanese_next"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:layout_marginEnd="4dp"
+                android:text=""
+                app:icon="@drawable/ic_triangle_right"
+                app:iconSize="32dp"
+                app:iconPadding="0dp"
+                app:iconGravity="textStart"
+                app:backgroundTint="#2196F3" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_japanese_delete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:text=""
+                app:icon="@drawable/ic_delete"
+                app:iconPadding="0dp"
+                app:iconGravity="textStart"
+                app:backgroundTint="#D32F2F" />
+
+        </LinearLayout>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

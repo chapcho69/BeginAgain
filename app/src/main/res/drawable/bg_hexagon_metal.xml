@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- 1. Shadow/Depth Layer (The "Side" of the button) -->
+    <path
+        android:pathData="M50,11 L93.3,36 L93.3,76 L50,101 L6.7,76 L6.7,36 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="50"
+                android:startY="30"
+                android:endX="50"
+                android:endY="100"
+                android:type="linear">
+                <item android:offset="0" android:color="#424242" />
+                <item android:offset="1" android:color="#212121" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- 2. Main Surface Layer (Slightly shifted up for thickness feel) -->
+    <path
+        android:pathData="M50,5 L93.3,30 L93.3,70 L50,95 L6.7,70 L6.7,30 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="0"
+                android:startY="0"
+                android:endX="100"
+                android:endY="100"
+                android:type="linear">
+                <item android:offset="0" android:color="#FFFFFF" />
+                <item android:offset="0.2" android:color="#EEEEEE" />
+                <item android:offset="0.5" android:color="#BDBDBD" />
+                <item android:offset="0.8" android:color="#9E9E9E" />
+                <item android:offset="1" android:color="#757575" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- 3. Top Edge Highlight (Inner Bevel Effect) -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:pathData="M6.7,30 L50,5 L93.3,30"
+        android:strokeAlpha="0.8"/>
+
+    <!-- 4. Bottom Edge Shadow (Inner Bevel Effect) -->
+    <path
+        android:strokeColor="#616161"
+        android:strokeWidth="1.5"
+        android:pathData="M93.3,70 L50,95 L6.7,70"
+        android:strokeAlpha="0.5"/>
+
+    <!-- 5. Outer Thin Border -->
+    <path
+        android:strokeColor="#333333"
+        android:strokeWidth="0.5"
+        android:pathData="M50,5 L93.3,30 L93.3,70 L50,95 L6.7,70 L6.7,30 Z" />
+
+</vector>

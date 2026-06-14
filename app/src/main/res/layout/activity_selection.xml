@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_selection"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Begin Again" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/selection_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!-- Background Container for Scattered Text -->
+        <FrameLayout
+            android:id="@+id/background_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- Honeycomb Layout Container -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/honeycomb_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/adView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Row 1 (3 slots) -->
+            <FrameLayout android:id="@+id/slot1" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="55dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+            <FrameLayout android:id="@+id/slot2" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toEndOf="@id/slot1" app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="2dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+            <FrameLayout android:id="@+id/slot3" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toEndOf="@id/slot2" app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="2dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+
+            <!-- Row 2 (4 slots) -->
+            <FrameLayout android:id="@+id/slot4" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/slot1" android:layout_marginTop="-28dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+            <FrameLayout android:id="@+id/slot5" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toEndOf="@id/slot4" app:layout_constraintTop_toTopOf="@id/slot4" android:layout_marginStart="2dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+            <FrameLayout android:id="@+id/slot6" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toEndOf="@id/slot5" app:layout_constraintTop_toTopOf="@id/slot4" android:layout_marginStart="2dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+            <FrameLayout android:id="@+id/slot7" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toEndOf="@id/slot6" app:layout_constraintTop_toTopOf="@id/slot4" android:layout_marginStart="2dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+
+            <!-- Row 3 (5 slots) -->
+            <FrameLayout android:id="@+id/slot8" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/slot4" android:layout_marginTop="-28dp" android:layout_marginStart="-55dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+            <FrameLayout android:id="@+id/slot9" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toEndOf="@id/slot8" app:layout_constraintTop_toTopOf="@id/slot8" android:layout_marginStart="2dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+            <FrameLayout android:id="@+id/slot10" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toEndOf="@id/slot9" app:layout_constraintTop_toTopOf="@id/slot8" android:layout_marginStart="2dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+            <FrameLayout android:id="@+id/slot11" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toEndOf="@id/slot10" app:layout_constraintTop_toTopOf="@id/slot8" android:layout_marginStart="2dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+            <FrameLayout android:id="@+id/slot12" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toEndOf="@id/slot11" app:layout_constraintTop_toTopOf="@id/slot8" android:layout_marginStart="2dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+
+            <!-- Row 4 (4 slots) -->
+            <FrameLayout android:id="@+id/slot13" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/slot8" android:layout_marginTop="-28dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+            <FrameLayout android:id="@+id/slot14" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toEndOf="@id/slot13" app:layout_constraintTop_toTopOf="@id/slot13" android:layout_marginStart="2dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+            <FrameLayout android:id="@+id/slot15" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toEndOf="@id/slot14" app:layout_constraintTop_toTopOf="@id/slot13" android:layout_marginStart="2dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+            <FrameLayout android:id="@+id/slot16" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toEndOf="@id/slot15" app:layout_constraintTop_toTopOf="@id/slot13" android:layout_marginStart="2dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+
+            <!-- Row 5 (3 slots) -->
+            <FrameLayout android:id="@+id/slot17" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/slot13" android:layout_marginTop="-28dp" android:layout_marginStart="55dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+            <FrameLayout android:id="@+id/slot18" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toEndOf="@id/slot17" app:layout_constraintTop_toTopOf="@id/slot17" android:layout_marginStart="2dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+            <FrameLayout android:id="@+id/slot19" android:layout_width="110dp" android:layout_height="110dp" app:layout_constraintStart_toEndOf="@id/slot18" app:layout_constraintTop_toTopOf="@id/slot17" android:layout_marginStart="2dp"> <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_hexagon_empty" android:contentDescription="bg"/> </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

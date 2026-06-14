@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.GoodRoutine" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Force light theme even in night mode -->
+        <item name="android:fontFamily">serif</item>
+    </style>
+</resources>

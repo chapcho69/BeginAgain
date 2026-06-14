@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+
+    <application
+        android:name=".GoodRoutineApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GoodRoutine">
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.GoodRoutine">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.GoodRoutine">
+        </activity>
+
+        <activity
+            android:name=".SelectionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".ReadingNoteActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".ReadingNoteDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".ReadingNoteEditActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".TodayTaskListActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".TodayTaskEditActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".MemorizationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".MemorizationDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".MemorizationEditActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".MemoActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".MemoDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".MemoEditActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".EnglishWordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".EnglishWordDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".JapaneseWordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".JapaneseWordDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".EnglishWordEditActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".JapaneseWordEditActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".ConfirmationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+
+        <activity
+            android:name=".SecretNoteActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".SecretNoteDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <activity
+            android:name=".SecretNoteEditActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.GoodRoutine" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.olivearchi.goodroutine.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <receiver
+            android:name=".NotificationReceiver"
+            android:enabled="true"
+            android:exported="false" />
+    </application>
+
+</manifest>
