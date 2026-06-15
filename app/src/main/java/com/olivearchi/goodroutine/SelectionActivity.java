@@ -169,7 +169,7 @@ public class SelectionActivity extends AppCompatActivity {
     private void loadSlotAssignments() {
         TodoDbHelper db = new TodoDbHelper(this);
         List<FeatureItem> features = db.getAllFeatures();
-        String[] requiredKeys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret"};
+        String[] requiredKeys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard"};
         
         for (int i = 0; i < 19; i++) slotAssignments[i] = null;
         featureColors.clear();
@@ -186,6 +186,7 @@ public class SelectionActivity extends AppCompatActivity {
             slotAssignments[13] = "memorization";
             slotAssignments[15] = "settings";
             slotAssignments[17] = "secret";
+            slotAssignments[18] = "dashboard";
             
             // Default color is Pastel Blue for all except search
             int defaultColor = ContextCompat.getColor(this, R.color.pastel_blue);
@@ -249,6 +250,7 @@ public class SelectionActivity extends AppCompatActivity {
             case "settings": return "설정";
             case "search": return "찾기";
             case "secret": return "비밀노트";
+            case "dashboard": return "통계";
             default: return "";
         }
     }
@@ -258,7 +260,7 @@ public class SelectionActivity extends AppCompatActivity {
         db.resetFeaturePositions();
         
         for (int i = 0; i < 19; i++) slotAssignments[i] = null;
-        String[] keys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret"};
+        String[] keys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard"};
         System.arraycopy(keys, 0, slotAssignments, 0, Math.min(keys.length, 19));
         saveSlotAssignments();
         refreshHoneycomb();
@@ -351,6 +353,11 @@ public class SelectionActivity extends AppCompatActivity {
                         label = "비밀노트\n(" + db.getAllSecretNotes().size() + ")";
                         iconRes = R.drawable.ic_lock;
                         clickListener = v -> startActivity(new Intent(this, SecretNoteActivity.class));
+                        break;
+                    case "dashboard":
+                        label = "통계\n(대시보드)";
+                        iconRes = R.drawable.ic_clover;
+                        clickListener = v -> startActivity(new Intent(this, DashboardActivity.class));
                         break;
                     case "settings":
                         label = "설정";

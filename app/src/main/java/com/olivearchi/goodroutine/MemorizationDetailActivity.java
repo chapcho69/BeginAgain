@@ -65,7 +65,7 @@ public class MemorizationDetailActivity extends AppCompatActivity implements Tex
     }
 
     private void shareContent(String title, String content) {
-        String shareText = "제목: " + title + "\n\n" + content + "\n\nshare by Begin Again..";
+        String shareText = "제목: " + title + "\n\n" + content + "\n\nReflection from BeginAgain";
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, shareText);

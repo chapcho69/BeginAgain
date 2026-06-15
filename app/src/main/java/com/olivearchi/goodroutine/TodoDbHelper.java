@@ -11,8 +11,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Map;
 
 public class TodoDbHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "todos.db";
@@ -1142,6 +1145,94 @@ public class TodoDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_FEATURES, null, null);
         db.close();
+    }
+
+    public Map<String, Integer> getHistoryCountByDate() {
+        Map<String, Integer> counts = new HashMap<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        // Extract YYYY-MM-DD from YYYY-MM-DD HH:mm
+        String query = "SELECT substr(" + COLUMN_PERFORM_DATETIME + ", 1, 10) as date, COUNT(*) as count " +
+                "FROM " + TABLE_HISTORY + " GROUP BY date";
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                counts.put(cursor.getString(0), cursor.getInt(1));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return counts;
+    }
+
+    public Map<String, Integer> getReadingNoteCountByMonth() {
+        Map<String, Integer> counts = new HashMap<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        // Extract YYYY-MM from YYYY-MM-DD HH:mm
+        String query = "SELECT substr(" + COLUMN_MODIFIED_DATETIME + ", 1, 7) as month, COUNT(*) as count " +
+                "FROM " + TABLE_READING_NOTES + " GROUP BY month";
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                counts.put(cursor.getString(0), cursor.getInt(1));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return counts;
+    }
+
+    public Map<String, Integer> getReadingNoteTotalStats() {
+        Map<String, Integer> stats = new HashMap<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        
+        // Total unique books count
+        Cursor cursor1 = db.rawQuery("SELECT COUNT(DISTINCT " + COLUMN_BOOK_TITLE + ") FROM " + TABLE_READING_NOTES, null);
+        if (cursor1.moveToFirst()) {
+            stats.put("total_books", cursor1.getInt(0));
+        }
+        cursor1.close();
+
+        // Total passages count
+        Cursor cursor2 = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_READING_NOTES, null);
+        if (cursor2.moveToFirst()) {
+            stats.put("total_passages", cursor2.getInt(0));
+        }
+        cursor2.close();
+        
+        db.close();
+        return stats;
+    }
+
+    public Map<String, Integer> getMemoCountByMonth() {
+        Map<String, Integer> counts = new HashMap<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT substr(" + COLUMN_M_CREATED_AT + ", 1, 7) as month, COUNT(*) as count " +
+                "FROM " + TABLE_MEMOS + " GROUP BY month";
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                counts.put(cursor.getString(0), cursor.getInt(1));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return counts;
+    }
+
+    public Map<String, Integer> getMemorizationCountByMonth() {
+        Map<String, Integer> counts = new HashMap<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT substr(" + COLUMN_MEMO_CREATED_AT + ", 1, 7) as month, COUNT(*) as count " +
+                "FROM " + TABLE_MEMORIZATION + " GROUP BY month";
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                counts.put(cursor.getString(0), cursor.getInt(1));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return counts;
     }
 
     public List<SearchResultItem> searchAll(String query) {

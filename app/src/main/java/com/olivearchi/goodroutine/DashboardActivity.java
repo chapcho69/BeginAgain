@@ -1,0 +1,134 @@
+package com.olivearchi.goodroutine;
+
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class DashboardActivity extends AppCompatActivity {
+
+    private TodoDbHelper dbHelper;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_dashboard);
+
+        setSupportActionBar(findViewById(R.id.toolbar_dashboard));
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        dbHelper = new TodoDbHelper(this);
+
+        setupHeatmap();
+        setupReadingStats();
+        setupMemoStats();
+        setupMemorizationStats();
+        initAds();
+    }
+
+    private void setupHeatmap() {
+        HeatmapView heatmapView = findViewById(R.id.heatmap_routines);
+        java.util.Map<String, Integer> counts = dbHelper.getHistoryCountByDate();
+        heatmapView.setData(counts);
+    }
+
+    private void setupReadingStats() {
+        LinearLayout container = findViewById(R.id.layout_reading_stats);
+        java.util.Map<String, Integer> stats = dbHelper.getReadingNoteTotalStats();
+        
+        Integer books = stats.get("total_books");
+        Integer passages = stats.get("total_passages");
+        
+        TextView tv = new TextView(this);
+        tv.setTextSize(16);
+        tv.setTextColor(0xFF333333);
+        tv.setLineSpacing(8f, 1f);
+        tv.setText(String.format(java.util.Locale.getDefault(), 
+                "• 읽은 책 수: %d권\n• 기록한 구절: %d개", 
+                (books != null ? books : 0), 
+                (passages != null ? passages : 0)));
+        container.addView(tv);
+    }
+
+    private void setupMemoStats() {
+        LinearLayout container = findViewById(R.id.layout_memo_stats);
+        drawMonthStats(container, dbHelper.getMemoCountByMonth(), "개");
+    }
+
+    private void setupMemorizationStats() {
+        LinearLayout container = findViewById(R.id.layout_memorization_stats);
+        drawMonthStats(container, dbHelper.getMemorizationCountByMonth(), "개");
+    }
+
+    private void drawMonthStats(LinearLayout container, java.util.Map<String, Integer> stats, String unit) {
+        List<String> months = new ArrayList<>(stats.keySet());
+        Collections.sort(months, Collections.reverseOrder());
+
+        if (months.isEmpty()) {
+            TextView tv = new TextView(this);
+            tv.setText("아직 기록이 없습니다.");
+            container.addView(tv);
+            return;
+        }
+
+        int max = 0;
+        for (int val : stats.values()) if (val > max) max = val;
+
+        for (String month : months) {
+            Integer countObj = stats.get(month);
+            int count = (countObj != null) ? countObj : 0;
+            
+            LinearLayout row = new LinearLayout(this);
+            row.setOrientation(LinearLayout.HORIZONTAL);
+            row.setGravity(Gravity.CENTER_VERTICAL);
+            row.setPadding(0, 8, 0, 8);
+
+            TextView label = new TextView(this);
+            label.setText(month);
+            label.setLayoutParams(new LinearLayout.LayoutParams(200, LinearLayout.LayoutParams.WRAP_CONTENT));
+            
+            View bar = new View(this);
+            int barWidth = (int) ((count / (float) max) * 400); 
+            if (barWidth < 10) barWidth = 10;
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(barWidth, 40);
+            lp.setMargins(16, 0, 16, 0);
+            bar.setLayoutParams(lp);
+            bar.setBackgroundColor(0xFF90CAF9); // Pastel Blue
+
+            TextView valText = new TextView(this);
+            valText.setText(count + unit);
+
+            row.addView(label);
+            row.addView(bar);
+            row.addView(valText);
+            container.addView(row);
+        }
+    }
+
+    private void initAds() {
+        MobileAds.initialize(this, initializationStatus -> {});
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) {
+            adView.loadAd(new AdRequest.Builder().build());
+        }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
+}

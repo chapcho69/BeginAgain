@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Begin Again</string>
-    <string name="app_version">4.7</string>
-    <string name="build_date">2026-06-08 (Rev.6)</string>
+    <string name="app_version">4.8</string>
+    <string name="build_date">2026-06-12 (Rev.8)</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">루틴 만들기</string>

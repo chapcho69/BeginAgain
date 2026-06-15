@@ -11,4 +11,5 @@
     <color name="btn_history">#795548</color> <!-- Brown -->
     <color name="btn_add">#009688</color> <!-- Teal -->
     <color name="pastel_blue">#90CAF9</color> <!-- Pastel Blue -->
+    <color name="app_background">#DEF0DE</color> <!-- Eye-friendly Greenish White (4:6 mix) -->
 </resources>

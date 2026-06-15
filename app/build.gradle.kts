@@ -14,8 +14,8 @@ android {
         applicationId = "com.olivearchi.goodroutine"
         minSdk = 24
         targetSdk = 36
-        versionCode = 7
-        versionName = "4.7"
+        versionCode = 8
+        versionName = "4.8"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -23,6 +23,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
