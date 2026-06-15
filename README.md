@@ -23,7 +23,7 @@ App 활용
 - 작성한 자료를 백업과 복원이 쉽도록 했습니다. SQLite DB  
 - 흥미로운 내용은 친구들과 공유해서 함께 소통하고자 했습니다.
 
-**화면**
+**App 화면**
 
 <img width="233" height="479" alt="image" src="https://github.com/user-attachments/assets/d489e791-31cc-400e-807c-555b6abc8756" />
 <img width="230" height="452" alt="image" src="https://github.com/user-attachments/assets/fe65bd1e-bcc8-4be3-b76b-0b35ffc79103" />
