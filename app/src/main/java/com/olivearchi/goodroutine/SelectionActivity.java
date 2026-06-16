@@ -68,8 +68,9 @@ public class SelectionActivity extends AppCompatActivity {
 
     private TodoViewModel viewModel;
     private TextToSpeech tempTts;
-    private final FrameLayout[] slots = new FrameLayout[19];
-    private final String[] slotAssignments = new String[19]; // index 0 to 18
+    private static final int MAX_SLOTS = 40;
+    private final FrameLayout[] slots = new FrameLayout[MAX_SLOTS];
+    private final String[] slotAssignments = new String[MAX_SLOTS]; // index 0 to MAX_SLOTS-1
     private MediaPlayer clickSoundPlayer;
     private final Handler soundHandler = new Handler(Looper.getMainLooper());
     private ScaleGestureDetector scaleGestureDetector;
@@ -127,11 +128,13 @@ public class SelectionActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
         setSupportActionBar(findViewById(R.id.toolbar_selection));
 
-        for (int i = 0; i < 19; i++) {
+        for (int i = 0; i < MAX_SLOTS; i++) {
             int resId = getResources().getIdentifier("slot" + (i + 1), "id", getPackageName());
             slots[i] = findViewById(resId);
-            slots[i].setTag(i);
-            slots[i].setOnDragListener(dragListener);
+            if (slots[i] != null) {
+                slots[i].setTag(i);
+                slots[i].setOnDragListener(dragListener);
+            }
         }
 
         loadSlotAssignments();
@@ -171,22 +174,24 @@ public class SelectionActivity extends AppCompatActivity {
         List<FeatureItem> features = db.getAllFeatures();
         String[] requiredKeys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard"};
         
-        for (int i = 0; i < 19; i++) slotAssignments[i] = null;
+        for (int i = 0; i < MAX_SLOTS; i++) slotAssignments[i] = null;
         featureColors.clear();
 
         if (features.isEmpty()) {
-            // Initial/Default Setup
-            slotAssignments[3] = "routine";
-            slotAssignments[4] = "memo";
-            slotAssignments[5] = "english";
-            slotAssignments[8] = "reading";
-            slotAssignments[9] = "search";
-            slotAssignments[10] = "today";
-            slotAssignments[11] = "japanese";
-            slotAssignments[13] = "memorization";
-            slotAssignments[15] = "settings";
-            slotAssignments[17] = "secret";
-            slotAssignments[18] = "dashboard";
+            // Initial/Default Setup - Starting from 2nd row
+            // First row has 4 slots (0, 1, 2, 3), so 2nd row starts at index 4
+            int startIdx = 4;
+            slotAssignments[startIdx] = "routine";
+            slotAssignments[startIdx + 1] = "memo";
+            slotAssignments[startIdx + 2] = "english";
+            slotAssignments[startIdx + 3] = "reading";
+            slotAssignments[startIdx + 4] = "search";
+            slotAssignments[startIdx + 5] = "today";
+            slotAssignments[startIdx + 6] = "japanese";
+            slotAssignments[startIdx + 7] = "memorization";
+            slotAssignments[startIdx + 8] = "settings";
+            slotAssignments[startIdx + 9] = "secret";
+            slotAssignments[startIdx + 10] = "dashboard";
             
             // Default color is Pastel Blue for all except search
             int defaultColor = ContextCompat.getColor(this, R.color.pastel_blue);
@@ -197,7 +202,7 @@ public class SelectionActivity extends AppCompatActivity {
         } else {
             Set<String> assignedKeys = new HashSet<>();
             for (FeatureItem f : features) {
-                if (f.getPosition() >= 0 && f.getPosition() < 19) {
+                if (f.getPosition() >= 0 && f.getPosition() < MAX_SLOTS) {
                     slotAssignments[f.getPosition()] = f.getFeatureId();
                     featureColors.put(f.getFeatureId(), f.getColor());
                     assignedKeys.add(f.getFeatureId());
@@ -219,7 +224,7 @@ public class SelectionActivity extends AppCompatActivity {
     }
 
     private int findNextEmptySlot() {
-        for (int i = 0; i < 19; i++) {
+        for (int i = 0; i < MAX_SLOTS; i++) {
             if (slotAssignments[i] == null) return i;
         }
         return -1;
@@ -228,7 +233,7 @@ public class SelectionActivity extends AppCompatActivity {
     private void saveSlotAssignments() {
         TodoDbHelper db = new TodoDbHelper(this);
         int defaultBlue = ContextCompat.getColor(this, R.color.pastel_blue);
-        for (int i = 0; i < 19; i++) {
+        for (int i = 0; i < MAX_SLOTS; i++) {
             String featureId = slotAssignments[i];
             if (featureId != null) {
                 Integer colorObj = featureColors.get(featureId);
@@ -259,9 +264,14 @@ public class SelectionActivity extends AppCompatActivity {
         TodoDbHelper db = new TodoDbHelper(this);
         db.resetFeaturePositions();
         
-        for (int i = 0; i < 19; i++) slotAssignments[i] = null;
+        for (int i = 0; i < MAX_SLOTS; i++) slotAssignments[i] = null;
         String[] keys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard"};
-        System.arraycopy(keys, 0, slotAssignments, 0, Math.min(keys.length, 19));
+        
+        // Start from 2nd row (index 4)
+        int startIdx = 4;
+        for (int i = 0; i < keys.length && (startIdx + i) < MAX_SLOTS; i++) {
+            slotAssignments[startIdx + i] = keys[i];
+        }
         saveSlotAssignments();
         refreshHoneycomb();
         Toast.makeText(this, "위치가 초기화되었습니다.", Toast.LENGTH_SHORT).show();
@@ -269,7 +279,8 @@ public class SelectionActivity extends AppCompatActivity {
 
     private void refreshHoneycomb() {
         TodoDbHelper db = new TodoDbHelper(this);
-        for (int i = 0; i < 19; i++) {
+        for (int i = 0; i < MAX_SLOTS; i++) {
+            if (slots[i] == null) continue;
             // Remove existing buttons but keep background ImageView
             for (int j = 0; j < slots[i].getChildCount(); j++) {
                 View child = slots[i].getChildAt(j);

@@ -1150,8 +1150,8 @@ public class TodoDbHelper extends SQLiteOpenHelper {
     public Map<String, Integer> getHistoryCountByDate() {
         Map<String, Integer> counts = new HashMap<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        // Extract YYYY-MM-DD from YYYY-MM-DD HH:mm
-        String query = "SELECT substr(" + COLUMN_PERFORM_DATETIME + ", 1, 10) as date, COUNT(*) as count " +
+        // Clean up data format if needed: remove "[수행: " and "]" then take first 10 chars (YYYY-MM-DD)
+        String query = "SELECT substr(REPLACE(REPLACE(" + COLUMN_PERFORM_DATETIME + ", '[수행: ', ''), ']', ''), 1, 10) as date, COUNT(*) as count " +
                 "FROM " + TABLE_HISTORY + " GROUP BY date";
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {

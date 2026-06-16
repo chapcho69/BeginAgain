@@ -35,6 +35,7 @@
                 android:textColor="#333333" />
 
             <HorizontalScrollView
+                android:id="@+id/scroll_heatmap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"

@@ -24,8 +24,8 @@ public class HeatmapView extends View {
     public HeatmapView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         float density = getResources().getDisplayMetrics().density;
-        boxSize = 12 * density;
-        boxMargin = 3 * density;
+        boxSize = 14 * density;
+        boxMargin = 4 * density;
     }
 
     public void setData(java.util.Map<String, Integer> data) {

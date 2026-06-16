@@ -43,6 +43,10 @@ public class DashboardActivity extends AppCompatActivity {
         HeatmapView heatmapView = findViewById(R.id.heatmap_routines);
         java.util.Map<String, Integer> counts = dbHelper.getHistoryCountByDate();
         heatmapView.setData(counts);
+        
+        // Scroll to the end to show the most recent activity
+        android.widget.HorizontalScrollView scrollView = findViewById(R.id.scroll_heatmap);
+        scrollView.post(() -> scrollView.fullScroll(View.FOCUS_RIGHT));
     }
 
     private void setupReadingStats() {
