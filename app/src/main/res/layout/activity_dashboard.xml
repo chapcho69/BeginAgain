@@ -55,7 +55,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="독서노트 작성 통계"
+                android:text="독서노트 기록"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#333333" />
@@ -76,7 +76,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="메모 작성 통계"
+                android:text="메모 작성"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#333333" />
@@ -97,7 +97,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="암기장 작성 통계"
+                android:text="암기장 기록"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#333333" />

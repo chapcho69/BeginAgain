@@ -1203,6 +1203,29 @@ public class TodoDbHelper extends SQLiteOpenHelper {
         return stats;
     }
 
+    public List<String> getAllRawContents() {
+        List<String> allContents = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        
+        // From Reading Notes
+        Cursor c1 = db.query(TABLE_READING_NOTES, new String[]{COLUMN_NOTE_CONTENT}, null, null, null, null, null);
+        if (c1.moveToFirst()) { do { allContents.add(c1.getString(0)); } while (c1.moveToNext()); }
+        c1.close();
+
+        // From Memos
+        Cursor c2 = db.query(TABLE_MEMOS, new String[]{COLUMN_M_CONTENT}, null, null, null, null, null);
+        if (c2.moveToFirst()) { do { allContents.add(c2.getString(0)); } while (c2.moveToNext()); }
+        c2.close();
+
+        // From Memorization
+        Cursor c3 = db.query(TABLE_MEMORIZATION, new String[]{COLUMN_MEMO_CONTENT}, null, null, null, null, null);
+        if (c3.moveToFirst()) { do { allContents.add(c3.getString(0)); } while (c3.moveToNext()); }
+        c3.close();
+
+        db.close();
+        return allContents;
+    }
+
     public Map<String, Integer> getMemoCountByMonth() {
         Map<String, Integer> counts = new HashMap<>();
         SQLiteDatabase db = this.getReadableDatabase();

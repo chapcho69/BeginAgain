@@ -172,7 +172,7 @@ public class SelectionActivity extends AppCompatActivity {
     private void loadSlotAssignments() {
         TodoDbHelper db = new TodoDbHelper(this);
         List<FeatureItem> features = db.getAllFeatures();
-        String[] requiredKeys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard"};
+        String[] requiredKeys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard", "wordmap"};
         
         for (int i = 0; i < MAX_SLOTS; i++) slotAssignments[i] = null;
         featureColors.clear();
@@ -192,6 +192,7 @@ public class SelectionActivity extends AppCompatActivity {
             slotAssignments[startIdx + 8] = "settings";
             slotAssignments[startIdx + 9] = "secret";
             slotAssignments[startIdx + 10] = "dashboard";
+            slotAssignments[startIdx + 11] = "wordmap";
             
             // Default color is Pastel Blue for all except search
             int defaultColor = ContextCompat.getColor(this, R.color.pastel_blue);
@@ -255,7 +256,8 @@ public class SelectionActivity extends AppCompatActivity {
             case "settings": return "설정";
             case "search": return "찾기";
             case "secret": return "비밀노트";
-            case "dashboard": return "통계";
+            case "dashboard": return "대시보드";
+            case "wordmap": return "단어 Map";
             default: return "";
         }
     }
@@ -265,7 +267,7 @@ public class SelectionActivity extends AppCompatActivity {
         db.resetFeaturePositions();
         
         for (int i = 0; i < MAX_SLOTS; i++) slotAssignments[i] = null;
-        String[] keys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard"};
+        String[] keys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard", "wordmap"};
         
         // Start from 2nd row (index 4)
         int startIdx = 4;
@@ -366,9 +368,14 @@ public class SelectionActivity extends AppCompatActivity {
                         clickListener = v -> startActivity(new Intent(this, SecretNoteActivity.class));
                         break;
                     case "dashboard":
-                        label = "통계\n(대시보드)";
+                        label = "성장\n대시보드";
                         iconRes = R.drawable.ic_clover;
                         clickListener = v -> startActivity(new Intent(this, DashboardActivity.class));
+                        break;
+                    case "wordmap":
+                        label = "나의\n단어 Map";
+                        iconRes = R.drawable.ic_filter_all;
+                        clickListener = v -> startActivity(new Intent(this, WordMapActivity.class));
                         break;
                     case "settings":
                         label = "설정";
