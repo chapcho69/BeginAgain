@@ -33,13 +33,22 @@ public class WordMapActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_word_map);
         emptyText = findViewById(R.id.text_word_map_empty);
 
-        loadAndProcessData();
+        findViewById(R.id.btn_filter_all).setOnClickListener(v -> loadAndProcessData(null));
+        findViewById(R.id.btn_filter_month).setOnClickListener(v -> {
+            java.util.Calendar cal = java.util.Calendar.getInstance();
+            cal.add(java.util.Calendar.MONTH, -1);
+            String since = new java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault()).format(cal.getTime());
+            loadAndProcessData(since);
+        });
+
+        loadAndProcessData(null);
     }
 
-    private void loadAndProcessData() {
+    private void loadAndProcessData(String sinceDate) {
         progressBar.setVisibility(View.VISIBLE);
+        emptyText.setVisibility(View.GONE);
         new Thread(() -> {
-            List<String> contents = dbHelper.getAllRawContents();
+            List<String> contents = dbHelper.getAllRawContents(sinceDate);
             Map<String, Integer> freqMap = new HashMap<>();
 
             for (String text : contents) {

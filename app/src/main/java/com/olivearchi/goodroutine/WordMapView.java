@@ -50,7 +50,7 @@ public class WordMapView extends View {
             @Override
             public boolean onScale(@NonNull ScaleGestureDetector detector) {
                 scaleFactor *= detector.getScaleFactor();
-                scaleFactor = Math.max(0.5f, Math.min(scaleFactor, 5.0f));
+                scaleFactor = Math.max(0.5f, Math.min(scaleFactor, 4.0f));
                 invalidate();
                 return true;
             }
@@ -93,11 +93,11 @@ public class WordMapView extends View {
             for (int i = 0; i < count; i++) {
                 Map.Entry<String, Integer> entry = list.get(i);
                 float ratio = (maxFreq == minFreq) ? 0.5f : (float) (entry.getValue() - minFreq) / (maxFreq - minFreq);
-                int size = (int) (20 * getResources().getDisplayMetrics().scaledDensity + (40 * ratio * getResources().getDisplayMetrics().scaledDensity));
+                int size = (int) (18 * getResources().getDisplayMetrics().scaledDensity + (36 * ratio * getResources().getDisplayMetrics().scaledDensity));
 
-                // Distribution in a larger area to allow panning
-                float x = (random.nextFloat() * width * 2) - (width * 0.5f);
-                float y = (random.nextFloat() * height * 2) - (height * 0.5f);
+                // Compact distribution: Center of the screen with smaller spread
+                float x = (width * 0.2f) + (random.nextFloat() * width * 0.6f);
+                float y = (height * 0.2f) + (random.nextFloat() * height * 0.6f);
                 
                 int[] colors = {0xFF1976D2, 0xFF388E3C, 0xFFF57C00, 0xFF7B1FA2, 0xFF455A64};
                 int color = colors[random.nextInt(colors.length)];

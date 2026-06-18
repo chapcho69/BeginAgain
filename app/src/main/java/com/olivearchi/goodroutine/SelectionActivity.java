@@ -75,10 +75,12 @@ public class SelectionActivity extends AppCompatActivity {
     private final Handler soundHandler = new Handler(Looper.getMainLooper());
     private ScaleGestureDetector scaleGestureDetector;
     private float scaleFactor = 1.0f;
+    private float translateX = 0f, translateY = 0f;
     private View honeycombContainer;
     private final Map<String, Integer> featureColors = new HashMap<>();
     private final Handler longPressHandler = new Handler(Looper.getMainLooper());
     private static final int LONG_PRESS_TIME = 3000;
+    private android.view.GestureDetector gestureDetector;
 
     private final ActivityResultLauncher<String[]> filePickerLauncher = registerForActivityResult(
             new ActivityResultContracts.OpenDocument(),
@@ -148,9 +150,20 @@ public class SelectionActivity extends AppCompatActivity {
             @Override
             public boolean onScale(@androidx.annotation.NonNull ScaleGestureDetector detector) {
                 scaleFactor *= detector.getScaleFactor();
-                scaleFactor = Math.max(0.5f, Math.min(scaleFactor, 3.0f));
+                scaleFactor = Math.max(0.5f, Math.min(scaleFactor, 4.0f));
                 honeycombContainer.setScaleX(scaleFactor);
                 honeycombContainer.setScaleY(scaleFactor);
+                return true;
+            }
+        });
+
+        gestureDetector = new android.view.GestureDetector(this, new android.view.GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onScroll(MotionEvent e1, @androidx.annotation.NonNull MotionEvent e2, float distanceX, float distanceY) {
+                translateX -= distanceX;
+                translateY -= distanceY;
+                honeycombContainer.setTranslationX(translateX);
+                honeycombContainer.setTranslationY(translateY);
                 return true;
             }
         });
@@ -166,6 +179,7 @@ public class SelectionActivity extends AppCompatActivity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         scaleGestureDetector.onTouchEvent(event);
+        gestureDetector.onTouchEvent(event);
         return super.onTouchEvent(event);
     }
 
@@ -257,7 +271,7 @@ public class SelectionActivity extends AppCompatActivity {
             case "search": return "찾기";
             case "secret": return "비밀노트";
             case "dashboard": return "대시보드";
-            case "wordmap": return "단어 Map";
+            case "wordmap": return "어휘 Map";
             default: return "";
         }
     }
@@ -373,7 +387,7 @@ public class SelectionActivity extends AppCompatActivity {
                         clickListener = v -> startActivity(new Intent(this, DashboardActivity.class));
                         break;
                     case "wordmap":
-                        label = "나의\n단어 Map";
+                        label = "어휘 Map";
                         iconRes = R.drawable.ic_filter_all;
                         clickListener = v -> startActivity(new Intent(this, WordMapActivity.class));
                         break;

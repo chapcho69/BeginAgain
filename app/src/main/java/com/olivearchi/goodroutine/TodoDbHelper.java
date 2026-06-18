@@ -1203,27 +1203,37 @@ public class TodoDbHelper extends SQLiteOpenHelper {
         return stats;
     }
 
-    public List<String> getAllRawContents() {
+    public List<String> getAllRawContents(String sinceDate) {
         List<String> allContents = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         
+        String where = (sinceDate != null) ? " >= ?" : null;
+        String[] args = (sinceDate != null) ? new String[]{sinceDate} : null;
+
         // From Reading Notes
-        Cursor c1 = db.query(TABLE_READING_NOTES, new String[]{COLUMN_NOTE_CONTENT}, null, null, null, null, null);
+        String rWhere = (sinceDate != null) ? COLUMN_MODIFIED_DATETIME + where : null;
+        Cursor c1 = db.query(TABLE_READING_NOTES, new String[]{COLUMN_NOTE_CONTENT}, rWhere, args, null, null, null);
         if (c1.moveToFirst()) { do { allContents.add(c1.getString(0)); } while (c1.moveToNext()); }
         c1.close();
 
         // From Memos
-        Cursor c2 = db.query(TABLE_MEMOS, new String[]{COLUMN_M_CONTENT}, null, null, null, null, null);
+        String mWhere = (sinceDate != null) ? COLUMN_M_CREATED_AT + where : null;
+        Cursor c2 = db.query(TABLE_MEMOS, new String[]{COLUMN_M_CONTENT}, mWhere, args, null, null, null);
         if (c2.moveToFirst()) { do { allContents.add(c2.getString(0)); } while (c2.moveToNext()); }
         c2.close();
 
         // From Memorization
-        Cursor c3 = db.query(TABLE_MEMORIZATION, new String[]{COLUMN_MEMO_CONTENT}, null, null, null, null, null);
+        String memWhere = (sinceDate != null) ? COLUMN_MEMO_CREATED_AT + where : null;
+        Cursor c3 = db.query(TABLE_MEMORIZATION, new String[]{COLUMN_MEMO_CONTENT}, memWhere, args, null, null, null);
         if (c3.moveToFirst()) { do { allContents.add(c3.getString(0)); } while (c3.moveToNext()); }
         c3.close();
 
         db.close();
         return allContents;
+    }
+
+    public List<String> getAllRawContents() {
+        return getAllRawContents(null);
     }
 
     public Map<String, Integer> getMemoCountByMonth() {
