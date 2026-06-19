@@ -62,7 +62,7 @@
     <string name="btn_share">Share</string>
     <string name="btn_tts">Listen</string>
     <string name="btn_tts_all">Listen All</string>
-    <string name="btn_tts_random">Random Listen</string>
+    <string name="btn_tts_random">Any Listen</string>
     <string name="btn_stop">Stop</string>
 
     <string name="label_word">Word</string>
@@ -117,10 +117,19 @@
 
     <string name="hint_search">Enter keyword (content, description, etc.)</string>
     <string name="msg_pin_guide">Enter 4-digit password.</string>
+    <string name="msg_pin_setup">Set a 4-digit password for first use.</string>
+    <string name="msg_pin_entry">Enter password. (Failed: %1$d/10)</string>
+    <string name="msg_pin_set_success">Password has been set.</string>
+    <string name="msg_pin_wrong">Incorrect password. (%1$d/10)</string>
+    <string name="msg_pin_reset">Incorrect 10 times. PIN reset. Please set a new one.</string>
     <string name="msg_no_data">No data found.</string>
     <string name="msg_word_map_empty">Not enough data to analyze.</string>
+    <string name="msg_record_added">Record added successfully.</string>
+    <string name="msg_no_history">No history found.</string>
+    <string name="msg_load_fail">Failed to load item.</string>
     <string name="msg_byte_usage">%1$s (%2$d%% used)</string>
     <string name="msg_add_todo_title">Add New Task</string>
+    <string name="title_edit_todo">Edit Task</string>
     <string name="msg_time_select">Select Time (10 min unit)</string>
     <string name="msg_backup_method">Select Backup Method</string>
     <string name="msg_restore_confirm">Restoring will delete all current data and replace it with backup data. Continue?</string>
@@ -155,6 +164,14 @@
     <string name="button_cancel">Cancel</string>
     <string name="button_close">Close</string>
     <string name="button_select">Select</string>
+
+    <string name="title_dashboard_heatmap">Routine Heatmap (Last 1 Year)</string>
+    <string name="title_dashboard_reading">Reading Records</string>
+    <string name="title_dashboard_memo">Memo Records</string>
+    <string name="title_dashboard_memorization">Memorization Records</string>
+    <string name="stats_reading_summary">• Books read: %1$d\n• Passages recorded: %2$d</string>
+    <string name="unit_books"> books</string>
+    <string name="unit_items"> items</string>
 
     <string name="first_fragment_label">Create Routine</string>
     <string name="second_fragment_label">Task Detail</string>

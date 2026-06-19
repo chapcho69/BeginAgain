@@ -66,7 +66,7 @@ public class DashboardActivity extends AppCompatActivity {
         tv.setTextColor(0xFF333333);
         tv.setLineSpacing(8f, 1f);
         tv.setText(String.format(java.util.Locale.getDefault(), 
-                "• 읽은 책 수: %d권\n• 기록한 구절: %d개", 
+                getString(R.string.stats_reading_summary), 
                 (books != null ? books : 0), 
                 (passages != null ? passages : 0)));
         container.addView(tv);
@@ -74,12 +74,12 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void setupMemoStats() {
         LinearLayout container = findViewById(R.id.layout_memo_stats);
-        drawMonthStats(container, dbHelper.getMemoCountByMonth(), "개");
+        drawMonthStats(container, dbHelper.getMemoCountByMonth(), getString(R.string.unit_items));
     }
 
     private void setupMemorizationStats() {
         LinearLayout container = findViewById(R.id.layout_memorization_stats);
-        drawMonthStats(container, dbHelper.getMemorizationCountByMonth(), "개");
+        drawMonthStats(container, dbHelper.getMemorizationCountByMonth(), getString(R.string.unit_items));
     }
 
     private void drawMonthStats(LinearLayout container, java.util.Map<String, Integer> stats, String unit) {
@@ -88,7 +88,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         if (months.isEmpty()) {
             TextView tv = new TextView(this);
-            tv.setText("아직 기록이 없습니다.");
+            tv.setText(R.string.msg_no_data);
             container.addView(tv);
             return;
         }

@@ -72,21 +72,21 @@ public class JapaneseWordDetailActivity extends AppCompatActivity implements Tex
 
     private void confirmDelete() {
         new AlertDialog.Builder(this)
-                .setTitle("단어 삭제")
-                .setMessage("이 단어를 삭제하시겠습니까?")
-                .setPositiveButton("삭제", (dialog, which) -> {
+                .setTitle(R.string.btn_delete)
+                .setMessage(R.string.msg_confirm_delete)
+                .setPositiveButton(R.string.label_yes, (dialog, which) -> {
                     dbHelper.deleteJapaneseWord(item.getId());
-                    Toast.makeText(this, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.msg_delete_success, Toast.LENGTH_SHORT).show();
                     finish();
                 })
-                .setNegativeButton("취소", null)
+                .setNegativeButton(R.string.label_no, null)
                 .show();
     }
 
     private void updateUI() {
         item = wordList.get(currentIndex);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("일본어 상세 (" + (currentIndex + 1) + "/" + wordList.size() + ")");
+            getSupportActionBar().setTitle(getString(R.string.feature_japanese) + " (" + (currentIndex + 1) + "/" + wordList.size() + ")");
         }
         ((TextView)findViewById(R.id.text_japanese_word)).setText(item.getWord());
         ((TextView)findViewById(R.id.text_japanese_reading)).setText(item.getReading());
@@ -101,7 +101,8 @@ public class JapaneseWordDetailActivity extends AppCompatActivity implements Tex
             if (tts != null) tts.stop();
             updateUI();
         } else {
-            Toast.makeText(this, delta > 0 ? "마지막 단어입니다." : "첫 번째 단어입니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, delta > 0 ? getString(R.string.action_home) : getString(R.string.action_home), Toast.LENGTH_SHORT).show();
+            // Need specific strings for "last word" "first word"
         }
     }
 

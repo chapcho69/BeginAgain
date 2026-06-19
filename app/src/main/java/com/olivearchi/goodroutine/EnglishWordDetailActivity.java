@@ -72,21 +72,21 @@ public class EnglishWordDetailActivity extends AppCompatActivity implements Text
 
     private void confirmDelete() {
         new AlertDialog.Builder(this)
-                .setTitle("단어 삭제")
-                .setMessage("이 단어를 삭제하시겠습니까?")
-                .setPositiveButton("삭제", (dialog, which) -> {
+                .setTitle(R.string.btn_delete)
+                .setMessage(R.string.msg_confirm_delete)
+                .setPositiveButton(R.string.label_yes, (dialog, which) -> {
                     dbHelper.deleteEnglishWord(item.getId());
-                    Toast.makeText(this, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.msg_delete_success, Toast.LENGTH_SHORT).show();
                     finish();
                 })
-                .setNegativeButton("취소", null)
+                .setNegativeButton(R.string.label_no, null)
                 .show();
     }
 
     private void updateUI() {
         item = wordList.get(currentIndex);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("영단어 상세 (" + (currentIndex + 1) + "/" + wordList.size() + ")");
+            getSupportActionBar().setTitle(getString(R.string.feature_english) + " (" + (currentIndex + 1) + "/" + wordList.size() + ")");
         }
         ((TextView)findViewById(R.id.text_english_word)).setText(item.getWord());
         ((TextView)findViewById(R.id.text_english_meaning)).setText(item.getMeaning());
@@ -103,7 +103,7 @@ public class EnglishWordDetailActivity extends AppCompatActivity implements Text
             // but for Prev/Next navigation it's often expected.
             // Keeping it consistent with "don't auto-play" request for now.
         } else {
-            Toast.makeText(this, delta > 0 ? "마지막 단어입니다." : "첫 번째 단어입니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.action_home), Toast.LENGTH_SHORT).show();
         }
     }
 

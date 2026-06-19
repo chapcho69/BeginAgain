@@ -26,6 +26,7 @@ import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class SecretNoteActivity extends AppCompatActivity {
 
@@ -93,15 +94,15 @@ public class SecretNoteActivity extends AppCompatActivity {
 
         boolean isSetup = (savedPin == null);
         if (isSetup) {
-            tvMsg.setText("처음 사용을 위해 4자리 비밀번호를 설정하세요.");
+            tvMsg.setText(R.string.msg_pin_setup);
         } else {
-            tvMsg.setText("비밀번호를 입력하세요. (틀린 횟수: " + failedCount + "/10)");
+            tvMsg.setText(String.format(Locale.getDefault(), getString(R.string.msg_pin_entry), failedCount));
         }
 
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setView(dialogView)
                 .setCancelable(false)
-                .setNegativeButton("취소", (d, w) -> finish())
+                .setNegativeButton(R.string.button_cancel, (d, w) -> finish())
                 .create();
 
         etPin.addTextChangedListener(new TextWatcher() {
@@ -113,7 +114,7 @@ public class SecretNoteActivity extends AppCompatActivity {
                     String input = s.toString();
                     if (isSetup) {
                         prefs.edit().putString(KEY_PIN, input).putInt(KEY_FAILED_ATTEMPTS, 0).apply();
-                        Toast.makeText(SecretNoteActivity.this, "비밀번호가 설정되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SecretNoteActivity.this, R.string.msg_pin_set_success, Toast.LENGTH_SHORT).show();
                         isAuthenticated = true;
                         dialog.dismiss();
                         loadSecretNotes();
@@ -127,12 +128,12 @@ public class SecretNoteActivity extends AppCompatActivity {
                             int newFailed = failedCount + 1;
                             if (newFailed >= 10) {
                                 prefs.edit().remove(KEY_PIN).putInt(KEY_FAILED_ATTEMPTS, 0).apply();
-                                Toast.makeText(SecretNoteActivity.this, "비밀번호를 10번 틀려 초기화되었습니다. 다시 설정하세요.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(SecretNoteActivity.this, R.string.msg_pin_reset, Toast.LENGTH_LONG).show();
                                 dialog.dismiss();
                                 showPinEntryDialog();
                             } else {
                                 prefs.edit().putInt(KEY_FAILED_ATTEMPTS, newFailed).apply();
-                                tvError.setText("비밀번호가 틀렸습니다. (" + newFailed + "/10)");
+                                tvError.setText(String.format(Locale.getDefault(), getString(R.string.msg_pin_wrong), newFailed));
                                 tvError.setVisibility(View.VISIBLE);
                                 s.clear();
                             }

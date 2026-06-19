@@ -139,9 +139,9 @@ public class EnglishWordActivity extends AppCompatActivity implements TextToSpee
         MaterialButton btnAll = findViewById(R.id.btn_read_all);
         MaterialButton btnRandom = findViewById(R.id.btn_read_random);
         if (isPlayingAll) {
-            if (isRandomMode) { btnAll.setText("전체 듣기"); btnRandom.setText("중지"); }
-            else { btnAll.setText("중지"); btnRandom.setText("무작위 듣기"); }
-        } else { btnAll.setText("전체 듣기"); btnRandom.setText("무작위 듣기"); }
+            if (isRandomMode) { btnAll.setText(R.string.btn_tts_all); btnRandom.setText(R.string.btn_stop); }
+            else { btnAll.setText(R.string.btn_stop); btnRandom.setText(R.string.btn_tts_random); }
+        } else { btnAll.setText(R.string.btn_tts_all); btnRandom.setText(R.string.btn_tts_random); }
     }
 
     private void playNextWord() {
@@ -207,7 +207,7 @@ public class EnglishWordActivity extends AppCompatActivity implements TextToSpee
 
     private void loadWords() {
         currentWords = dbHelper.getAllEnglishWords();
-        if (getSupportActionBar() != null) getSupportActionBar().setTitle("영단어(" + currentWords.size() + ")");
+        if (getSupportActionBar() != null) getSupportActionBar().setTitle(getString(R.string.feature_english) + "(" + currentWords.size() + ")");
         WordDataHolder.setEnglishWords(currentWords);
         adapter = new EnglishWordAdapter(currentWords, item -> {
             int index = currentWords.indexOf(item);

@@ -64,7 +64,7 @@
     <string name="btn_share">공유</string>
     <string name="btn_tts">듣기</string>
     <string name="btn_tts_all">전체 듣기</string>
-    <string name="btn_tts_random">무작위 듣기</string>
+    <string name="btn_tts_random">섞어듣기</string>
     <string name="btn_stop">중지</string>
 
     <string name="label_word">단어</string>
@@ -119,10 +119,20 @@
 
     <string name="hint_search">검색어 입력 (내용, 설명 등)</string>
     <string name="msg_pin_guide">비밀번호 4자리를 입력하세요.</string>
+    <string name="msg_pin_setup">처음 사용을 위해 4자리 비밀번호를 설정하세요.</string>
+    <string name="msg_pin_entry">비밀번호를 입력하세요. (틀린 횟수: %1$d/10)</string>
+    <string name="msg_pin_set_success">비밀번호가 설정되었습니다.</string>
+    <string name="msg_pin_wrong">비밀번호가 틀렸습니다. (%1$d/10)</string>
+    <string name="msg_pin_reset">비밀번호를 10번 틀려 초기화되었습니다. 다시 설정하세요.</string>
     <string name="msg_no_data">기록이 없습니다.</string>
+    <string name="msg_record_added">수행 기록이 추가되었습니다.</string>
+    <string name="msg_no_history">수행 기록이 없습니다.</string>
+    <string name="msg_load_fail">항목을 불러올 수 없습니다.</string>
+
     <string name="msg_word_map_empty">분석할 데이터가 충분하지 않습니다.</string>
     <string name="msg_byte_usage">%1$s (%2$d%% 사용 중)</string>
     <string name="msg_add_todo_title">새 할 일 추가</string>
+    <string name="title_edit_todo">할 일 수정</string>
     <string name="msg_time_select">시간 선택 (10분 단위)</string>
     <string name="msg_backup_method">데이터 보관 방식 선택</string>
     <string name="msg_restore_confirm">복구 시 현재 데이터가 모두 삭제되고 백업 파일의 데이터로 대체됩니다. 계속할까요?</string>
@@ -158,7 +168,13 @@
     <string name="button_close">닫기</string>
     <string name="button_select">선택</string>
 
-    <!-- Strings used for fragments for navigation -->
+    <string name="title_dashboard_heatmap">루틴 수행 히트맵 (최근 1년)</string>
+    <string name="title_dashboard_reading">독서노트 기록</string>
+    <string name="title_dashboard_memo">메모 작성</string>
+    <string name="title_dashboard_memorization">암기장 기록</string>
+    <string name="stats_reading_summary">• 읽은 책 수: %1$d권\n• 기록한 구절: %2$d개</string>
+    <string name="unit_books">권</string>
+    <string name="unit_items">개</string>
     <string name="first_fragment_label">루틴 만들기</string>
     <string name="second_fragment_label">할 일 상세</string>
     <string name="next">Next</string>

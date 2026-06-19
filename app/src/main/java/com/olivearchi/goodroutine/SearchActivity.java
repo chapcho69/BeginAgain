@@ -36,6 +36,7 @@ public class SearchActivity extends AppCompatActivity {
         setSupportActionBar(findViewById(R.id.toolbar_search));
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(R.string.feature_search);
         }
 
         dbHelper = new TodoDbHelper(this);

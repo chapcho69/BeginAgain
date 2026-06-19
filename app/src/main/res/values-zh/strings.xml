@@ -62,7 +62,7 @@
     <string name="btn_share">分享</string>
     <string name="btn_tts">朗读</string>
     <string name="btn_tts_all">全部朗读</string>
-    <string name="btn_tts_random">随机朗读</string>
+    <string name="btn_tts_random">混合朗读</string>
     <string name="btn_stop">停止</string>
 
     <string name="label_word">单词</string>
@@ -117,10 +117,19 @@
 
     <string name="hint_search">输入关键字（内容、描述等）</string>
     <string name="msg_pin_guide">请输入 4 位密码。</string>
+    <string name="msg_pin_setup">初次使用，请设置 4 位密码。</string>
+    <string name="msg_pin_entry">请输入密码。(错误次数: %1$d/10)</string>
+    <string name="msg_pin_set_success">密码已设置。</string>
+    <string name="msg_pin_wrong">密码错误。(%1$d/10)</string>
+    <string name="msg_pin_reset">密码错误 10 次已重置。请重新设置。</string>
     <string name="msg_no_data">暂无记录。</string>
     <string name="msg_word_map_empty">没有足够的数据进行分析。</string>
+    <string name="msg_record_added">执行记录已添加。</string>
+    <string name="msg_no_history">没有历史记录。</string>
+    <string name="msg_load_fail">加载失败。</string>
     <string name="msg_byte_usage">%1$s (%2$d%% 已使用)</string>
     <string name="msg_add_todo_title">添加新任务</string>
+    <string name="title_edit_todo">编辑任务</string>
     <string name="msg_time_select">选择时间 (10分钟单位)</string>
 
     <string name="msg_confirm_delete">确定要删除吗？</string>
@@ -156,6 +165,14 @@
     <string name="btn_chooser_save">保存到其它位置</string>
     <string name="btn_chooser_file">选择文件</string>
     <string name="btn_chooser_send_list">发送列表</string>
+
+    <string name="title_dashboard_heatmap">习惯热力图 (最近1年)</string>
+    <string name="title_dashboard_reading">读书笔记记录</string>
+    <string name="title_dashboard_memo">备忘录记录</string>
+    <string name="title_dashboard_memorization">背诵本记录</string>
+    <string name="stats_reading_summary">• 阅读书籍: %1$d本\n• 记录片段: %2$d个</string>
+    <string name="unit_books">本</string>
+    <string name="unit_items">个</string>
 
     <string name="first_fragment_label">创建习惯</string>
     <string name="second_fragment_label">任务详情</string>

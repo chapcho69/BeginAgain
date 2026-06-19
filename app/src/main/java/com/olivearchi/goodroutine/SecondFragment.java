@@ -61,7 +61,7 @@ public class SecondFragment extends Fragment {
         }
 
         if (todoPosition == -1 || viewModel.getTodoList().getValue() == null || todoPosition >= viewModel.getTodoList().getValue().size()) {
-            Toast.makeText(requireContext(), "항목을 불러올 수 없습니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), R.string.msg_load_fail, Toast.LENGTH_SHORT).show();
             NavHostFragment.findNavController(this).navigateUp();
             return;
         }
@@ -97,7 +97,7 @@ public class SecondFragment extends Fragment {
             String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(new Date());
             viewModel.addPerformHistory(currentItem, timestamp);
             updateUI();
-            Toast.makeText(requireContext(), "수행 기록이 추가되었습니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), R.string.msg_record_added, Toast.LENGTH_SHORT).show();
         });
 
         binding.buttonViewHistory.setOnClickListener(v -> {
@@ -117,7 +117,7 @@ public class SecondFragment extends Fragment {
         }
         
         if (sb.length() == 0) {
-            sb.append("수행 기록이 없습니다.");
+            sb.append(getString(R.string.msg_no_history));
         }
 
         // Explicitly create a ScrollView with a TextView to ensure scrollability as requested
@@ -171,7 +171,7 @@ public class SecondFragment extends Fragment {
         binding.textviewDatetime.setText(String.format("시작: %s\n종료: %s", 
                 item.getStartDateTime(), item.getEndDateTime()));
         
-        String repeatStr = "아니오";
+        String repeatStr = getString(R.string.title_confirm_no);
         if (item.isRepeating()) {
             String[] types = getResources().getStringArray(R.array.repeat_types);
             if (item.getRepeatType() > 0 && item.getRepeatType() <= types.length) {
@@ -244,9 +244,9 @@ public class SecondFragment extends Fragment {
         endEdit.setOnClickListener(v -> showDateTimePicker(endEdit));
 
         new AlertDialog.Builder(requireContext())
-                .setTitle("할 일 수정")
+                .setTitle(R.string.title_edit_todo)
                 .setView(dialogView)
-                .setPositiveButton("저장", (dialog, which) -> {
+                .setPositiveButton(R.string.btn_save, (dialog, which) -> {
                     String subject = subjectEdit.getText().toString();
                     String detail = detailEdit.getText().toString();
                     String start = startEdit.getText().toString();
