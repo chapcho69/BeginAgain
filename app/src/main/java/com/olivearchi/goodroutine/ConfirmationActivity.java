@@ -16,6 +16,12 @@ import java.util.Date;
 import java.util.Locale;
 
 public class ConfirmationActivity extends AppCompatActivity {
+
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private long todoId;
     private TodoDbHelper dbHelper;
 
@@ -35,9 +41,9 @@ public class ConfirmationActivity extends AppCompatActivity {
         TextView timeText = findViewById(R.id.text_confirm_time);
 
         titleText.setText("[Begin Again]");
-        subjectText.setText("제목 : " + (subject != null ? subject : "없음"));
-        detailText.setText("내용 : " + (detail != null ? detail : "없음"));
-        timeText.setText("예정 시간 : " + (time != null ? time : "없음"));
+        subjectText.setText(getString(R.string.label_title) + " : " + (subject != null ? subject : getString(R.string.title_confirm_none)));
+        detailText.setText(getString(R.string.label_content) + " : " + (detail != null ? detail : getString(R.string.title_confirm_none)));
+        timeText.setText(getString(R.string.title_confirm_time) + " : " + (time != null ? time : getString(R.string.title_confirm_none)));
 
         dbHelper = new TodoDbHelper(this);
 

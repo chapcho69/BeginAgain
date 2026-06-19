@@ -19,6 +19,11 @@ import java.util.Locale;
 
 public class TodayTaskListActivity extends AppCompatActivity {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private TodoDbHelper dbHelper;
     private TodayTaskAdapter adapter;
     private RecyclerView recyclerView;
@@ -82,9 +87,9 @@ public class TodayTaskListActivity extends AppCompatActivity {
         List<TodayTaskItem> tasks = dbHelper.getAllTodayTasks();
         
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("할일들(" + tasks.size() + ")");
+            getSupportActionBar().setTitle(getString(R.string.feature_today) + "(" + tasks.size() + ")");
         } else {
-            setTitle("할일들(" + tasks.size() + ")");
+            setTitle(getString(R.string.feature_today) + "(" + tasks.size() + ")");
         }
 
         int totalEstimated = 0;
@@ -94,8 +99,8 @@ public class TodayTaskListActivity extends AppCompatActivity {
         
         int totalWork = totalEstimated + (tasks.size() * 10);
         
-        totalEstimatedText.setText(String.format(Locale.getDefault(), "소요시간 합계: %d분", totalEstimated));
-        totalWorkText.setText(String.format(Locale.getDefault(), "전체업무시간: %d분 (항목당 +10분)", totalWork));
+        totalEstimatedText.setText(getString(R.string.title_task_total_estimated) + ": " + totalEstimated + getString(R.string.title_task_unit_min));
+        totalWorkText.setText(getString(R.string.title_task_total_work) + ": " + totalWork + getString(R.string.title_task_unit_min) + " (" + getString(R.string.title_task_item_per) + ")");
 
         adapter = new TodayTaskAdapter(tasks, item -> {
             dbHelper.updateTodayTaskAccessTime(item.getId());

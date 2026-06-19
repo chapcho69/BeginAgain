@@ -32,6 +32,11 @@ import java.util.Set;
 
 public class MemorizationActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private TodoDbHelper dbHelper;
     private MemorizationAdapter adapter;
     private RecyclerView recyclerView;
@@ -113,9 +118,9 @@ public class MemorizationActivity extends AppCompatActivity implements TextToSpe
         MaterialButton btnAll = findViewById(R.id.btn_memo_read_all);
         MaterialButton btnRandom = findViewById(R.id.btn_memo_read_random);
         if (isPlayingAll) {
-            if (isRandomMode) { btnAll.setText("전체 듣기"); btnRandom.setText("중지"); }
-            else { btnAll.setText("중지"); btnRandom.setText("무작위 듣기"); }
-        } else { btnAll.setText("전체 듣기"); btnRandom.setText("무작위 듣기"); }
+            if (isRandomMode) { btnAll.setText(R.string.btn_tts_all); btnRandom.setText(R.string.btn_stop); }
+            else { btnAll.setText(R.string.btn_stop); btnRandom.setText(R.string.btn_tts_random); }
+        } else { btnAll.setText(R.string.btn_tts_all); btnRandom.setText(R.string.btn_tts_random); }
     }
 
     private void playNextItem() {
@@ -151,9 +156,9 @@ public class MemorizationActivity extends AppCompatActivity implements TextToSpe
 
     private void startItemSequence(MemorizationItem item) {
         int q = TextToSpeech.QUEUE_FLUSH;
-        speakText("제목: " + item.getTitle(), q, "Part_W");
+        speakText(getString(R.string.label_title) + ": " + item.getTitle(), q, "Part_W");
         String finalId = "Final_" + repeatCount;
-        speakText("내용: " + item.getContent(), TextToSpeech.QUEUE_ADD, finalId);
+        speakText(getString(R.string.label_content) + ": " + item.getContent(), TextToSpeech.QUEUE_ADD, finalId);
     }
 
     @Override
@@ -210,7 +215,7 @@ public class MemorizationActivity extends AppCompatActivity implements TextToSpe
             currentItems.addAll(allItems);
         }
         if (getSupportActionBar() != null) {
-            String title = isFavoriteFilterActive ? "암기장(즐겨찾기)" : "암기장";
+            String title = isFavoriteFilterActive ? getString(R.string.feature_memorization_favorite) : getString(R.string.feature_memorization);
             getSupportActionBar().setTitle(title + "(" + currentItems.size() + ")");
         }
         adapter = new MemorizationAdapter(currentItems, item -> {

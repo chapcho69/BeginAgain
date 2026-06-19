@@ -28,6 +28,11 @@ import java.util.Locale;
 
 public class MemoEditActivity extends AppCompatActivity {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private TodoDbHelper dbHelper;
     private MemoItem currentItem;
     private TextInputEditText editTitle, editContent, editRemarks;

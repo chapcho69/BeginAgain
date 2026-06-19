@@ -1,0 +1,162 @@
+<resources>
+    <string name="app_name">Begin Again</string>
+    <string name="action_settings">设置</string>
+    <string name="action_home">首页</string>
+    <string name="action_backup">备份</string>
+    <string name="action_restore">恢复</string>
+    <string name="action_word_mgmt">单词管理</string>
+    <string name="action_rename_app">修改应用名称</string>
+    <string name="action_tts_speed">TTS 速度设置</string>
+    <string name="action_tts_voice">TTS 语音设置</string>
+    <string name="action_language">语言设置</string>
+    <string name="action_about">关于</string>
+
+    <string name="settings_title">设置</string>
+    <string name="settings_category_data">数据管理</string>
+    <string name="settings_category_word">单词管理</string>
+    <string name="settings_category_other">其它设置</string>
+    <string name="settings_category_language">语言设置 (Language)</string>
+
+    <string name="data_mgmt_backup_dat">保存数据 (.dat)</string>
+    <string name="data_mgmt_restore_dat">恢复数据 (.dat)</string>
+    <string name="data_mgmt_export_sqlite">导出为 SQLite DB</string>
+    <string name="data_mgmt_restore_sqlite">从 SQLite DB 恢复</string>
+
+    <string name="word_mgmt_import_en">导入英语单词</string>
+    <string name="word_mgmt_import_ja">导入日语单词</string>
+    <string name="word_mgmt_dedup_en">整理英语 (去重)</string>
+    <string name="word_mgmt_dedup_ja">整理日语 (去重)</string>
+    <string name="word_mgmt_export_en">导出英语单词</string>
+    <string name="word_mgmt_export_ja">导出日语单词</string>
+    <string name="word_mgmt_clear_en">清空英语单词</string>
+    <string name="word_mgmt_clear_ja">清空日语单词</string>
+
+    <string name="other_settings_rename">修改应用名称</string>
+    <string name="other_settings_tts_speed">TTS 速度设置</string>
+    <string name="other_settings_tts_voice">TTS 语音设置</string>
+    <string name="other_settings_reset_pos">重置位置</string>
+
+    <string name="feature_routine">习惯</string>
+    <string name="feature_reading">读书笔记</string>
+    <string name="feature_reading_favorite">读书笔记(收藏)</string>
+    <string name="feature_memo">备忘录</string>
+    <string name="feature_memo_favorite">备忘录(收藏)</string>
+    <string name="feature_memorization">背诵本</string>
+    <string name="feature_memorization_favorite">背诵本(收藏)</string>
+    <string name="feature_today">今日任务</string>
+    <string name="feature_english">英语</string>
+    <string name="feature_japanese">日语</string>
+    <string name="feature_search">搜索</string>
+    <string name="feature_secret">私密笔记</string>
+    <string name="feature_dashboard">成长\n仪表板</string>
+    <string name="feature_wordmap">词汇地图</string>
+    <string name="feature_settings">设置</string>
+
+    <string name="filter_all">全部</string>
+    <string name="filter_month">最近 1 个月</string>
+
+    <string name="btn_save">保存</string>
+    <string name="btn_delete">删除</string>
+    <string name="btn_add">添加</string>
+    <string name="btn_edit">编辑</string>
+    <string name="btn_share">分享</string>
+    <string name="btn_tts">朗读</string>
+    <string name="btn_tts_all">全部朗读</string>
+    <string name="btn_tts_random">随机朗读</string>
+    <string name="btn_stop">停止</string>
+
+    <string name="label_word">单词</string>
+    <string name="label_meaning">意思</string>
+    <string name="label_example">例句</string>
+    <string name="label_reading">读音</string>
+    <string name="label_title">标题</string>
+    <string name="label_content">内容</string>
+    <string name="label_remarks">备注</string>
+    <string name="label_keyword">主题词</string>
+    <string name="label_book_title">书名</string>
+    <string name="label_last_modified">最后修改</string>
+
+    <string name="title_add_english">添加英语单词</string>
+    <string name="title_add_japanese">添加日语单词</string>
+    <string name="title_task_total_estimated">预估时间合计</string>
+    <string name="title_task_total_work">总工作时间</string>
+    <string name="title_task_unit_min">分</string>
+    <string name="title_task_item_per">每项 +10 分</string>
+
+    <string name="title_confirm_performed">您执行了吗？</string>
+    <string name="title_confirm_time">预计时间</string>
+    <string name="title_confirm_none">无</string>
+    <string name="title_confirm_yes">是</string>
+    <string name="title_confirm_no">否</string>
+
+    <string name="label_yes">是</string>
+    <string name="label_no">否</string>
+    <string name="label_male_voice">男声</string>
+    <string name="label_female_voice">女声</string>
+
+    <string name="status_done">已完成</string>
+    <string name="status_not_done">未完成</string>
+    <string name="status_ongoing">进行中</string>
+    <string name="status_all">全部</string>
+    <string name="status_count_unit">次</string>
+
+    <string name="repeat_label">重复</string>
+    <string name="repeat_none">无</string>
+    <string name="repeat_daily">每日</string>
+    <string name="repeat_weekly">每周</string>
+    <string name="repeat_monthly">每月</string>
+    <string name="repeat_yearly">每年</string>
+
+    <string name="label_select_emoticon">选择表情</string>
+    <string name="label_select_color">选择颜色</string>
+    <string name="color_white">白色</string>
+    <string name="color_red">红色</string>
+    <string name="color_blue">蓝色</string>
+    <string name="color_green">绿色</string>
+    <string name="color_yellow">黄色</string>
+
+    <string name="hint_search">输入关键字（内容、描述等）</string>
+    <string name="msg_pin_guide">请输入 4 位密码。</string>
+    <string name="msg_no_data">暂无记录。</string>
+    <string name="msg_word_map_empty">没有足够的数据进行分析。</string>
+    <string name="msg_byte_usage">%1$s (%2$d%% 已使用)</string>
+    <string name="msg_add_todo_title">添加新任务</string>
+    <string name="msg_time_select">选择时间 (10分钟单位)</string>
+
+    <string name="msg_confirm_delete">确定要删除吗？</string>
+    <string name="msg_save_success">已保存。</string>
+    <string name="msg_delete_success">已删除。</string>
+
+    <string name="button_record">记录</string>
+    <string name="button_view_history">查看历史</string>
+    <string name="button_cancel">取消</string>
+    <string name="button_close">关闭</string>
+    <string name="button_select">选择</string>
+
+    <string name="msg_backup_method">选择备份方式</string>
+    <string name="msg_restore_confirm">恢复将删除所有当前数据并替换为备份数据。继续吗？</string>
+    <string name="msg_no_todo_export">没有可导出的任务。</string>
+    <string name="msg_export_title">Routine Maker - 任务列表</string>
+    <string name="msg_export_success_title">Good Routine - 任务列表导出</string>
+    <string name="msg_tts_gender_select">选择 TTS 语音性别</string>
+    <string name="msg_advanced_tts_title">高级 TTS 语音选择</string>
+    <string name="msg_tts_voice_set_female">女声已设置。</string>
+    <string name="msg_tts_voice_set_male">男声已设置。</string>
+    <string name="msg_tts_voice_set">语音已设置。</string>
+    <string name="msg_no_tts_voices">未找到可用语音。</string>
+    <string name="msg_fail_open_settings">无法打开设置界面。</string>
+    <string name="msg_backup_fail">创建备份文件失败。</string>
+    <string name="msg_restore_success">数据恢复成功。</string>
+    <string name="msg_restore_fail">恢复失败：无效的备份文件。</string>
+    <string name="msg_export_fail">导出失败</string>
+
+    <string name="btn_advanced_tts">高级选择</string>
+    <string name="btn_system_settings">系统设置</string>
+    <string name="btn_chooser_share">分享</string>
+    <string name="btn_chooser_save">保存到其它位置</string>
+    <string name="btn_chooser_file">选择文件</string>
+    <string name="btn_chooser_send_list">发送列表</string>
+
+    <string name="first_fragment_label">创建习惯</string>
+    <string name="second_fragment_label">任务详情</string>
+</resources>

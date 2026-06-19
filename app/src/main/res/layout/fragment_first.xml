@@ -22,7 +22,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="진행중"
+            android:text="@string/status_ongoing"
             app:icon="@drawable/ic_filter_inprogress" />
 
         <com.google.android.material.button.MaterialButton
@@ -30,7 +30,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="전체"
+            android:text="@string/status_all"
             app:icon="@drawable/ic_filter_all" />
 
         <com.google.android.material.button.MaterialButton
@@ -38,7 +38,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="완료"
+            android:text="@string/status_done"
             app:icon="@drawable/ic_filter_done" />
 
     </com.google.android.material.button.MaterialButtonToggleGroup>

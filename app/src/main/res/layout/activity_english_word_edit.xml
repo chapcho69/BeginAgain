@@ -13,7 +13,7 @@
             android:id="@+id/toolbar_english_edit"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="영단어 추가" />
+            app:title="@string/title_add_english" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -31,7 +31,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="단어 (Word)"
+                android:hint="@string/label_word"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_english_word"
@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="뜻 (Meaning)"
+                android:hint="@string/label_meaning"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_english_meaning"
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="예문 (Example)"
+                android:hint="@string/label_example"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_english_example"
@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="저장하기"
+                android:text="@string/btn_save"
                 android:padding="12dp"
                 app:backgroundTint="#f38b0e" />
 

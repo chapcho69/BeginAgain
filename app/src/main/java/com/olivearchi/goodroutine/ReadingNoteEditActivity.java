@@ -28,6 +28,11 @@ import java.util.Locale;
 
 public class ReadingNoteEditActivity extends AppCompatActivity {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private TodoDbHelper dbHelper;
     private ReadingNoteItem currentItem;
     private TextInputEditText editBookTitle, editContent, editRemarks;
@@ -81,9 +86,9 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
         }
 
         // Setup ByteCounter AFTER setting initial text to avoid filter blocking load
-        setupByteCounter(editBookTitle, layoutBookTitle, 100, "책제목");
-        setupByteCounter(editContent, layoutContent, 2000, "기억하고 싶은 내용");
-        setupByteCounter(editRemarks, layoutRemarks, 1000, "비고");
+        setupByteCounter(editBookTitle, layoutBookTitle, 100, getString(R.string.label_word));
+        setupByteCounter(editContent, layoutContent, 2000, getString(R.string.label_content));
+        setupByteCounter(editRemarks, layoutRemarks, 1000, getString(R.string.label_remarks));
 
         btnSave.setOnClickListener(v -> {
             if (saveNote()) finish();
@@ -157,7 +162,7 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
     private void updateHintWithByteCount(TextInputLayout layout, String text, int maxBytes, String baseHint) {
         int bytes = text.getBytes(StandardCharsets.UTF_8).length;
         int percent = Math.min(100, (int)((bytes / (float)maxBytes) * 100));
-        layout.setHint(baseHint + " (" + percent + "% 사용 중)");
+        layout.setHint(String.format(java.util.Locale.getDefault(), getString(R.string.msg_byte_usage), baseHint, percent));
     }
 
     private void setupVerticalScroll(android.view.View view) {

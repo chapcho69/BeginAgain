@@ -50,6 +50,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     @Override
     public void onBindViewHolder(@NonNull TodoViewHolder holder, int position) {
         TodoItem item = todoList.get(position);
+        android.content.Context context = holder.itemView.getContext();
         
         // Removed Indentation effect: Set constant margin
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) holder.cardView.getLayoutParams();
@@ -61,13 +62,13 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             subject = subject.substring(0, 5) + "...";
         }
         
-        String repeatStr = "없음";
+        String repeatStr = context.getString(R.string.repeat_none);
         if (item.isRepeating()) {
             switch (item.getRepeatType()) {
-                case TodoItem.REPEAT_DAY: repeatStr = "매일"; break;
-                case TodoItem.REPEAT_WEEK: repeatStr = "매주"; break;
-                case TodoItem.REPEAT_MONTH: repeatStr = "매월"; break;
-                case TodoItem.REPEAT_YEAR: repeatStr = "매년"; break;
+                case TodoItem.REPEAT_DAY: repeatStr = context.getString(R.string.repeat_daily); break;
+                case TodoItem.REPEAT_WEEK: repeatStr = context.getString(R.string.repeat_weekly); break;
+                case TodoItem.REPEAT_MONTH: repeatStr = context.getString(R.string.repeat_monthly); break;
+                case TodoItem.REPEAT_YEAR: repeatStr = context.getString(R.string.repeat_yearly); break;
             }
         }
 
@@ -85,7 +86,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         if (!timeStr.isEmpty()) {
             displayText += " / " + timeStr;
         }
-        displayText += " / " + item.getPerformCount() + "회";
+        displayText += " / " + item.getPerformCount() + context.getString(R.string.status_count_unit);
         holder.taskText.setText(displayText);
         
         int backgroundColor = item.getColor();

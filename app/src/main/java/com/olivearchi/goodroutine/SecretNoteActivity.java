@@ -29,6 +29,11 @@ import java.util.List;
 
 public class SecretNoteActivity extends AppCompatActivity {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private TodoDbHelper dbHelper;
     private SecretNoteAdapter adapter;
     private RecyclerView recyclerView;

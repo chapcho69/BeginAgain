@@ -21,11 +21,17 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 public class SecretNoteEditActivity extends AppCompatActivity {
+
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
 
     private TodoDbHelper dbHelper;
     private SecretNoteItem currentItem;
@@ -73,9 +79,9 @@ public class SecretNoteEditActivity extends AppCompatActivity {
             btnDelete.setVisibility(View.GONE);
         }
 
-        setupByteCounter(editTitle, layoutTitle, 200, "제목");
-        setupByteCounter(editContent, layoutContent, 2000, "내용");
-        setupByteCounter(editRemarks, layoutRemarks, 1000, "비고");
+        setupByteCounter(editTitle, layoutTitle, 200, getString(R.string.label_title));
+        setupByteCounter(editContent, layoutContent, 2000, getString(R.string.label_content));
+        setupByteCounter(editRemarks, layoutRemarks, 1000, getString(R.string.label_remarks));
 
         btnSave.setOnClickListener(v -> { if (saveNote()) finish(); });
 
@@ -99,11 +105,13 @@ public class SecretNoteEditActivity extends AppCompatActivity {
         editText.setFilters(new InputFilter[]{new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-                int destBytes = dest.toString().getBytes().length;
-                int sourceBytes = source.subSequence(start, end).toString().getBytes().length;
-                int replacedBytes = dest.subSequence(dstart, dend).toString().getBytes().length;
+                int destBytes = dest.toString().getBytes(StandardCharsets.UTF_8).length;
+                int sourceBytes = source.subSequence(start, end).toString().getBytes(StandardCharsets.UTF_8).length;
+                int replacedBytes = dest.subSequence(dstart, dend).toString().getBytes(StandardCharsets.UTF_8).length;
                 if (destBytes + sourceBytes - replacedBytes > maxBytes) {
-                    if (dest.length() == 0 && source.length() > 0 && sourceBytes > maxBytes) return null;
+                    if (dest.length() == 0 && source.length() > 0) {
+                        return source.subSequence(0, findMaxCharsForBytes(source, maxBytes));
+                    }
                     return "";
                 }
                 return null;
@@ -115,11 +123,25 @@ public class SecretNoteEditActivity extends AppCompatActivity {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
-                int bytes = s.toString().getBytes().length;
-                int percent = Math.min(100, (int)((bytes / (float)maxBytes) * 100));
-                layout.setHint(baseHint + " (" + percent + "% 사용 중)");
+                updateHintWithByteCount(layout, s.toString(), maxBytes, baseHint);
             }
         });
+        updateHintWithByteCount(layout, editText.getText().toString(), maxBytes, baseHint);
+    }
+
+    private int findMaxCharsForBytes(CharSequence source, int maxBytes) {
+        int bytes = 0;
+        for (int i = 0; i < source.length(); i++) {
+            bytes += String.valueOf(source.charAt(i)).getBytes(StandardCharsets.UTF_8).length;
+            if (bytes > maxBytes) return i;
+        }
+        return source.length();
+    }
+
+    private void updateHintWithByteCount(TextInputLayout layout, String text, int maxBytes, String baseHint) {
+        int bytes = text.getBytes(StandardCharsets.UTF_8).length;
+        int percent = Math.min(100, (int)((bytes / (float)maxBytes) * 100));
+        layout.setHint(String.format(java.util.Locale.getDefault(), getString(R.string.msg_byte_usage), baseHint, percent));
     }
 
     private void setupVerticalScroll(android.view.View view) {

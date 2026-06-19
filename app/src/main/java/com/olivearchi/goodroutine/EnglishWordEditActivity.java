@@ -13,6 +13,11 @@ import com.google.android.material.button.MaterialButton;
 
 public class EnglishWordEditActivity extends AppCompatActivity {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private EditText editWord, editMeaning, editExample;
     private NestedScrollView scrollView;
     private TodoDbHelper dbHelper;

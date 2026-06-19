@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:hint="검색어 입력 (내용, 설명 등)"
+            android:hint="@string/hint_search"
             app:layout_constraintTop_toTopOf="parent"
             app:endIconMode="clear_text">
             <com.google.android.material.textfield.TextInputEditText

@@ -44,6 +44,11 @@
         android:title="TTS 목소리 설정"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_language"
+        android:orderInCategory="127"
+        android:title="@string/action_language"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_about"
         android:orderInCategory="130"
         android:title="About"

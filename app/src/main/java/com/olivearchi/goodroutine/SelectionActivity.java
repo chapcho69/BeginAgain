@@ -66,6 +66,11 @@ import java.util.Set;
 
 public class SelectionActivity extends AppCompatActivity {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private TodoViewModel viewModel;
     private TextToSpeech tempTts;
     private static final int MAX_SLOTS = 40;
@@ -260,18 +265,18 @@ public class SelectionActivity extends AppCompatActivity {
 
     private String getFeatureTitle(String id) {
         switch (id) {
-            case "routine": return "습관";
-            case "reading": return "독서노트";
-            case "memo": return "메모";
-            case "memorization": return "암기장";
-            case "today": return "할일들";
-            case "english": return "영단어";
-            case "japanese": return "일본어";
-            case "settings": return "설정";
-            case "search": return "찾기";
-            case "secret": return "비밀노트";
-            case "dashboard": return "대시보드";
-            case "wordmap": return "어휘 Map";
+            case "routine": return getString(R.string.feature_routine);
+            case "reading": return getString(R.string.feature_reading);
+            case "memo": return getString(R.string.feature_memo);
+            case "memorization": return getString(R.string.feature_memorization);
+            case "today": return getString(R.string.feature_today);
+            case "english": return getString(R.string.feature_english);
+            case "japanese": return getString(R.string.feature_japanese);
+            case "settings": return getString(R.string.action_settings);
+            case "search": return getString(R.string.feature_search);
+            case "secret": return getString(R.string.feature_secret);
+            case "dashboard": return getString(R.string.feature_dashboard);
+            case "wordmap": return getString(R.string.feature_wordmap);
             default: return "";
         }
     }
@@ -283,11 +288,17 @@ public class SelectionActivity extends AppCompatActivity {
         for (int i = 0; i < MAX_SLOTS; i++) slotAssignments[i] = null;
         String[] keys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard", "wordmap"};
         
-        // Start from 2nd row (index 4)
-        int startIdx = 4;
-        for (int i = 0; i < keys.length && (startIdx + i) < MAX_SLOTS; i++) {
-            slotAssignments[startIdx + i] = keys[i];
+        // Arrange 3 features per row starting from 2nd row
+        int currentKeyIdx = 0;
+        int[] rowStarts = {4, 9, 13, 18, 22, 27, 31, 36}; // Row start indices in 4-5-4-5 grid
+        
+        for (int rowStart : rowStarts) {
+            for (int i = 0; i < 3 && currentKeyIdx < keys.length; i++) {
+                slotAssignments[rowStart + i] = keys[currentKeyIdx++];
+            }
+            if (currentKeyIdx >= keys.length) break;
         }
+
         saveSlotAssignments();
         refreshHoneycomb();
         Toast.makeText(this, "위치가 초기화되었습니다.", Toast.LENGTH_SHORT).show();
@@ -342,62 +353,62 @@ public class SelectionActivity extends AppCompatActivity {
 
                 switch (type) {
                     case "routine":
-                        label = "습관\n(" + db.getAllTodos().size() + ")";
+                        label = getString(R.string.feature_routine) + "\n(" + db.getAllTodos().size() + ")";
                         iconRes = R.drawable.ic_bicycle;
                         clickListener = v -> startActivity(new Intent(this, MainActivity.class));
                         break;
                     case "reading":
-                        label = "독서노트\n(" + db.getAllReadingNotes().size() + ")";
+                        label = getString(R.string.feature_reading) + "\n(" + db.getAllReadingNotes().size() + ")";
                         iconRes = R.drawable.ic_open_book;
                         clickListener = v -> startActivity(new Intent(this, ReadingNoteActivity.class));
                         break;
                     case "memo":
-                        label = "메모\n(" + db.getAllMemos().size() + ")";
+                        label = getString(R.string.feature_memo) + "\n(" + db.getAllMemos().size() + ")";
                         iconRes = R.drawable.ic_note;
                         clickListener = v -> startActivity(new Intent(this, MemoActivity.class));
                         break;
                     case "memorization":
-                        label = "암기장\n(" + db.getAllMemorizations().size() + ")";
+                        label = getString(R.string.feature_memorization) + "\n(" + db.getAllMemorizations().size() + ")";
                         iconRes = R.drawable.ic_edit;
                         clickListener = v -> startActivity(new Intent(this, MemorizationActivity.class));
                         break;
                     case "today":
-                        label = "할일들\n(" + db.getAllTodayTasks().size() + ")";
+                        label = getString(R.string.feature_today) + "\n(" + db.getAllTodayTasks().size() + ")";
                         iconRes = R.drawable.ic_list;
                         clickListener = v -> startActivity(new Intent(this, TodayTaskListActivity.class));
                         break;
                     case "english":
-                        label = "영단어\n(" + db.getAllEnglishWords().size() + ")";
+                        label = getString(R.string.feature_english) + "\n(" + db.getAllEnglishWords().size() + ")";
                         iconRes = R.drawable.ic_headset;
                         clickListener = v -> startActivity(new Intent(this, EnglishWordActivity.class));
                         break;
                     case "japanese":
-                        label = "일본어\n(" + db.getAllJapaneseWords().size() + ")";
+                        label = getString(R.string.feature_japanese) + "\n(" + db.getAllJapaneseWords().size() + ")";
                         iconRes = R.drawable.ic_headset;
                         clickListener = v -> startActivity(new Intent(this, JapaneseWordActivity.class));
                         break;
                     case "secret":
-                        label = "비밀노트\n(" + db.getAllSecretNotes().size() + ")";
+                        label = getString(R.string.feature_secret) + "\n(" + db.getAllSecretNotes().size() + ")";
                         iconRes = R.drawable.ic_lock;
                         clickListener = v -> startActivity(new Intent(this, SecretNoteActivity.class));
                         break;
                     case "dashboard":
-                        label = "성장\n대시보드";
+                        label = getString(R.string.feature_dashboard);
                         iconRes = R.drawable.ic_clover;
                         clickListener = v -> startActivity(new Intent(this, DashboardActivity.class));
                         break;
                     case "wordmap":
-                        label = "어휘 Map";
+                        label = getString(R.string.feature_wordmap);
                         iconRes = R.drawable.ic_filter_all;
                         clickListener = v -> startActivity(new Intent(this, WordMapActivity.class));
                         break;
                     case "settings":
-                        label = "설정";
+                        label = getString(R.string.feature_settings);
                         iconRes = R.drawable.ic_settings;
                         clickListener = v -> showSettingsDialog();
                         break;
                     case "search":
-                        label = "찾기";
+                        label = getString(R.string.feature_search);
                         iconRes = android.R.drawable.ic_menu_search;
                         clickListener = v -> startActivity(new Intent(this, SearchActivity.class));
                         break;
@@ -566,6 +577,7 @@ public class SelectionActivity extends AppCompatActivity {
         if (id == R.id.action_rename_app) { showRenameAppDialog(); return true; }
         if (id == R.id.action_tts_speed) { showTtsSpeedDialog(); return true; }
         if (id == R.id.action_tts_voice) { showTtsVoiceDialog(); return true; }
+        if (id == R.id.action_language) { showLanguageDialog(); return true; }
         if (id == R.id.action_about) { showAboutDialog(); return true; }
         return super.onOptionsItemSelected(item);
     }
@@ -632,24 +644,60 @@ public class SelectionActivity extends AppCompatActivity {
     }
 
     private void showSettingsDialog() {
-        String[] categories = {"데이터 관리", "단어장 관리", "기타 설정", "About"};
+        String[] categories = {
+                getString(R.string.settings_category_data),
+                getString(R.string.settings_category_word),
+                getString(R.string.settings_category_other),
+                getString(R.string.settings_category_language),
+                getString(R.string.action_about)
+        };
         new AlertDialog.Builder(this)
-                .setTitle("설정")
+                .setTitle(R.string.settings_title)
                 .setItems(categories, (dialog, which) -> {
                     switch (which) {
                         case 0: showDataManagementOptions(); break;
                         case 1: showWordManagementOptions(); break;
                         case 2: showOtherSettingsOptions(); break;
-                        case 3: showAboutDialog(); break;
+                        case 3: showLanguageDialog(); break;
+                        case 4: showAboutDialog(); break;
                     }
                 })
                 .show();
     }
 
-    private void showDataManagementOptions() {
-        String[] options = {"데이터 보관 (.dat)", "데이터 복구 (.dat)", "SQLite DB 파일로 내보내기", "SQLite DB 파일에서 복구"};
+    private void showLanguageDialog() {
+        String[] languages = {"한국어", "English", "日本語", "简体中文"};
+        String[] codes = {"ko", "en", "ja", "zh"};
+        
+        String currentLang = LocaleHelper.getLanguage(this);
+        int checkedItem = 0;
+        for (int i = 0; i < codes.length; i++) {
+            if (codes[i].equals(currentLang)) {
+                checkedItem = i;
+                break;
+            }
+        }
+
         new AlertDialog.Builder(this)
-                .setTitle("데이터 관리")
+                .setTitle(R.string.action_language)
+                .setSingleChoiceItems(languages, checkedItem, (dialog, which) -> {
+                    LocaleHelper.setLocale(this, codes[which]);
+                    dialog.dismiss();
+                    recreate(); // Restart to apply language
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
+    private void showDataManagementOptions() {
+        String[] options = {
+                getString(R.string.data_mgmt_backup_dat),
+                getString(R.string.data_mgmt_restore_dat),
+                getString(R.string.data_mgmt_export_sqlite),
+                getString(R.string.data_mgmt_restore_sqlite)
+        };
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.settings_category_data)
                 .setItems(options, (dialog, which) -> {
                     if (which == 0) showBackupOptions();
                     else if (which == 1) showRestoreDialog();
@@ -715,12 +763,16 @@ public class SelectionActivity extends AppCompatActivity {
 
     private void showWordManagementOptions() {
         String[] options = {
-                "영단어 가져오기", "일본어 가져오기",
-                "영어 단어 정렬 (중복 제거)", "일어 단어 정렬 (중복 제거)",
-                "영단어 내보내기", "일어 내보내기",
-                "영단어장 초기화", "일어장 초기화"
+                getString(R.string.word_mgmt_import_en),
+                getString(R.string.word_mgmt_import_ja),
+                getString(R.string.word_mgmt_dedup_en),
+                getString(R.string.word_mgmt_dedup_ja),
+                getString(R.string.word_mgmt_export_en),
+                getString(R.string.word_mgmt_export_ja),
+                getString(R.string.word_mgmt_clear_en),
+                getString(R.string.word_mgmt_clear_ja)
         };
-        new AlertDialog.Builder(this).setTitle("단어장 관리").setItems(options, (dialog, which) -> {
+        new AlertDialog.Builder(this).setTitle(R.string.settings_category_word).setItems(options, (dialog, which) -> {
             switch (which) {
                 case 0: importEnglishLauncher.launch(new String[]{"text/plain", "*/*"}); break;
                 case 1: importJapaneseLauncher.launch(new String[]{"text/plain", "*/*"}); break;
@@ -755,9 +807,14 @@ public class SelectionActivity extends AppCompatActivity {
     }
 
     private void showOtherSettingsOptions() {
-        String[] options = {"App 명칭 수정", "TTS 속도 설정", "TTS 목소리 설정", "위치 초기화"};
+        String[] options = {
+                getString(R.string.other_settings_rename),
+                getString(R.string.other_settings_tts_speed),
+                getString(R.string.other_settings_tts_voice),
+                getString(R.string.other_settings_reset_pos)
+        };
         new AlertDialog.Builder(this)
-                .setTitle("기타 설정")
+                .setTitle(R.string.settings_category_other)
                 .setItems(options, (dialog, which) -> {
                     switch (which) {
                         case 0: showRenameAppDialog(); break;

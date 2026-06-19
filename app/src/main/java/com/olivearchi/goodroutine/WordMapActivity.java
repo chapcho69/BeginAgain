@@ -13,6 +13,11 @@ import java.util.Map;
 
 public class WordMapActivity extends AppCompatActivity {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private TodoDbHelper dbHelper;
     private WordMapView wordMapView;
     private ProgressBar progressBar;
@@ -41,7 +46,17 @@ public class WordMapActivity extends AppCompatActivity {
             loadAndProcessData(since);
         });
 
+        initAds();
         loadAndProcessData(null);
+    }
+
+    private void initAds() {
+        com.google.android.gms.ads.MobileAds.initialize(this, initializationStatus -> {});
+        com.google.android.gms.ads.AdView adView = findViewById(R.id.adView);
+        if (adView != null) {
+            com.google.android.gms.ads.AdRequest adRequest = new com.google.android.gms.ads.AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
     }
 
     private void loadAndProcessData(String sinceDate) {

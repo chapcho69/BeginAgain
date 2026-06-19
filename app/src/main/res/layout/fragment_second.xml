@@ -68,7 +68,7 @@
             android:layout_height="64dp"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
-            android:text="수행기록"
+            android:text="@string/button_record"
             app:backgroundTint="@color/btn_record"
             app:icon="@drawable/ic_spade"
             app:iconSize="24dp" />
@@ -78,7 +78,7 @@
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:layout_weight="1"
-            android:text="이력보기"
+            android:text="@string/button_view_history"
             android:textColor="#FFFFFF"
             app:backgroundTint="@color/btn_history"
             app:icon="@drawable/ic_list"
@@ -101,7 +101,7 @@
             android:layout_height="64dp"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
-            android:text="수정"
+            android:text="@string/btn_edit"
             app:backgroundTint="@color/btn_edit"
             app:icon="@drawable/ic_edit" />
 
@@ -110,7 +110,7 @@
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:layout_weight="1"
-            android:text="삭제"
+            android:text="@string/btn_delete"
             app:backgroundTint="@color/btn_delete"
             app:icon="@drawable/ic_delete" />
 

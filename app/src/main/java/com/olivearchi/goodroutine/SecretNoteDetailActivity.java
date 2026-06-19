@@ -13,6 +13,11 @@ import com.google.android.gms.ads.MobileAds;
 
 public class SecretNoteDetailActivity extends AppCompatActivity {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private SecretNoteItem item;
 
     @Override

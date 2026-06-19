@@ -1,0 +1,161 @@
+<resources>
+    <string name="app_name">Begin Again</string>
+    <string name="action_settings">設定</string>
+    <string name="action_home">ホーム</string>
+    <string name="action_backup">バックアップ</string>
+    <string name="action_restore">復元</string>
+    <string name="action_word_mgmt">単語帳管理</string>
+    <string name="action_rename_app">アプリ名の変更</string>
+    <string name="action_tts_speed">TTS速度設定</string>
+    <string name="action_tts_voice">TTS音声設定</string>
+    <string name="action_language">言語設定</string>
+    <string name="action_about">情報</string>
+
+    <string name="settings_title">設定</string>
+    <string name="settings_category_data">データ管理</string>
+    <string name="settings_category_word">単語帳管理</string>
+    <string name="settings_category_other">その他の設定</string>
+    <string name="settings_category_language">言語設定 (Language)</string>
+
+    <string name="data_mgmt_backup_dat">データ保存 (.dat)</string>
+    <string name="data_mgmt_restore_dat">データ復元 (.dat)</string>
+    <string name="data_mgmt_export_sqlite">SQLite DBへ書き出し</string>
+    <string name="data_mgmt_restore_sqlite">SQLite DBから復元</string>
+
+    <string name="word_mgmt_import_en">英단어의インポート</string>
+    <string name="word_mgmt_import_ja">日本語のインポート</string>
+    <string name="word_mgmt_dedup_en">英語の重複削除</string>
+    <string name="word_mgmt_dedup_ja">日本語の重複削除</string>
+    <string name="word_mgmt_export_en">英단어のエクスポート</string>
+    <string name="word_mgmt_export_ja">日本語のエクスポート</string>
+    <string name="word_mgmt_clear_en">英語帳の初期化</string>
+    <string name="word_mgmt_clear_ja">日本語帳の初期化</string>
+
+    <string name="other_settings_rename">アプリ名の変更</string>
+    <string name="other_settings_tts_speed">TTS速度設定</string>
+    <string name="other_settings_tts_voice">TTS音声設定</string>
+    <string name="other_settings_reset_pos">位置リセット</string>
+
+    <string name="feature_routine">習慣</string>
+    <string name="feature_reading">読書ノート</string>
+    <string name="feature_reading_favorite">読書ノート(お気に入り)</string>
+    <string name="feature_memo">メモ</string>
+    <string name="feature_memo_favorite">メモ(お気に入り)</string>
+    <string name="feature_memorization">暗記帳</string>
+    <string name="feature_memorization_favorite">暗記帳(お気に入り)</string>
+    <string name="feature_today">今日のタスク</string>
+    <string name="feature_english">英語</string>
+    <string name="feature_japanese">日本語</string>
+    <string name="feature_search">検索</string>
+    <string name="feature_secret">秘密ノート</string>
+    <string name="feature_dashboard">成長\nダッシュボード</string>
+    <string name="feature_wordmap">語彙マップ</string>
+    <string name="feature_settings">設定</string>
+
+    <string name="filter_all">すべて</string>
+    <string name="filter_month">最近1ヶ月</string>
+
+    <string name="btn_save">保存</string>
+    <string name="btn_delete">削除</string>
+    <string name="btn_add">追加</string>
+    <string name="btn_edit">編集</string>
+    <string name="btn_share">共有</string>
+    <string name="btn_tts">聞く</string>
+    <string name="btn_tts_all">すべて聞く</string>
+    <string name="btn_tts_random">ランダムに聞く</string>
+    <string name="btn_stop">停止</string>
+
+    <string name="label_word">単語</string>
+    <string name="label_meaning">意味</string>
+    <string name="label_example">例文</string>
+    <string name="label_reading">読み方</string>
+    <string name="label_title">タイトル</string>
+    <string name="label_content">内容</string>
+    <string name="label_remarks">備考</string>
+    <string name="label_keyword">キーワード</string>
+    <string name="label_book_title">本のタイトル</string>
+    <string name="label_last_modified">最終更新</string>
+
+    <string name="title_add_english">英語の追加</string>
+    <string name="title_add_japanese">日本語の追加</string>
+    <string name="title_task_total_estimated">予定時間合計</string>
+    <string name="title_task_total_work">総業務時間</string>
+    <string name="title_task_unit_min">分</string>
+    <string name="title_task_item_per">項目ごとに+10分</string>
+
+    <string name="title_confirm_performed">を実行しましたか？</string>
+    <string name="title_confirm_time">予定時間</string>
+    <string name="title_confirm_none">なし</string>
+    <string name="title_confirm_yes">はい</string>
+    <string name="title_confirm_no">いいえ</string>
+
+    <string name="label_yes">はい</string>
+    <string name="label_no">いいえ</string>
+    <string name="label_male_voice">男性の声</string>
+    <string name="label_female_voice">女性の声</string>
+
+    <string name="status_done">完了</string>
+    <string name="status_not_done">未完了</string>
+    <string name="status_ongoing">進行中</string>
+    <string name="status_all">すべて</string>
+    <string name="status_count_unit">回</string>
+
+    <string name="repeat_label">繰り返し</string>
+    <string name="repeat_none">なし</string>
+    <string name="repeat_daily">毎日</string>
+    <string name="repeat_weekly">毎週</string>
+    <string name="repeat_monthly">毎月</string>
+    <string name="repeat_yearly">毎年</string>
+
+    <string name="label_select_emoticon">絵文字を選択</string>
+    <string name="label_select_color">色を選択</string>
+    <string name="color_white">白</string>
+    <string name="color_red">赤</string>
+    <string name="color_blue">青</string>
+    <string name="color_green">緑</string>
+    <string name="color_yellow">黄</string>
+
+    <string name="hint_search">キーワード入力 (内容、説明など)</string>
+    <string name="msg_pin_guide">4桁の暗証번호を入力してください。</string>
+    <string name="msg_no_data">記録がありません。</string>
+    <string name="msg_word_map_empty">分析するデータが不足しています。</string>
+    <string name="msg_byte_usage">%1$s (%2$d%% 使用中)</string>
+    <string name="msg_add_todo_title">新しいタスクの追加</string>
+    <string name="msg_time_select">時間の選択 (10分単位)</string>
+    <string name="msg_backup_method">データ保存方法の選択</string>
+    <string name="msg_restore_confirm">復元すると現在のデータがすべて削除され、バックアップデータに置き換えられます。続行しますか？</string>
+    <string name="msg_no_todo_export">エクスポートするタスクがありません。</string>
+    <string name="msg_export_title">ルーチン作成 - タスクリスト</string>
+    <string name="msg_export_success_title">良いルーチン - タスクリストのエクスポート</string>
+    <string name="msg_tts_gender_select">TTS音声の性別選択</string>
+    <string name="msg_advanced_tts_title">TTS音声の詳細選択</string>
+    <string name="msg_tts_voice_set_female">女性の声に設定されました。</string>
+    <string name="msg_tts_voice_set_male">男性の声に設定されました。</string>
+    <string name="msg_tts_voice_set">音声が設定されました。</string>
+    <string name="msg_no_tts_voices">利用可能な音声が見つかりません。</string>
+    <string name="msg_fail_open_settings">設定画面を開けません。</string>
+    <string name="msg_backup_fail">バックアップファイルの作成に失敗しました。</string>
+    <string name="msg_restore_success">データの復元に成功しました。</string>
+    <string name="msg_restore_fail">復元失敗：有効なバックアップファイルではありません。</string>
+    <string name="msg_export_fail">エクスポート失敗</string>
+
+    <string name="btn_advanced_tts">詳細選択</string>
+    <string name="btn_system_settings">システム設定</string>
+    <string name="btn_chooser_share">共有する</string>
+    <string name="btn_chooser_save">別の場所に保存する</string>
+    <string name="btn_chooser_file">ファイル選択</string>
+    <string name="btn_chooser_send_list">リストを送信</string>
+
+    <string name="msg_confirm_delete">本当に削除しますか？</string>
+    <string name="msg_save_success">保存されました。</string>
+    <string name="msg_delete_success">削除されました。</string>
+
+    <string name="button_record">記録</string>
+    <string name="button_view_history">履歴を表示</string>
+    <string name="button_cancel">キャンセル</string>
+    <string name="button_close">閉じる</string>
+    <string name="button_select">選択</string>
+
+    <string name="first_fragment_label">ルーチン作成</string>
+    <string name="second_fragment_label">タスク詳細</string>
+</resources>

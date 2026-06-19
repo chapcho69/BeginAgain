@@ -32,6 +32,11 @@ import java.util.Set;
 
 public class ReadingNoteActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private TodoDbHelper dbHelper;
     private ReadingNoteAdapter adapter;
     private RecyclerView recyclerView;
@@ -113,9 +118,9 @@ public class ReadingNoteActivity extends AppCompatActivity implements TextToSpee
         MaterialButton btnAll = findViewById(R.id.btn_read_all);
         MaterialButton btnRandom = findViewById(R.id.btn_read_random);
         if (isPlayingAll) {
-            if (isRandomMode) { btnAll.setText("전체 듣기"); btnRandom.setText("중지"); }
-            else { btnAll.setText("중지"); btnRandom.setText("무작위 듣기"); }
-        } else { btnAll.setText("전체 듣기"); btnRandom.setText("무작위 듣기"); }
+            if (isRandomMode) { btnAll.setText(R.string.btn_tts_all); btnRandom.setText(R.string.btn_stop); }
+            else { btnAll.setText(R.string.btn_stop); btnRandom.setText(R.string.btn_tts_random); }
+        } else { btnAll.setText(R.string.btn_tts_all); btnRandom.setText(R.string.btn_tts_random); }
     }
 
     private void playNextNote() {
@@ -152,9 +157,9 @@ public class ReadingNoteActivity extends AppCompatActivity implements TextToSpee
 
     private void startNoteSequence(ReadingNoteItem item) {
         int q = TextToSpeech.QUEUE_FLUSH;
-        speakText("책 제목: " + item.getBookTitle(), q, "Part_W");
+        speakText(getString(R.string.label_word) + ": " + item.getBookTitle(), q, "Part_W");
         String finalId = "Final_" + repeatCount;
-        speakText("내용: " + item.getContent(), TextToSpeech.QUEUE_ADD, finalId);
+        speakText(getString(R.string.label_content) + ": " + item.getContent(), TextToSpeech.QUEUE_ADD, finalId);
     }
 
     @Override
@@ -211,7 +216,7 @@ public class ReadingNoteActivity extends AppCompatActivity implements TextToSpee
             currentNotes.addAll(allNotes);
         }
         if (getSupportActionBar() != null) {
-            String title = isFavoriteFilterActive ? "독서노트(즐겨찾기)" : "독서노트";
+            String title = isFavoriteFilterActive ? getString(R.string.feature_reading_favorite) : getString(R.string.feature_reading);
             getSupportActionBar().setTitle(title + "(" + currentNotes.size() + ")");
         }
         adapter = new ReadingNoteAdapter(currentNotes, item -> {

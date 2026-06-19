@@ -2,7 +2,162 @@
     <string name="app_name">Begin Again</string>
     <string name="app_version">4.8</string>
     <string name="build_date">2026-06-12 (Rev.8)</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">설정</string>
+    <string name="action_home">홈</string>
+    <string name="action_backup">데이터 보관</string>
+    <string name="action_restore">데이터 복구</string>
+    <string name="action_word_mgmt">단어장 관리</string>
+    <string name="action_rename_app">App 명칭 수정</string>
+    <string name="action_tts_speed">TTS 속도 설정</string>
+    <string name="action_tts_voice">TTS 목소리 설정</string>
+    <string name="action_language">언어 설정</string>
+    <string name="action_about">About</string>
+
+    <string name="settings_title">설정</string>
+    <string name="settings_category_data">데이터 관리</string>
+    <string name="settings_category_word">단어장 관리</string>
+    <string name="settings_category_other">기타 설정</string>
+    <string name="settings_category_language">언어 설정 (Language)</string>
+
+    <string name="data_mgmt_backup_dat">데이터 보관 (.dat)</string>
+    <string name="data_mgmt_restore_dat">데이터 복구 (.dat)</string>
+    <string name="data_mgmt_export_sqlite">SQLite DB 파일로 내보내기</string>
+    <string name="data_mgmt_restore_sqlite">SQLite DB 파일에서 복구</string>
+
+    <string name="word_mgmt_import_en">영단어 가져오기</string>
+    <string name="word_mgmt_import_ja">일본어 가져오기</string>
+    <string name="word_mgmt_dedup_en">영어 단어 정렬 (중복 제거)</string>
+    <string name="word_mgmt_dedup_ja">일어 단어 정렬 (중복 제거)</string>
+    <string name="word_mgmt_export_en">영단어 내보내기</string>
+    <string name="word_mgmt_export_ja">일어 내보내기</string>
+    <string name="word_mgmt_clear_en">영단어장 초기화</string>
+    <string name="word_mgmt_clear_ja">일어장 초기화</string>
+
+    <string name="other_settings_rename">App 명칭 수정</string>
+    <string name="other_settings_tts_speed">TTS 속도 설정</string>
+    <string name="other_settings_tts_voice">TTS 목소리 설정</string>
+    <string name="other_settings_reset_pos">위치 초기화</string>
+
+    <string name="feature_routine">습관</string>
+    <string name="feature_reading">독서노트</string>
+    <string name="feature_reading_favorite">독서노트(즐겨찾기)</string>
+    <string name="feature_memo">메모</string>
+    <string name="feature_memo_favorite">메모(즐겨찾기)</string>
+    <string name="feature_memorization">암기장</string>
+    <string name="feature_memorization_favorite">암기장(즐겨찾기)</string>
+    <string name="feature_today">할일들</string>
+    <string name="feature_english">영단어</string>
+    <string name="feature_japanese">일본어</string>
+    <string name="feature_search">찾기</string>
+    <string name="feature_secret">비밀노트</string>
+    <string name="feature_dashboard">성장\n대시보드</string>
+    <string name="feature_wordmap">어휘 Map</string>
+    <string name="feature_settings">설정</string>
+
+    <string name="filter_all">전체</string>
+    <string name="filter_month">최근 1개월</string>
+
+    <string name="btn_save">저장</string>
+    <string name="btn_delete">삭제</string>
+    <string name="btn_add">추가</string>
+    <string name="btn_edit">수정</string>
+    <string name="btn_share">공유</string>
+    <string name="btn_tts">듣기</string>
+    <string name="btn_tts_all">전체 듣기</string>
+    <string name="btn_tts_random">무작위 듣기</string>
+    <string name="btn_stop">중지</string>
+
+    <string name="label_word">단어</string>
+    <string name="label_meaning">뜻</string>
+    <string name="label_example">예문</string>
+    <string name="label_reading">독음</string>
+    <string name="label_title">제목</string>
+    <string name="label_content">내용</string>
+    <string name="label_remarks">비고</string>
+    <string name="label_keyword">주제어</string>
+    <string name="label_book_title">책 제목</string>
+    <string name="label_last_modified">최종 수정</string>
+
+    <string name="title_add_english">영단어 추가</string>
+    <string name="title_add_japanese">일본어 추가</string>
+    <string name="title_task_total_estimated">소요시간 합계</string>
+    <string name="title_task_total_work">전체업무시간</string>
+    <string name="title_task_unit_min">분</string>
+    <string name="title_task_item_per">항목당 +10분</string>
+
+    <string name="title_confirm_performed">을 수행하셨나요?</string>
+    <string name="title_confirm_time">예정 시간</string>
+    <string name="title_confirm_none">없음</string>
+    <string name="title_confirm_yes">예</string>
+    <string name="title_confirm_no">아니오</string>
+
+    <string name="label_yes">예</string>
+    <string name="label_no">아니오</string>
+    <string name="label_male_voice">남성 목소리</string>
+    <string name="label_female_voice">여성 목소리</string>
+
+    <string name="status_done">완료</string>
+    <string name="status_not_done">미완료</string>
+    <string name="status_ongoing">진행중</string>
+    <string name="status_all">전체</string>
+    <string name="status_count_unit">회</string>
+
+    <string name="repeat_label">반복</string>
+    <string name="repeat_none">없음</string>
+    <string name="repeat_daily">매일</string>
+    <string name="repeat_weekly">매주</string>
+    <string name="repeat_monthly">매월</string>
+    <string name="repeat_yearly">매년</string>
+
+    <string name="label_select_emoticon">이모티콘 선택</string>
+    <string name="label_select_color">색상 선택</string>
+    <string name="color_white">흰색</string>
+    <string name="color_red">빨강</string>
+    <string name="color_blue">파랑</string>
+    <string name="color_green">초록</string>
+    <string name="color_yellow">노랑</string>
+
+    <string name="hint_search">검색어 입력 (내용, 설명 등)</string>
+    <string name="msg_pin_guide">비밀번호 4자리를 입력하세요.</string>
+    <string name="msg_no_data">기록이 없습니다.</string>
+    <string name="msg_word_map_empty">분석할 데이터가 충분하지 않습니다.</string>
+    <string name="msg_byte_usage">%1$s (%2$d%% 사용 중)</string>
+    <string name="msg_add_todo_title">새 할 일 추가</string>
+    <string name="msg_time_select">시간 선택 (10분 단위)</string>
+    <string name="msg_backup_method">데이터 보관 방식 선택</string>
+    <string name="msg_restore_confirm">복구 시 현재 데이터가 모두 삭제되고 백업 파일의 데이터로 대체됩니다. 계속할까요?</string>
+    <string name="msg_no_todo_export">내보낼 할 일이 없습니다.</string>
+    <string name="msg_export_title">루틴 만들기 - 할 일 목록</string>
+    <string name="msg_export_success_title">좋은 루틴 - 할 일 목록 내보내기</string>
+    <string name="msg_tts_gender_select">TTS 목소리 성별 선택</string>
+    <string name="msg_advanced_tts_title">TTS 목소리 상세 선택</string>
+    <string name="msg_tts_voice_set_female">여성 목소리로 설정되었습니다.</string>
+    <string name="msg_tts_voice_set_male">남성 목소리로 설정되었습니다.</string>
+    <string name="msg_tts_voice_set">목소리가 설정되었습니다.</string>
+    <string name="msg_no_tts_voices">선택 가능한 목소리가 없습니다.</string>
+    <string name="msg_fail_open_settings">설정 화면을 열 수 없습니다.</string>
+    <string name="msg_backup_fail">백업 파일 생성 실패</string>
+    <string name="msg_restore_success">데이터 복구 성공</string>
+    <string name="msg_restore_fail">복구 실패: 올바른 백업 파일이 아닙니다.</string>
+    <string name="msg_export_fail">내보내기 실패</string>
+
+    <string name="btn_advanced_tts">목소리 상세 선택</string>
+    <string name="btn_system_settings">시스템 설정</string>
+    <string name="btn_chooser_share">공유하기</string>
+    <string name="btn_chooser_save">다른 위치에 저장하기</string>
+    <string name="btn_chooser_file">파일 선택</string>
+    <string name="btn_chooser_send_list">목록 보내기</string>
+
+    <string name="msg_confirm_delete">정말 삭제할까요?</string>
+    <string name="msg_save_success">저장되었습니다.</string>
+    <string name="msg_delete_success">삭제되었습니다.</string>
+
+    <string name="button_record">수행</string>
+    <string name="button_view_history">이력보기</string>
+    <string name="button_cancel">취소</string>
+    <string name="button_close">닫기</string>
+    <string name="button_select">선택</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">루틴 만들기</string>
     <string name="second_fragment_label">할 일 상세</string>

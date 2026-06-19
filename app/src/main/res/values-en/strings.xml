@@ -1,0 +1,161 @@
+<resources>
+    <string name="app_name">Begin Again</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_home">Home</string>
+    <string name="action_backup">Backup</string>
+    <string name="action_restore">Restore</string>
+    <string name="action_word_mgmt">Word Management</string>
+    <string name="action_rename_app">Rename App</string>
+    <string name="action_tts_speed">TTS Speed</string>
+    <string name="action_tts_voice">TTS Voice</string>
+    <string name="action_language">Language</string>
+    <string name="action_about">About</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_category_data">Data Management</string>
+    <string name="settings_category_word">Vocabulary Management</string>
+    <string name="settings_category_other">Other Settings</string>
+    <string name="settings_category_language">Language Settings</string>
+
+    <string name="data_mgmt_backup_dat">Backup Data (.dat)</string>
+    <string name="data_mgmt_restore_dat">Restore Data (.dat)</string>
+    <string name="data_mgmt_export_sqlite">Export to SQLite DB</string>
+    <string name="data_mgmt_restore_sqlite">Restore from SQLite DB</string>
+
+    <string name="word_mgmt_import_en">Import English Words</string>
+    <string name="word_mgmt_import_ja">Import Japanese Words</string>
+    <string name="word_mgmt_dedup_en">Sort English (Deduplicate)</string>
+    <string name="word_mgmt_dedup_ja">Sort Japanese (Deduplicate)</string>
+    <string name="word_mgmt_export_en">Export English Words</string>
+    <string name="word_mgmt_export_ja">Export Japanese Words</string>
+    <string name="word_mgmt_clear_en">Reset English Words</string>
+    <string name="word_mgmt_clear_ja">Reset Japanese Words</string>
+
+    <string name="other_settings_rename">Rename App</string>
+    <string name="other_settings_tts_speed">TTS Speed</string>
+    <string name="other_settings_tts_voice">TTS Voice</string>
+    <string name="other_settings_reset_pos">Reset Positions</string>
+
+    <string name="feature_routine">Routine</string>
+    <string name="feature_reading">Reading Note</string>
+    <string name="feature_reading_favorite">Reading Note (Favorite)</string>
+    <string name="feature_memo">Memo</string>
+    <string name="feature_memo_favorite">Memo (Favorite)</string>
+    <string name="feature_memorization">Memorization</string>
+    <string name="feature_memorization_favorite">Memorization (Favorite)</string>
+    <string name="feature_today">Tasks</string>
+    <string name="feature_english">English</string>
+    <string name="feature_japanese">Japanese</string>
+    <string name="feature_search">Search</string>
+    <string name="feature_secret">Secret Note</string>
+    <string name="feature_dashboard">Growth\nDashboard</string>
+    <string name="feature_wordmap">Vocabulary Map</string>
+    <string name="feature_settings">Settings</string>
+
+    <string name="filter_all">All</string>
+    <string name="filter_month">Last 1 Month</string>
+
+    <string name="btn_save">Save</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_add">Add</string>
+    <string name="btn_edit">Edit</string>
+    <string name="btn_share">Share</string>
+    <string name="btn_tts">Listen</string>
+    <string name="btn_tts_all">Listen All</string>
+    <string name="btn_tts_random">Random Listen</string>
+    <string name="btn_stop">Stop</string>
+
+    <string name="label_word">Word</string>
+    <string name="label_meaning">Meaning</string>
+    <string name="label_example">Example</string>
+    <string name="label_reading">Reading</string>
+    <string name="label_title">Title</string>
+    <string name="label_content">Content</string>
+    <string name="label_remarks">Remarks</string>
+    <string name="label_keyword">Keyword</string>
+    <string name="label_book_title">Book Title</string>
+    <string name="label_last_modified">Last Modified</string>
+
+    <string name="title_add_english">Add English Word</string>
+    <string name="title_add_japanese">Add Japanese Word</string>
+    <string name="title_task_total_estimated">Total Estimated Time</string>
+    <string name="title_task_total_work">Total Work Time</string>
+    <string name="title_task_unit_min">min</string>
+    <string name="title_task_item_per">+10min per item</string>
+
+    <string name="title_confirm_performed">Did you perform this?</string>
+    <string name="title_confirm_time">Scheduled Time</string>
+    <string name="title_confirm_none">None</string>
+    <string name="title_confirm_yes">Yes</string>
+    <string name="title_confirm_no">No</string>
+
+    <string name="label_yes">Yes</string>
+    <string name="label_no">No</string>
+    <string name="label_male_voice">Male Voice</string>
+    <string name="label_female_voice">Female Voice</string>
+
+    <string name="status_done">Done</string>
+    <string name="status_not_done">Not Done</string>
+    <string name="status_ongoing">In Progress</string>
+    <string name="status_all">All</string>
+    <string name="status_count_unit">times</string>
+
+    <string name="repeat_label">Repeat</string>
+    <string name="repeat_none">None</string>
+    <string name="repeat_daily">Daily</string>
+    <string name="repeat_weekly">Weekly</string>
+    <string name="repeat_monthly">Monthly</string>
+    <string name="repeat_yearly">Yearly</string>
+
+    <string name="label_select_emoticon">Select Emoticon</string>
+    <string name="label_select_color">Select Color</string>
+    <string name="color_white">White</string>
+    <string name="color_red">Red</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_green">Green</string>
+    <string name="color_yellow">Yellow</string>
+
+    <string name="hint_search">Enter keyword (content, description, etc.)</string>
+    <string name="msg_pin_guide">Enter 4-digit password.</string>
+    <string name="msg_no_data">No data found.</string>
+    <string name="msg_word_map_empty">Not enough data to analyze.</string>
+    <string name="msg_byte_usage">%1$s (%2$d%% used)</string>
+    <string name="msg_add_todo_title">Add New Task</string>
+    <string name="msg_time_select">Select Time (10 min unit)</string>
+    <string name="msg_backup_method">Select Backup Method</string>
+    <string name="msg_restore_confirm">Restoring will delete all current data and replace it with backup data. Continue?</string>
+    <string name="msg_no_todo_export">No tasks to export.</string>
+    <string name="msg_export_title">Routine Maker - Task List</string>
+    <string name="msg_export_success_title">Good Routine - Task List Export</string>
+    <string name="msg_tts_gender_select">Select TTS Voice Gender</string>
+    <string name="msg_advanced_tts_title">Advanced TTS Voice Selection</string>
+    <string name="msg_tts_voice_set_female">Female voice has been set.</string>
+    <string name="msg_tts_voice_set_male">Male voice has been set.</string>
+    <string name="msg_tts_voice_set">Voice has been set.</string>
+    <string name="msg_no_tts_voices">No available voices found.</string>
+    <string name="msg_fail_open_settings">Cannot open settings screen.</string>
+    <string name="msg_backup_fail">Backup file creation failed.</string>
+    <string name="msg_restore_success">Data restored successfully.</string>
+    <string name="msg_restore_fail">Restore failed: Not a valid backup file.</string>
+    <string name="msg_export_fail">Export failed</string>
+
+    <string name="btn_advanced_tts">Advanced Selection</string>
+    <string name="btn_system_settings">System Settings</string>
+    <string name="btn_chooser_share">Share</string>
+    <string name="btn_chooser_save">Save to another location</string>
+    <string name="btn_chooser_file">Select File</string>
+    <string name="btn_chooser_send_list">Send List</string>
+
+    <string name="msg_confirm_delete">Are you sure you want to delete?</string>
+    <string name="msg_save_success">Saved successfully.</string>
+    <string name="msg_delete_success">Deleted successfully.</string>
+
+    <string name="button_record">Record</string>
+    <string name="button_view_history">View History</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_close">Close</string>
+    <string name="button_select">Select</string>
+
+    <string name="first_fragment_label">Create Routine</string>
+    <string name="second_fragment_label">Task Detail</string>
+</resources>

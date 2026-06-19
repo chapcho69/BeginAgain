@@ -18,6 +18,11 @@ import java.util.Set;
 
 public class MemorizationDetailActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private MemorizationItem item;
     private TextToSpeech tts;
     private TodoDbHelper dbHelper;

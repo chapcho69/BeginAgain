@@ -439,7 +439,7 @@ public class TodoDbHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_HISTORY_TODO_ID, todoId);
-        values.put(COLUMN_CATEGORY, "수행기록");
+        values.put(COLUMN_CATEGORY, "Record");
         values.put(COLUMN_PERFORM_DATETIME, timestamp);
         db.insert(TABLE_HISTORY, null, values);
         db.execSQL("UPDATE " + TABLE_TODOS + " SET " + COLUMN_PERFORM_COUNT + " = " + COLUMN_PERFORM_COUNT + " + 1 WHERE " + COLUMN_ID + " = ?", new Object[]{todoId});

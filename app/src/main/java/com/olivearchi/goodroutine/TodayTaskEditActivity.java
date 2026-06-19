@@ -24,6 +24,11 @@ import com.google.android.gms.ads.MobileAds;
 
 public class TodayTaskEditActivity extends AppCompatActivity {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private TodoDbHelper dbHelper;
     private TodayTaskItem currentItem;
     private TextInputEditText editTitle, editDescription;
@@ -77,21 +82,23 @@ public class TodayTaskEditActivity extends AppCompatActivity {
         }
 
         // Setup ByteCounter AFTER setting initial text
-        setupByteCounter(editTitle, layoutTitle, 100, "업무 제목");
-        setupByteCounter(editDescription, layoutDescription, 2000, "업무 설명");
+        setupByteCounter(editTitle, layoutTitle, 100, getString(R.string.label_title));
+        setupByteCounter(editDescription, layoutDescription, 2000, getString(R.string.label_content));
+
+        ((android.widget.TextView)findViewById(R.id.text_label_estimated)).setText(getString(R.string.title_task_total_estimated) + " (" + getString(R.string.title_task_item_per).replace("+", "") + ")");
 
         btnSave.setOnClickListener(v -> saveTask());
 
         btnDelete.setOnClickListener(v -> {
             new AlertDialog.Builder(this)
-                    .setTitle("삭제 확인")
-                    .setMessage("삭제하시겠습니까?")
-                    .setPositiveButton("삭제", (dialog, which) -> {
+                    .setTitle(R.string.btn_delete)
+                    .setMessage(R.string.msg_confirm_delete)
+                    .setPositiveButton(R.string.label_yes, (dialog, which) -> {
                         dbHelper.deleteTodayTask(currentItem.getId());
-                        Toast.makeText(this, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, R.string.msg_delete_success, Toast.LENGTH_SHORT).show();
                         finish();
                     })
-                    .setNegativeButton("취소", null)
+                    .setNegativeButton(R.string.label_no, null)
                     .show();
         });
         
@@ -102,11 +109,11 @@ public class TodayTaskEditActivity extends AppCompatActivity {
         editText.setFilters(new InputFilter[]{new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-                int destBytes = dest.toString().getBytes().length;
-                int sourceBytes = source.subSequence(start, end).toString().getBytes().length;
-                int replacedBytes = dest.subSequence(dstart, dend).toString().getBytes().length;
+                int destBytes = dest.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
+                int sourceBytes = source.subSequence(start, end).toString().getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
+                int replacedBytes = dest.subSequence(dstart, dend).toString().getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
                 if (destBytes + sourceBytes - replacedBytes > maxBytes) {
-                    if (dest.length() == 0 && source.length() > 0 && sourceBytes > maxBytes) return null;
+                    if (dest.length() == 0 && source.length() > 0) return source.subSequence(0, findMaxCharsForBytes(source, maxBytes));
                     return "";
                 }
                 return null;
@@ -118,14 +125,25 @@ public class TodayTaskEditActivity extends AppCompatActivity {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
-                int bytes = s.toString().getBytes().length;
-                int percent = Math.min(100, (int)((bytes / (float)maxBytes) * 100));
-                layout.setHint(baseHint + " (" + percent + "% 사용 중)");
+                updateHintWithByteCount(layout, s.toString(), maxBytes, baseHint);
             }
         });
-        int initialBytes = (editText.getText() != null) ? editText.getText().toString().getBytes().length : 0;
-        int initialPercent = Math.min(100, (int)((initialBytes / (float)maxBytes) * 100));
-        layout.setHint(baseHint + " (" + initialPercent + "% 사용 중)");
+        updateHintWithByteCount(layout, editText.getText().toString(), maxBytes, baseHint);
+    }
+
+    private int findMaxCharsForBytes(CharSequence source, int maxBytes) {
+        int bytes = 0;
+        for (int i = 0; i < source.length(); i++) {
+            bytes += String.valueOf(source.charAt(i)).getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
+            if (bytes > maxBytes) return i;
+        }
+        return source.length();
+    }
+
+    private void updateHintWithByteCount(TextInputLayout layout, String text, int maxBytes, String baseHint) {
+        int bytes = text.getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
+        int percent = Math.min(100, (int)((bytes / (float)maxBytes) * 100));
+        layout.setHint(String.format(java.util.Locale.getDefault(), getString(R.string.msg_byte_usage), baseHint, percent));
     }
 
     private void setupVerticalScroll(android.view.View view) {

@@ -27,7 +27,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="제목 (최대 100바이트)">
+                android:hint="@string/label_title">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_memo_title"
                     android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="주제어 (최대 200바이트)">
+                android:hint="@string/label_keyword">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_memo_keyword"
                     android:layout_width="match_parent"
@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="내용 (최대 2000바이트)">
+                android:hint="@string/label_content">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_memo_content"
                     android:layout_width="match_parent"
@@ -84,7 +84,7 @@
             android:layout_weight="1"
             android:layout_marginEnd="4dp"
             android:padding="12dp"
-            android:text="추가"
+            android:text="@string/btn_add"
             app:backgroundTint="@color/btn_add" />
 
         <com.google.android.material.button.MaterialButton
@@ -94,7 +94,7 @@
             android:layout_weight="1"
             android:layout_marginEnd="4dp"
             android:padding="12dp"
-            android:text="저장"
+            android:text="@string/btn_save"
             app:backgroundTint="@color/btn_save" />
 
         <com.google.android.material.button.MaterialButton
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="12dp"
-            android:text="삭제"
+            android:text="@string/btn_delete"
             app:backgroundTint="@color/btn_delete" />
 
     </LinearLayout>
@@ -112,6 +112,7 @@
         android:id="@+id/adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -15,7 +15,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="제목"
+            android:hint="@string/label_title"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:hint="내용"
+            android:hint="@string/label_content"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:hint="시작 일시"
+            android:hint="@string/title_confirm_time"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
@@ -74,7 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:hint="종료 일시"
+            android:hint="@string/title_confirm_time"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
@@ -98,7 +98,7 @@
                 android:id="@+id/check_repeating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="반복" />
+                android:text="@string/repeat_label" />
 
             <Spinner
                 android:id="@+id/spinner_repeat_type"
@@ -112,13 +112,13 @@
             android:id="@+id/check_done"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="완료" />
+            android:text="@string/status_done" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="이모티콘 선택"
+            android:text="@string/label_select_emoticon"
             android:textStyle="bold" />
 
         <Spinner
@@ -132,7 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="색상 선택"
+            android:text="@string/label_select_color"
             android:textStyle="bold" />
 
         <RadioGroup
@@ -151,7 +151,7 @@
                 android:buttonTint="#000000"
                 android:background="#FFFFFF"
                 android:textColor="#000000"
-                android:text="흰색"
+                android:text="@string/color_white"
                 android:gravity="center"
                 android:padding="8dp" />
 
@@ -163,7 +163,7 @@
                 android:buttonTint="#000000"
                 android:background="#FFCDD2"
                 android:textColor="#000000"
-                android:text="빨강"
+                android:text="@string/color_red"
                 android:gravity="center"
                 android:padding="8dp" />
 
@@ -175,7 +175,7 @@
                 android:buttonTint="#FFFFFF"
                 android:background="#BBDEFB"
                 android:textColor="#000000"
-                android:text="파랑"
+                android:text="@string/color_blue"
                 android:gravity="center"
                 android:padding="8dp" />
 
@@ -187,7 +187,7 @@
                 android:buttonTint="#000000"
                 android:background="#C8E6C9"
                 android:textColor="#000000"
-                android:text="초록"
+                android:text="@string/color_green"
                 android:gravity="center"
                 android:padding="8dp" />
 
@@ -199,7 +199,7 @@
                 android:buttonTint="#000000"
                 android:background="#FFF9C4"
                 android:textColor="#000000"
-                android:text="노랑"
+                android:text="@string/color_yellow"
                 android:gravity="center"
                 android:padding="8dp" />
         </RadioGroup>

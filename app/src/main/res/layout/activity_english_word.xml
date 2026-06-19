@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background">
+    android:background="@color/app_background"
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -13,7 +14,7 @@
             android:id="@+id/toolbar_english"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="영단어" />
+            app:title="@string/feature_english" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="4dp"
-                android:text="전체 듣기"
+                android:text="@string/btn_tts_all"
                 app:icon="@drawable/ic_headset" />
 
             <com.google.android.material.button.MaterialButton
@@ -53,7 +54,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="무작위 듣기"
+                android:text="@string/btn_tts_random"
                 app:icon="@drawable/ic_headset" />
 
         </LinearLayout>
@@ -62,6 +63,7 @@
             android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             app:adSize="BANNER"
             app:adUnitId="ca-app-pub-3940256099942544/6300978111"
             app:layout_constraintBottom_toBottomOf="parent"

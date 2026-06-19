@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_background">
@@ -43,7 +44,7 @@
                     android:textColor="#3F51B5"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    android:text="주제어" />
+                    tools:text="주제어" />
 
                 <TextView
                     android:id="@+id/text_memo_detail_title"
@@ -53,7 +54,7 @@
                     android:textColor="#000000"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:text="제목" />
+                    tools:text="제목" />
 
                 <View
                     android:layout_width="match_parent"
@@ -97,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="4dp"
-                android:text="수정"
+                android:text="@string/btn_edit"
                 app:backgroundTint="@color/btn_edit" />
 
             <com.google.android.material.button.MaterialButton
@@ -106,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="4dp"
-                android:text="공유"
+                android:text="@string/btn_share"
                 app:backgroundTint="#81D4FA"
                 app:icon="@android:drawable/ic_menu_share" />
 
@@ -115,7 +116,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="듣기"
+                android:text="@string/btn_tts"
                 app:backgroundTint="@color/pastel_blue"
                 app:icon="@drawable/ic_headset" />
 

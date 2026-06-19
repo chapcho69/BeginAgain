@@ -78,13 +78,13 @@ public class SecondFragment extends Fragment {
 
         binding.buttonDelete.setOnClickListener(v -> {
             new AlertDialog.Builder(requireContext())
-                    .setTitle("삭제")
-                    .setMessage("삭제할까요?")
-                    .setPositiveButton("삭제", (dialog, which) -> {
+                    .setTitle(R.string.btn_delete)
+                    .setMessage(R.string.msg_confirm_delete)
+                    .setPositiveButton(R.string.btn_delete, (dialog, which) -> {
                         viewModel.deleteTodo(todoPosition);
                         NavHostFragment.findNavController(this).navigateUp();
                     })
-                    .setNegativeButton("취소", null)
+                    .setNegativeButton(R.string.button_cancel, null)
                     .show();
         });
 
@@ -130,9 +130,9 @@ public class SecondFragment extends Fragment {
         scrollView.addView(textView);
 
         new AlertDialog.Builder(requireContext())
-                .setTitle("전체 수행 이력")
+                .setTitle(R.string.button_view_history)
                 .setView(scrollView)
-                .setPositiveButton("닫기", null)
+                .setPositiveButton(R.string.button_close, null)
                 .show();
     }
 
@@ -179,10 +179,14 @@ public class SecondFragment extends Fragment {
             }
         }
 
-        binding.textviewRepeating.setText(String.format("반복: %s | 완료: %s | 수행: %d회",
+        binding.textviewRepeating.setText(String.format(Locale.getDefault(), "%s: %s | %s: %s | %s: %d%s",
+                getString(R.string.repeat_label),
                 repeatStr,
-                item.isDone() ? "완료" : "미완료",
-                item.getPerformCount()));
+                getString(R.string.status_done),
+                item.isDone() ? getString(R.string.status_done) : getString(R.string.status_not_done),
+                getString(R.string.button_record),
+                item.getPerformCount(),
+                getString(R.string.status_count_unit)));
         
         int backgroundColor = item.getColor();
         binding.getRoot().setBackgroundColor(backgroundColor);
@@ -323,9 +327,9 @@ public class SecondFragment extends Fragment {
             minutePicker.setValue(currentMin / 10);
 
             new AlertDialog.Builder(requireContext())
-                    .setTitle("시간 선택 (10분 단위)")
+                    .setTitle(R.string.action_tts_speed) // Should be "Time select" but reuse or add
                     .setView(timePickerView)
-                    .setPositiveButton("선택", (dialog, which) -> {
+                    .setPositiveButton(R.string.button_select, (dialog, which) -> {
                         int hour = hourPicker.getValue();
                         int minute = Integer.parseInt(minutes[minutePicker.getValue()]);
                         
@@ -333,7 +337,7 @@ public class SecondFragment extends Fragment {
                                 year, month + 1, dayOfMonth, hour, minute);
                         editText.setText(dateTime);
                     })
-                    .setNegativeButton("취소", null)
+                    .setNegativeButton(R.string.button_cancel, null)
                     .show();
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }

@@ -22,11 +22,17 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 public class MemorizationEditActivity extends AppCompatActivity {
+
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
 
     private TodoDbHelper dbHelper;
     private MemorizationItem currentItem;
@@ -78,9 +84,9 @@ public class MemorizationEditActivity extends AppCompatActivity {
         }
 
         // Setup ByteCounter AFTER setting initial text
-        setupByteCounter(editTitle, layoutTitle, 100, "제목");
-        setupByteCounter(editKeyword, layoutKeyword, 200, "주제어");
-        setupByteCounter(editContent, layoutContent, 2000, "내용");
+        setupByteCounter(editTitle, layoutTitle, 100, getString(R.string.label_title));
+        setupByteCounter(editKeyword, layoutKeyword, 200, getString(R.string.label_keyword));
+        setupByteCounter(editContent, layoutContent, 2000, getString(R.string.label_content));
 
         btnSave.setOnClickListener(v -> {
             if (saveMemo()) finish();
@@ -99,14 +105,14 @@ public class MemorizationEditActivity extends AppCompatActivity {
 
         btnDelete.setOnClickListener(v -> {
             new AlertDialog.Builder(this)
-                    .setTitle("삭제 확인")
-                    .setMessage("정말 삭제 할까요?")
-                    .setPositiveButton("예", (dialog, which) -> {
+                    .setTitle(R.string.btn_delete)
+                    .setMessage(R.string.msg_confirm_delete)
+                    .setPositiveButton(R.string.label_yes, (dialog, which) -> {
                         dbHelper.deleteMemorization(currentItem.getId());
-                        Toast.makeText(this, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, R.string.msg_delete_success, Toast.LENGTH_SHORT).show();
                         finish();
                     })
-                    .setNegativeButton("아니오", null)
+                    .setNegativeButton(R.string.label_no, null)
                     .show();
         });
         
@@ -117,11 +123,11 @@ public class MemorizationEditActivity extends AppCompatActivity {
         editText.setFilters(new InputFilter[]{new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-                int destBytes = dest.toString().getBytes().length;
-                int sourceBytes = source.subSequence(start, end).toString().getBytes().length;
-                int replacedBytes = dest.subSequence(dstart, dend).toString().getBytes().length;
+                int destBytes = dest.toString().getBytes(StandardCharsets.UTF_8).length;
+                int sourceBytes = source.subSequence(start, end).toString().getBytes(StandardCharsets.UTF_8).length;
+                int replacedBytes = dest.subSequence(dstart, dend).toString().getBytes(StandardCharsets.UTF_8).length;
                 if (destBytes + sourceBytes - replacedBytes > maxBytes) {
-                    if (dest.length() == 0 && source.length() > 0 && sourceBytes > maxBytes) return null;
+                    if (dest.length() == 0 && source.length() > 0) return source.subSequence(0, findMaxCharsForBytes(source, maxBytes));
                     return "";
                 }
                 return null;
@@ -133,14 +139,25 @@ public class MemorizationEditActivity extends AppCompatActivity {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
-                int bytes = s.toString().getBytes().length;
-                int percent = Math.min(100, (int)((bytes / (float)maxBytes) * 100));
-                layout.setHint(baseHint + " (" + percent + "% 사용 중)");
+                updateHintWithByteCount(layout, s.toString(), maxBytes, baseHint);
             }
         });
-        int initialBytes = (editText.getText() != null) ? editText.getText().toString().getBytes().length : 0;
-        int initialPercent = Math.min(100, (int)((initialBytes / (float)maxBytes) * 100));
-        layout.setHint(baseHint + " (" + initialPercent + "% 사용 중)");
+        updateHintWithByteCount(layout, editText.getText().toString(), maxBytes, baseHint);
+    }
+
+    private int findMaxCharsForBytes(CharSequence source, int maxBytes) {
+        int bytes = 0;
+        for (int i = 0; i < source.length(); i++) {
+            bytes += String.valueOf(source.charAt(i)).getBytes(StandardCharsets.UTF_8).length;
+            if (bytes > maxBytes) return i;
+        }
+        return source.length();
+    }
+
+    private void updateHintWithByteCount(TextInputLayout layout, String text, int maxBytes, String baseHint) {
+        int bytes = text.getBytes(StandardCharsets.UTF_8).length;
+        int percent = Math.min(100, (int)((bytes / (float)maxBytes) * 100));
+        layout.setHint(String.format(java.util.Locale.getDefault(), getString(R.string.msg_byte_usage), baseHint, percent));
     }
 
     private void setupVerticalScroll(android.view.View view) {

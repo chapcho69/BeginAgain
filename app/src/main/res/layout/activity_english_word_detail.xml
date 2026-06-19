@@ -14,7 +14,7 @@
             android:id="@+id/toolbar_english_detail"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="영단어 상세" />
+            app:title="@string/feature_english" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
                 android:layout_marginEnd="4dp"
-                android:text="듣기"
+                android:text="@string/btn_tts"
                 app:backgroundTint="#f38b0e"
                 app:icon="@drawable/ic_headset" />
 

@@ -24,6 +24,11 @@ import android.speech.tts.Voice;
 
 public class JapaneseWordDetailActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private JapaneseWordItem item;
     private List<JapaneseWordItem> wordList;
     private int currentIndex;

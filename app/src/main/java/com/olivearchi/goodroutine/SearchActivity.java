@@ -18,6 +18,11 @@ import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private TodoDbHelper dbHelper;
     private RecyclerView recyclerView;
     private SearchAdapter adapter;

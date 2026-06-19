@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background">
+    android:background="@color/app_background"
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@
             android:id="@+id/toolbar_japanese_detail"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="일본어 상세" />
+            app:title="@string/feature_japanese" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -116,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
                 android:layout_marginEnd="4dp"
-                android:text="듣기"
+                android:text="@string/btn_tts"
                 app:backgroundTint="#f38b0e"
                 app:icon="@drawable/ic_headset" />
 
@@ -150,6 +151,7 @@
             android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             ads:adSize="BANNER"
             ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -15,7 +15,7 @@
             android:id="@+id/toolbar_today"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="할일들" />
+            app:title="@string/feature_today" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,6 +65,7 @@
             android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             ads:adSize="BANNER"
             ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
             app:layout_constraintBottom_toBottomOf="parent"

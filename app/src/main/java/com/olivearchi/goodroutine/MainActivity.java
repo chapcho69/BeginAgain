@@ -65,6 +65,11 @@ import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends AppCompatActivity {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     private TodoViewModel viewModel;
@@ -194,9 +199,9 @@ public class MainActivity extends AppCompatActivity {
         endEdit.setOnClickListener(v -> showDateTimePicker(endEdit));
 
         new AlertDialog.Builder(this)
-                .setTitle("새 할 일 추가")
+                .setTitle(R.string.msg_add_todo_title)
                 .setView(dialogView)
-                .setPositiveButton("추가", (dialog, which) -> {
+                .setPositiveButton(R.string.btn_add, (dialog, which) -> {
                     String subject = subjectEdit.getText().toString();
                     String detail = detailEdit.getText().toString();
                     String start = startEdit.getText().toString();
@@ -211,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
                         viewModel.addTodo(subject, detail, start, end, repeating, repeatType, done, color, emoticon);
                     }
                 })
-                .setNegativeButton("취소", null)
+                .setNegativeButton(R.string.button_cancel, null)
                 .show();
     }
 
@@ -261,9 +266,9 @@ public class MainActivity extends AppCompatActivity {
             minutePicker.setValue(currentMin / 10);
 
             new AlertDialog.Builder(this)
-                    .setTitle("시간 선택 (10분 단위)")
+                    .setTitle(R.string.msg_time_select)
                     .setView(timePickerView)
-                    .setPositiveButton("선택", (dialog, which) -> {
+                    .setPositiveButton(R.string.button_select, (dialog, which) -> {
                         int hour = hourPicker.getValue();
                         int minute = Integer.parseInt(minutes[minutePicker.getValue()]);
                         
@@ -271,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
                                 year, month + 1, dayOfMonth, hour, minute);
                         editText.setText(dateTime);
                     })
-                    .setNegativeButton("취소", null)
+                    .setNegativeButton(R.string.button_cancel, null)
                     .show();
 
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -355,31 +360,32 @@ public class MainActivity extends AppCompatActivity {
         layout.addView(btnInc);
 
         new AlertDialog.Builder(this)
-                .setTitle("TTS 속도 설정 (0.1 ~ 2.0)")
+                .setTitle(R.string.action_tts_speed)
                 .setView(layout)
-                .setPositiveButton("저장", (dialog, which) -> {
+                .setPositiveButton(R.string.btn_save, (dialog, which) -> {
                     getSharedPreferences("AppPrefs", MODE_PRIVATE).edit().putFloat("ttsSpeed", speed[0]).apply();
-                    Toast.makeText(this, "속도가 " + String.format(Locale.getDefault(), "%.1f", speed[0]) + "배속으로 설정되었습니다.", Toast.LENGTH_SHORT).show();
+                    String msg = String.format(Locale.getDefault(), getString(R.string.msg_tts_voice_set) + " (%.1f)", speed[0]);
+                    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
                 })
-                .setNegativeButton("취소", null)
+                .setNegativeButton(R.string.button_cancel, null)
                 .show();
     }
 
     private void showTtsVoiceDialog() {
-        String[] options = {"여성 목소리", "남성 목소리"};
+        String[] options = {getString(R.string.label_female_voice), getString(R.string.label_male_voice)};
         int currentType = getSharedPreferences("AppPrefs", MODE_PRIVATE).getInt("ttsVoiceType", 0); // 0: Female, 1: Male
 
         new AlertDialog.Builder(this)
-                .setTitle("TTS 목소리 성별 선택")
+                .setTitle(R.string.msg_tts_gender_select)
                 .setSingleChoiceItems(options, currentType, (dialog, which) -> {
                     getSharedPreferences("AppPrefs", MODE_PRIVATE).edit().putInt("ttsVoiceType", which).apply();
                     dialog.dismiss();
                     getSharedPreferences("AppPrefs", MODE_PRIVATE).edit().putString("ttsVoiceName", "").apply();
-                    String msg = (which == 0) ? "여성 목소리로 설정되었습니다." : "남성 목소리로 설정되었습니다.";
+                    String msg = (which == 0) ? getString(R.string.msg_tts_voice_set_female) : getString(R.string.msg_tts_voice_set_male);
                     Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
                 })
-                .setPositiveButton("목소리 상세 선택", (dialog, which) -> showAdvancedTtsVoiceDialog())
-                .setNegativeButton("취소", null)
+                .setPositiveButton(R.string.btn_advanced_tts, (dialog, which) -> showAdvancedTtsVoiceDialog())
+                .setNegativeButton(R.string.button_cancel, null)
                 .show();
     }
 
@@ -401,7 +407,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (koVoices.isEmpty()) {
-                    runOnUiThread(() -> Toast.makeText(this, "선택 가능한 한국어 목소리가 없습니다.", Toast.LENGTH_SHORT).show());
+                    runOnUiThread(() -> Toast.makeText(this, R.string.msg_no_tts_voices, Toast.LENGTH_SHORT).show());
                     return;
                 }
 
@@ -422,23 +428,23 @@ public class MainActivity extends AppCompatActivity {
 
                 runOnUiThread(() -> {
                     new AlertDialog.Builder(this)
-                            .setTitle("TTS 목소리 상세 선택")
+                            .setTitle(R.string.msg_advanced_tts_title)
                             .setSingleChoiceItems(voiceNames, checkedItem, (dialog, which) -> {
                                 String selectedVoice = voiceNames[which];
                                 getSharedPreferences("AppPrefs", MODE_PRIVATE).edit().putString("ttsVoiceName", selectedVoice).apply();
                                 dialog.dismiss();
-                                Toast.makeText(this, "목소리가 설정되었습니다.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, R.string.msg_tts_voice_set, Toast.LENGTH_SHORT).show();
                             })
-                            .setPositiveButton("시스템 설정", (dialog, which) -> {
+                            .setPositiveButton(R.string.btn_system_settings, (dialog, which) -> {
                                 try {
                                     Intent intent = new Intent();
                                     intent.setAction("com.android.settings.TTS_SETTINGS");
                                     startActivity(intent);
                                 } catch (Exception e) {
-                                    Toast.makeText(this, "설정 화면을 열 수 없습니다.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(this, R.string.msg_fail_open_settings, Toast.LENGTH_SHORT).show();
                                 }
                             })
-                            .setNegativeButton("취소", null)
+                            .setNegativeButton(R.string.button_cancel, null)
                             .show();
                 });
             }
@@ -452,9 +458,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showBackupOptions() {
-        String[] options = {"공유하기", "다른 위치에 저장하기"};
+        String[] options = {getString(R.string.btn_chooser_share), getString(R.string.btn_chooser_save)};
         new AlertDialog.Builder(this)
-                .setTitle("데이터 보관 방식 선택")
+                .setTitle(R.string.msg_backup_method)
                 .setItems(options, (dialog, which) -> {
                     if (which == 0) {
                         shareBackupFile();
@@ -469,7 +475,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel.backupData();
         File backupFile = new File(getCacheDir(), "todos_backup.dat");
         if (!backupFile.exists()) {
-            Toast.makeText(this, "백업 파일 생성 실패", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.msg_backup_fail, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -477,13 +483,13 @@ public class MainActivity extends AppCompatActivity {
             Uri contentUri = FileProvider.getUriForFile(this, "com.olivearchi.goodroutine.fileprovider", backupFile);
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("application/octet-stream");
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "좋은 루틴 - 데이터 백업");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name) + " - " + getString(R.string.action_backup));
             shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
             shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            startActivity(Intent.createChooser(shareIntent, "백업 파일 보내기"));
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.action_backup)));
         } catch (Exception e) {
             Log.e("MainActivity", "Backup sharing failed", e);
-            Toast.makeText(this, "백업 공유 실패", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.msg_backup_fail, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -497,21 +503,21 @@ public class MainActivity extends AppCompatActivity {
             while ((length = is.read(buffer)) > 0) {
                 os.write(buffer, 0, length);
             }
-            Toast.makeText(this, "저장 완료", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.msg_save_success, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Log.e("MainActivity", "Save to URI failed", e);
-            Toast.makeText(this, "저장 실패", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.msg_save_success, Toast.LENGTH_SHORT).show();
         }
     }
 
     private void showRestoreDialog() {
         new AlertDialog.Builder(this)
-                .setTitle("데이터 복구")
-                .setMessage("복구 시 현재 데이터가 모두 삭제되고 백업 파일의 데이터로 대체됩니다. 계속할까요?")
-                .setPositiveButton("파일 선택", (dialog, which) -> {
+                .setTitle(R.string.action_restore)
+                .setMessage(R.string.msg_restore_confirm)
+                .setPositiveButton(R.string.btn_chooser_file, (dialog, which) -> {
                     filePickerLauncher.launch(new String[]{"application/octet-stream", "*/*"});
                 })
-                .setNegativeButton("취소", null)
+                .setNegativeButton(R.string.button_cancel, null)
                 .show();
     }
 
@@ -522,11 +528,11 @@ public class MainActivity extends AppCompatActivity {
             Object data = ois.readObject();
             if (data != null) {
                 viewModel.restoreData(data);
-                Toast.makeText(this, "데이터 복구 성공", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.msg_restore_success, Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             Log.e("MainActivity", "Restore failed", e);
-            Toast.makeText(this, "복구 실패: 올바른 백업 파일이 아닙니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.msg_restore_fail, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -536,7 +542,7 @@ public class MainActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle("About")
                 .setMessage("버전: " + version + "\n마지막 빌드: " + buildDate + "\n제작자 정보: Routine Maker\n문의: managedswsvc@gmail.com")
-                .setPositiveButton("확인", null)
+                .setPositiveButton(R.string.button_close, null)
                 .show();
     }
 
@@ -546,58 +552,17 @@ public class MainActivity extends AppCompatActivity {
         input.setText(currentName);
 
         new AlertDialog.Builder(this)
-                .setTitle("App 명칭 수정")
+                .setTitle(R.string.action_rename_app)
                 .setView(input)
-                .setPositiveButton("저장", (dialog, which) -> {
+                .setPositiveButton(R.string.btn_save, (dialog, which) -> {
                     String newName = input.getText().toString();
                     if (!newName.isEmpty()) {
                         getSharedPreferences("AppPrefs", MODE_PRIVATE).edit().putString("appName", newName).apply();
                         updateAppTitle();
                     }
                 })
-                .setNegativeButton("취소", null)
+                .setNegativeButton(R.string.button_cancel, null)
                 .show();
-    }
-
-    private void exportTodoList() {
-        List<TodoItem> todos = viewModel.getTodoList().getValue();
-        if (todos == null || todos.isEmpty()) {
-            Toast.makeText(this, "내보낼 할 일이 없습니다.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        try {
-            File exportFile = new File(getCacheDir(), "todo_list.txt");
-            FileWriter writer = new FileWriter(exportFile);
-            
-            writer.write("루틴 만들기 - 할 일 목록\n");
-            writer.write("==============================\n\n");
-            
-            for (TodoItem todo : todos) {
-                writer.write("제목: " + todo.getSubject() + "\n");
-                writer.write("내용: " + todo.getDetail() + "\n");
-                writer.write("시작: " + todo.getStartDateTime() + "\n");
-                writer.write("종료: " + todo.getEndDateTime() + "\n");
-                writer.write("상태: " + (todo.isDone() ? "완료" : "미완료") + "\n");
-                writer.write("반복: " + (todo.isRepeating() ? "예" : "아니오") + "\n");
-                writer.write("------------------------------\n");
-            }
-            writer.close();
-
-            Uri contentUri = FileProvider.getUriForFile(this, "com.olivearchi.goodroutine.fileprovider", exportFile);
-            
-            Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "좋은 루틴 - 할 일 목록 내보내기");
-            shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
-            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            
-            startActivity(Intent.createChooser(shareIntent, "목록 보내기"));
-
-        } catch (Exception e) {
-            Log.e("MainActivity", "Export failed", e);
-            Toast.makeText(this, "내보내기 실패: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override

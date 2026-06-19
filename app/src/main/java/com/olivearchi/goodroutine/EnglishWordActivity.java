@@ -29,6 +29,11 @@ import android.speech.tts.Voice;
 
 public class EnglishWordActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
     private TodoDbHelper dbHelper;
     private EnglishWordAdapter adapter;
     private RecyclerView recyclerView;
