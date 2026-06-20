@@ -46,9 +46,9 @@ public class MemorizationDetailActivity extends AppCompatActivity implements Tex
             getSupportActionBar().setTitle(R.string.feature_memorization);
         }
 
-        ((android.widget.TextView)findViewById(R.id.text_memo_detail_keyword)).setText(item.getKeyword());
-        ((android.widget.TextView)findViewById(R.id.text_memo_detail_title)).setText(item.getTitle());
-        ((android.widget.TextView)findViewById(R.id.text_memo_detail_content)).setText(item.getContent());
+        ((android.widget.TextView)findViewById(R.id.text_memo_detail_keyword)).setText(SearchHighlightUtils.getHighlightedText(item.getKeyword()));
+        ((android.widget.TextView)findViewById(R.id.text_memo_detail_title)).setText(SearchHighlightUtils.getHighlightedText(item.getTitle()));
+        ((android.widget.TextView)findViewById(R.id.text_memo_detail_content)).setText(SearchHighlightUtils.getHighlightedText(item.getContent()));
         ((android.widget.TextView)findViewById(R.id.text_memo_detail_date)).setText(getString(R.string.label_last_modified) + ": " + item.getUpdatedAt());
 
         MaterialButton btnEdit = findViewById(R.id.btn_memo_detail_edit);

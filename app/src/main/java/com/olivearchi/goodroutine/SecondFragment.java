@@ -140,11 +140,11 @@ public class SecondFragment extends Fragment {
         if (viewModel.getTodoList().getValue() == null || todoPosition >= viewModel.getTodoList().getValue().size()) return;
 
         TodoItem item = viewModel.getTodoList().getValue().get(todoPosition);
-        binding.textviewSubject.setText(item.getEmoticon() + " " + item.getSubject());
+        binding.textviewSubject.setText(SearchHighlightUtils.getHighlightedText(item.getEmoticon() + " " + item.getSubject()));
         
         SpannableStringBuilder ssb = new SpannableStringBuilder();
         if (item.getDetail() != null && !item.getDetail().isEmpty()) {
-            ssb.append(item.getDetail()).append("\n\n");
+            ssb.append(SearchHighlightUtils.getHighlightedText(item.getDetail())).append("\n\n");
         }
         
         ssb.append("[기록]\n");

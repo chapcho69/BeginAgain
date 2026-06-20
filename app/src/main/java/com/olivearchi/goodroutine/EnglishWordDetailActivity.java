@@ -88,9 +88,9 @@ public class EnglishWordDetailActivity extends AppCompatActivity implements Text
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(getString(R.string.feature_english) + " (" + (currentIndex + 1) + "/" + wordList.size() + ")");
         }
-        ((TextView)findViewById(R.id.text_english_word)).setText(item.getWord());
-        ((TextView)findViewById(R.id.text_english_meaning)).setText(item.getMeaning());
-        ((TextView)findViewById(R.id.text_english_example)).setText(item.getExample());
+        ((TextView)findViewById(R.id.text_english_word)).setText(SearchHighlightUtils.getHighlightedText(item.getWord()));
+        ((TextView)findViewById(R.id.text_english_meaning)).setText(SearchHighlightUtils.getHighlightedText(item.getMeaning()));
+        ((TextView)findViewById(R.id.text_english_example)).setText(SearchHighlightUtils.getHighlightedText(item.getExample()));
     }
 
     private void navigate(int delta) {

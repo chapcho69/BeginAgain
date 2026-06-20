@@ -73,8 +73,8 @@ public class TodayTaskEditActivity extends AppCompatActivity {
         editDescription.requestLayout();
 
         if (currentItem != null) {
-            editTitle.setText(currentItem.getTitle());
-            editDescription.setText(currentItem.getDescription());
+            editTitle.setText(SearchHighlightUtils.getHighlightedText(currentItem.getTitle()));
+            editDescription.setText(SearchHighlightUtils.getHighlightedText(currentItem.getDescription()));
             pickerMinutes.setValue(currentItem.getEstimatedMinutes() / 10);
             btnDelete.setVisibility(View.VISIBLE);
         } else {

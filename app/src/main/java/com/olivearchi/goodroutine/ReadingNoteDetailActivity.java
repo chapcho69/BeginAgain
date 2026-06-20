@@ -54,14 +54,13 @@ public class ReadingNoteDetailActivity extends AppCompatActivity implements Text
         setSupportActionBar(findViewById(R.id.toolbar_detail));
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("독서노트 상세");
+            getSupportActionBar().setTitle(R.string.feature_reading);
         }
 
-        findViewById(R.id.text_detail_book_title);
-        ((android.widget.TextView)findViewById(R.id.text_detail_book_title)).setText("책 제목: " + item.getBookTitle());
-        ((android.widget.TextView)findViewById(R.id.text_detail_content)).setText(item.getContent());
-        ((android.widget.TextView)findViewById(R.id.text_detail_remarks)).setText("비고: " + item.getRemarks());
-        ((android.widget.TextView)findViewById(R.id.text_detail_date)).setText("마지막 수정: " + item.getModifiedDateTime());
+        ((TextView)findViewById(R.id.text_detail_book_title)).setText(SearchHighlightUtils.getHighlightedText(getString(R.string.label_book_title) + ": " + item.getBookTitle()));
+        ((TextView)findViewById(R.id.text_detail_content)).setText(SearchHighlightUtils.getHighlightedText(item.getContent()));
+        ((TextView)findViewById(R.id.text_detail_remarks)).setText(SearchHighlightUtils.getHighlightedText(getString(R.string.label_remarks) + ": " + item.getRemarks()));
+        ((TextView)findViewById(R.id.text_detail_date)).setText(getString(R.string.label_last_modified) + ": " + item.getModifiedDateTime());
 
         MaterialButton btnEdit = findViewById(R.id.btn_detail_edit);
         btnEdit.setOnClickListener(v -> {

@@ -247,7 +247,7 @@ public class MemorizationActivity extends AppCompatActivity implements TextToSpe
     protected void onPause() {
         AdView adView = findViewById(R.id.adView);
         if (adView != null) adView.pause();
-        if (isPlayingAll) stopPlayback();
+        // 전체 듣기 중에는 화면이 전환되어도 중지하지 않고 TTS를 계속 유지합니다.
         super.onPause();
     }
 

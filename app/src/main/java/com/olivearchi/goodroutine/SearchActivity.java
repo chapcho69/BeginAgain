@@ -1,9 +1,11 @@
 package com.olivearchi.goodroutine;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
@@ -24,9 +27,18 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private TodoDbHelper dbHelper;
-    private RecyclerView recyclerView;
-    private SearchAdapter adapter;
+    private RecyclerView recyclerResults;
+    private SearchAdapter resultAdapter;
     private List<SearchResultItem> results = new ArrayList<>();
+    
+    private RecyclerView recyclerRecent;
+    private RecentSearchAdapter recentAdapter;
+    private List<String> recentHistory = new ArrayList<>();
+    private View layoutRecent;
+    private EditText editQuery;
+
+    private static final String PREF_SEARCH = "SearchPrefs";
+    private static final String KEY_HISTORY = "recent_history";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,72 +52,135 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         dbHelper = new TodoDbHelper(this);
-        recyclerView = findViewById(R.id.recycler_search_results);
-        EditText editQuery = findViewById(R.id.edit_search_query);
+        recyclerResults = findViewById(R.id.recycler_search_results);
+        recyclerRecent = findViewById(R.id.recycler_recent_searches);
+        layoutRecent = findViewById(R.id.layout_recent_searches);
+        editQuery = findViewById(R.id.edit_search_query);
 
-        adapter = new SearchAdapter(results, item -> {
-            navigateToItem(item);
+        // Result Adapter
+        resultAdapter = new SearchAdapter(results, this::navigateToItem);
+        recyclerResults.setAdapter(resultAdapter);
+
+        // Recent Adapter
+        loadSearchHistory();
+        recentAdapter = new RecentSearchAdapter(recentHistory, new RecentSearchAdapter.OnRecentClickListener() {
+            @Override
+            public void onRecentClick(String query) {
+                editQuery.setText(query);
+                editQuery.setSelection(query.length());
+                performSearch(query);
+            }
+
+            @Override
+            public void onDeleteClick(String query) {
+                removeSearchHistory(query);
+            }
         });
-        recyclerView.setAdapter(adapter);
+        recyclerRecent.setAdapter(recentAdapter);
 
         editQuery.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                performSearch(s.toString());
+                String q = s.toString();
+                if (q.trim().isEmpty()) {
+                    showRecentLayout(true);
+                } else {
+                    performSearch(q, false);
+                }
             }
-            @Override
-            public void afterTextChanged(Editable s) {}
+            @Override public void afterTextChanged(Editable s) {}
+        });
+
+        editQuery.setOnEditorActionListener((v, actionId, event) -> {
+            String q = editQuery.getText().toString().trim();
+            if (!q.isEmpty()) {
+                saveSearchHistory(q);
+                performSearch(q, true);
+            }
+            return false;
         });
 
         initAds();
+        showRecentLayout(true);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        AdView adView = findViewById(R.id.adView);
-        if (adView != null) adView.resume();
+    private void showRecentLayout(boolean show) {
+        layoutRecent.setVisibility(show ? View.VISIBLE : View.GONE);
+        recyclerResults.setVisibility(show ? View.GONE : View.VISIBLE);
+        if (show) {
+            loadSearchHistory();
+            recentAdapter.notifyDataSetChanged();
+        }
     }
 
-    @Override
-    protected void onPause() {
-        AdView adView = findViewById(R.id.adView);
-        if (adView != null) adView.pause();
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        AdView adView = findViewById(R.id.adView);
-        if (adView != null) adView.destroy();
-        super.onDestroy();
+    private void performSearch(String query, boolean saveToHistory) {
+        showRecentLayout(false);
+        results.clear();
+        resultAdapter.setQuery(query);
+        if (query.trim().length() >= 2) {
+            results.addAll(dbHelper.searchAll(query));
+            if (saveToHistory) saveSearchHistory(query.trim());
+        }
+        resultAdapter.notifyDataSetChanged();
     }
 
     private void performSearch(String query) {
-        results.clear();
-        adapter.setQuery(query);
-        if (query.trim().length() >= 2) {
-            results.addAll(dbHelper.searchAll(query));
+        performSearch(query, false);
+    }
+
+    private void loadSearchHistory() {
+        SharedPreferences prefs = getSharedPreferences(PREF_SEARCH, MODE_PRIVATE);
+        String data = prefs.getString(KEY_HISTORY, "");
+        recentHistory.clear();
+        if (!data.isEmpty()) {
+            recentHistory.addAll(Arrays.asList(data.split("\\|")));
         }
-        adapter.notifyDataSetChanged();
+    }
+
+    private void saveSearchHistory(String query) {
+        if (query.length() < 2) return;
+        
+        loadSearchHistory();
+        recentHistory.remove(query);
+        recentHistory.add(0, query);
+        if (recentHistory.size() > 15) {
+            recentHistory = recentHistory.subList(0, 15);
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < recentHistory.size(); i++) {
+            sb.append(recentHistory.get(i));
+            if (i < recentHistory.size() - 1) sb.append("|");
+        }
+        getSharedPreferences(PREF_SEARCH, MODE_PRIVATE).edit().putString(KEY_HISTORY, sb.toString()).apply();
+    }
+
+    private void removeSearchHistory(String query) {
+        loadSearchHistory();
+        recentHistory.remove(query);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < recentHistory.size(); i++) {
+            sb.append(recentHistory.get(i));
+            if (i < recentHistory.size() - 1) sb.append("|");
+        }
+        getSharedPreferences(PREF_SEARCH, MODE_PRIVATE).edit().putString(KEY_HISTORY, sb.toString()).apply();
+        recentAdapter.notifyDataSetChanged();
     }
 
     private void navigateToItem(SearchResultItem result) {
+        String q = editQuery.getText().toString().trim();
+        if (q.length() >= 2) {
+            saveSearchHistory(q);
+            SearchHighlightUtils.setSearchQuery(q);
+        } else {
+            SearchHighlightUtils.clearQuery();
+        }
+
         Intent intent;
         switch (result.getType()) {
             case HABIT:
-                // For habits, we navigate to MainActivity but maybe we should go to SecondFragment
-                // Since TodoAdapter is in MainActivity (NavHost), we can pass args
                 intent = new Intent(this, MainActivity.class);
-                // This is a bit tricky since MainActivity is a NavHost. 
-                // We'll simplify and go to SelectionActivity then let them pick? 
-                // No, let's try to launch specifically.
-                // Habit detail is in SecondFragment. 
-                // We can't easily launch a Fragment directly from here without messy MainActivity logic.
-                // Let's just go to MainActivity and maybe they can find it.
-                // Better: If it's a habit, let's just show it.
                 startActivity(intent);
                 break;
             case READING:
@@ -141,8 +216,30 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.resume();
+    }
+
+    @Override
+    protected void onPause() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.pause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.destroy();
+        SearchHighlightUtils.clearQuery();
+        super.onDestroy();
+    }
+
     private void initAds() {
-        MobileAds.initialize(this, initializationStatus -> {});
+        MobileAds.initialize(this, status -> {});
         AdView adView = findViewById(R.id.adView);
         if (adView != null) {
             AdRequest adRequest = new AdRequest.Builder().build();

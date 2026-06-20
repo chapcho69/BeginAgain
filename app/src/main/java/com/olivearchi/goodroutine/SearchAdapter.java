@@ -44,7 +44,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SearchResultItem item = results.get(position);
         
-        String typeTitle = "[" + item.getTypeName() + "] " + item.getTitle();
+        String typeName = holder.itemView.getContext().getString(item.getTypeResId());
+        String typeTitle = "[" + typeName + "] " + item.getTitle();
         holder.textTitle.setText(getHighlightedText(typeTitle, query));
         
         holder.textContent.setText(getHighlightedText(item.getContent(), query));
@@ -75,7 +76,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         return results.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textTitle, textContent;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

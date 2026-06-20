@@ -88,10 +88,10 @@ public class JapaneseWordDetailActivity extends AppCompatActivity implements Tex
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(getString(R.string.feature_japanese) + " (" + (currentIndex + 1) + "/" + wordList.size() + ")");
         }
-        ((TextView)findViewById(R.id.text_japanese_word)).setText(item.getWord());
-        ((TextView)findViewById(R.id.text_japanese_reading)).setText(item.getReading());
-        ((TextView)findViewById(R.id.text_japanese_meaning)).setText(item.getMeaning());
-        ((TextView)findViewById(R.id.text_japanese_example)).setText(item.getExample());
+        ((TextView)findViewById(R.id.text_japanese_word)).setText(SearchHighlightUtils.getHighlightedText(item.getWord()));
+        ((TextView)findViewById(R.id.text_japanese_reading)).setText(SearchHighlightUtils.getHighlightedText(item.getReading()));
+        ((TextView)findViewById(R.id.text_japanese_meaning)).setText(SearchHighlightUtils.getHighlightedText(item.getMeaning()));
+        ((TextView)findViewById(R.id.text_japanese_example)).setText(SearchHighlightUtils.getHighlightedText(item.getExample()));
     }
 
     private void navigate(int delta) {

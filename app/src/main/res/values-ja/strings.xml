@@ -17,16 +17,16 @@
     <string name="settings_category_other">その他の設定</string>
     <string name="settings_category_language">言語設定 (Language)</string>
 
-    <string name="data_mgmt_backup_dat">데이터 저장 (.dat)</string>
+    <string name="data_mgmt_backup_dat">データ保存 (.dat)</string>
     <string name="data_mgmt_restore_dat">データ復元 (.dat)</string>
     <string name="data_mgmt_export_sqlite">SQLite DBへ書き出し</string>
     <string name="data_mgmt_restore_sqlite">SQLite DBから復元</string>
 
-    <string name="word_mgmt_import_en">英단어의インポート</string>
+    <string name="word_mgmt_import_en">英語のインポート</string>
     <string name="word_mgmt_import_ja">日本語のインポート</string>
     <string name="word_mgmt_dedup_en">英語の重複削除</string>
     <string name="word_mgmt_dedup_ja">日本語の重複削除</string>
-    <string name="word_mgmt_export_en">英단어のエクスポート</string>
+    <string name="word_mgmt_export_en">英語のエクスポート</string>
     <string name="word_mgmt_export_ja">日本語のエクスポート</string>
     <string name="word_mgmt_clear_en">英語帳の初期化</string>
     <string name="word_mgmt_clear_ja">日本語帳の初期化</string>
@@ -57,7 +57,7 @@
 
     <string name="btn_save">保存</string>
     <string name="btn_delete">削除</string>
-    <string name="btn_add">追加</string>
+    <string name="btn_add">추가</string>
     <string name="btn_edit">編集</string>
     <string name="btn_share">共有</string>
     <string name="btn_tts">聞く</string>
@@ -116,11 +116,12 @@
     <string name="color_yellow">黄</string>
 
     <string name="hint_search">キーワード入力 (内容、説明など)</string>
-    <string name="msg_pin_guide">4桁の暗証番号を入力してください。</string>
+    <string name="label_recent_search">最近の検索語</string>
+    <string name="msg_pin_guide">4桁의 暗証番号を入力してください。</string>
     <string name="msg_pin_setup">初回使用のため、4桁の暗証番号を設定してください。</string>
     <string name="msg_pin_entry">暗証番号を入力してください。（失敗: %1$d/10）</string>
     <string name="msg_pin_set_success">暗証番号が設定されました。</string>
-    <string name="msg_pin_wrong">暗証番号가 間違っています。（%1$d/10）</string>
+    <string name="msg_pin_wrong">暗証番号が間違っています。（%1$d/10）</string>
     <string name="msg_pin_reset">10回間違えたため、リセットされました。再設定してください。</string>
     <string name="msg_no_data">記録がありません。</string>
     <string name="msg_word_map_empty">分析するデータが不足しています。</string>
@@ -128,22 +129,22 @@
     <string name="msg_no_history">遂行記録がありません。</string>
     <string name="msg_load_fail">項目を読み込めませんでした。</string>
     <string name="msg_byte_usage">%1$s (%2$d%% 使用中)</string>
-    <string name="msg_add_todo_title">新しいタスクの追加</string>
+    <string name="msg_add_todo_title">新しいタ스크의追加</string>
     <string name="title_edit_todo">タスクの編集</string>
     <string name="msg_time_select">時間の選択 (10分単位)</string>
-    <string name="msg_backup_method">데이터 저장방법 선택</string>
+    <string name="msg_backup_method">データ保存方法の選択</string>
     <string name="msg_restore_confirm">復元すると現在のデータがすべて削除され、バックアップデータに置き換えられます。続行しますか？</string>
-    <string name="msg_no_todo_export">エクスポートするタ스크가 없습니다.</string>
-    <string name="msg_export_title">ルーチン作成 - タスクリスト</string>
+    <string name="msg_no_todo_export">エクスポートするタスクがありません。</string>
+    <string name="msg_export_title">ルーチン作成 - タ스크リスト</string>
     <string name="msg_export_success_title">良いルーチン - タスクリストのエクスポート</string>
-    <string name="msg_tts_gender_select">TTS音声의 성별 선택</string>
+    <string name="msg_tts_gender_select">TTS音声の性別選択</string>
     <string name="msg_advanced_tts_title">TTS音声の詳細選択</string>
     <string name="msg_tts_voice_set_female">女性の声に設定されました。</string>
     <string name="msg_tts_voice_set_male">男性の声に設定されました。</string>
     <string name="msg_tts_voice_set">音声が設定されました。</string>
     <string name="msg_no_tts_voices">利用可能な音声が見つかりません。</string>
     <string name="msg_fail_open_settings">設定画面を開けません。</string>
-    <string name="msg_backup_fail">백업 파일 생성 실패</string>
+    <string name="msg_backup_fail">バックアップファイルの生成に失敗しました。</string>
     <string name="msg_restore_success">データの復元に成功しました。</string>
     <string name="msg_restore_fail">復元失敗：有効なバックアップファイルではありません。</string>
     <string name="msg_export_fail">エクスポート失敗</string>

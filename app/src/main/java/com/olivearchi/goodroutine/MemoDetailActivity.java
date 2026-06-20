@@ -41,9 +41,9 @@ public class MemoDetailActivity extends AppCompatActivity implements TextToSpeec
             getSupportActionBar().setTitle(R.string.feature_memo);
         }
 
-        ((TextView)findViewById(R.id.text_memo_view_title)).setText(item.getTitle());
-        ((TextView)findViewById(R.id.text_memo_view_content)).setText(item.getContent());
-        ((TextView)findViewById(R.id.text_memo_view_remarks)).setText(getString(R.string.label_remarks) + ": " + item.getRemarks());
+        ((TextView)findViewById(R.id.text_memo_view_title)).setText(SearchHighlightUtils.getHighlightedText(item.getTitle()));
+        ((TextView)findViewById(R.id.text_memo_view_content)).setText(SearchHighlightUtils.getHighlightedText(item.getContent()));
+        ((TextView)findViewById(R.id.text_memo_view_remarks)).setText(SearchHighlightUtils.getHighlightedText(getString(R.string.label_remarks) + ": " + item.getRemarks()));
         ((TextView)findViewById(R.id.text_memo_view_date)).setText(getString(R.string.label_last_modified) + ": " + item.getCreatedAt());
 
         MaterialButton btnEdit = findViewById(R.id.btn_memo_view_edit);

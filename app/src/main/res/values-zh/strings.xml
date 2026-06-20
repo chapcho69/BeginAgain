@@ -130,6 +130,7 @@
     <string name="msg_byte_usage">%1$s (%2$d%% 已使用)</string>
     <string name="msg_add_todo_title">添加新任务</string>
     <string name="title_edit_todo">编辑任务</string>
+    <string name="label_recent_search">最近搜索</string>
     <string name="msg_time_select">选择时间 (10分钟单位)</string>
 
     <string name="msg_confirm_delete">确定要删除吗？</string>

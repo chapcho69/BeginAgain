@@ -20,15 +20,15 @@ public class SearchResultItem {
     public String getTitle() { return title; }
     public String getContent() { return content; }
 
-    public String getTypeName() {
+    public int getTypeResId() {
         switch (type) {
-            case HABIT: return "습관";
-            case READING: return "독서노트";
-            case MEMORIZATION: return "암기장";
-            case MEMO: return "메모";
-            case TASK: return "할일들";
-            case JAPANESE: return "일본어";
-            default: return "";
+            case HABIT: return R.string.feature_routine;
+            case READING: return R.string.feature_reading;
+            case MEMORIZATION: return R.string.feature_memorization;
+            case MEMO: return R.string.feature_memo;
+            case TASK: return R.string.feature_today;
+            case JAPANESE: return R.string.feature_japanese;
+            default: return 0;
         }
     }
 }
