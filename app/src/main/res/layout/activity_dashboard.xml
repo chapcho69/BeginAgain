@@ -13,7 +13,7 @@
             android:id="@+id/toolbar_dashboard"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="나의 성장 대시보드" />
+            app:title="@string/feature_dashboard" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView

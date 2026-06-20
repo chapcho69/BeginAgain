@@ -145,11 +145,11 @@ public class ReadingNoteDetailActivity extends AppCompatActivity implements Text
     }
 
     private void shareContent(String title, String content) {
-        String shareText = "제목: " + title + "\n\n" + content + "\n\nReflection from BeginAgain";
+        String shareText = getString(R.string.label_title) + ": " + title + "\n\n" + content + "\n\nReflection from BeginAgain";
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, shareText);
-        startActivity(Intent.createChooser(intent, "내용 공유하기"));
+        startActivity(Intent.createChooser(intent, getString(R.string.btn_share)));
     }
 
     private void speakText(String text) {
@@ -200,11 +200,36 @@ public class ReadingNoteDetailActivity extends AppCompatActivity implements Text
         if (status == TextToSpeech.SUCCESS) tts.setLanguage(Locale.KOREAN);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.resume();
+    }
+
+    @Override
+    protected void onPause() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.pause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.destroy();
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
+    }
+
     private void initAds() {
-        MobileAds.initialize(this, initializationStatus -> {});
+        com.google.android.gms.ads.MobileAds.initialize(this, initializationStatus -> {});
         AdView adView = findViewById(R.id.adView);
         if (adView != null) {
-            AdRequest adRequest = new AdRequest.Builder().build();
+            com.google.android.gms.ads.AdRequest adRequest = new com.google.android.gms.ads.AdRequest.Builder().build();
             adView.loadAd(adRequest);
         }
     }
@@ -213,14 +238,5 @@ public class ReadingNoteDetailActivity extends AppCompatActivity implements Text
     public boolean onSupportNavigateUp() {
         finish();
         return true;
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (tts != null) {
-            tts.stop();
-            tts.shutdown();
-        }
-        super.onDestroy();
     }
 }

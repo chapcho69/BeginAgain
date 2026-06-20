@@ -43,13 +43,13 @@ public class MemorizationDetailActivity extends AppCompatActivity implements Tex
         setSupportActionBar(findViewById(R.id.toolbar_memo_detail));
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("암기장 상세");
+            getSupportActionBar().setTitle(R.string.feature_memorization);
         }
 
         ((android.widget.TextView)findViewById(R.id.text_memo_detail_keyword)).setText(item.getKeyword());
         ((android.widget.TextView)findViewById(R.id.text_memo_detail_title)).setText(item.getTitle());
         ((android.widget.TextView)findViewById(R.id.text_memo_detail_content)).setText(item.getContent());
-        ((android.widget.TextView)findViewById(R.id.text_memo_detail_date)).setText("최종 수정: " + item.getUpdatedAt());
+        ((android.widget.TextView)findViewById(R.id.text_memo_detail_date)).setText(getString(R.string.label_last_modified) + ": " + item.getUpdatedAt());
 
         MaterialButton btnEdit = findViewById(R.id.btn_memo_detail_edit);
         btnEdit.setOnClickListener(v -> {
@@ -70,11 +70,11 @@ public class MemorizationDetailActivity extends AppCompatActivity implements Tex
     }
 
     private void shareContent(String title, String content) {
-        String shareText = "제목: " + title + "\n\n" + content + "\n\nReflection from BeginAgain";
+        String shareText = getString(R.string.label_title) + ": " + title + "\n\n" + content + "\n\nReflection from BeginAgain";
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, shareText);
-        startActivity(Intent.createChooser(intent, "내용 공유하기"));
+        startActivity(Intent.createChooser(intent, getString(R.string.btn_share)));
     }
 
     private void speakText(String text) {
@@ -125,8 +125,33 @@ public class MemorizationDetailActivity extends AppCompatActivity implements Tex
         if (status == TextToSpeech.SUCCESS) tts.setLanguage(Locale.KOREAN);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.resume();
+    }
+
+    @Override
+    protected void onPause() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.pause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.destroy();
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
+    }
+
     private void initAds() {
-        MobileAds.initialize(this, initializationStatus -> {});
+        com.google.android.gms.ads.MobileAds.initialize(this, initializationStatus -> {});
         AdView adView = findViewById(R.id.adView);
         if (adView != null) {
             AdRequest adRequest = new AdRequest.Builder().build();
@@ -138,14 +163,5 @@ public class MemorizationDetailActivity extends AppCompatActivity implements Tex
     public boolean onSupportNavigateUp() {
         finish();
         return true;
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (tts != null) {
-            tts.stop();
-            tts.shutdown();
-        }
-        super.onDestroy();
     }
 }

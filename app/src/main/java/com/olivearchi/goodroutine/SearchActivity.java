@@ -62,6 +62,27 @@ public class SearchActivity extends AppCompatActivity {
         initAds();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.resume();
+    }
+
+    @Override
+    protected void onPause() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.pause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.destroy();
+        super.onDestroy();
+    }
+
     private void performSearch(String query) {
         results.clear();
         adapter.setQuery(query);

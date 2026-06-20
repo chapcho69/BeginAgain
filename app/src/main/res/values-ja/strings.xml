@@ -48,7 +48,7 @@
     <string name="feature_japanese">日本語</string>
     <string name="feature_search">検索</string>
     <string name="feature_secret">秘密ノート</string>
-    <string name="feature_dashboard">成長\nダッシュボード</string>
+    <string name="feature_dashboard">統計</string>
     <string name="feature_wordmap">語彙マップ</string>
     <string name="feature_settings">設定</string>
 

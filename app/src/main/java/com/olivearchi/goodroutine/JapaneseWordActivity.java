@@ -221,14 +221,33 @@ public class JapaneseWordActivity extends AppCompatActivity implements TextToSpe
         recyclerView.setAdapter(adapter);
     }
 
-    @Override protected void onResume() { super.onResume(); if (!isPlayingAll) loadWords(); }
-    @Override public boolean onCreateOptionsMenu(Menu menu) { getMenuInflater().inflate(R.menu.menu_list, menu); return true; }
-    @Override public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_home) { stopPlayback(); Intent intent = new Intent(this, SelectionActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); startActivity(intent); finish(); return true; }
-        return super.onOptionsItemSelected(item);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.resume();
+        if (!isPlayingAll) loadWords();
     }
-    private void initAds() { MobileAds.initialize(this, status -> {}); AdView adView = findViewById(R.id.adView); if (adView != null) adView.loadAd(new AdRequest.Builder().build()); }
-    @Override public boolean onSupportNavigateUp() { stopPlayback(); finish(); return true; }
-    @Override protected void onDestroy() { if (tts != null) { tts.stop(); tts.shutdown(); } super.onDestroy(); }
+
+    @Override
+    protected void onPause() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.pause();
+        if (isPlayingAll) stopPlayback();
+        super.onPause();
+    }
+
+    private void initAds() {
+        com.google.android.gms.ads.MobileAds.initialize(this, status -> {});
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.loadAd(new com.google.android.gms.ads.AdRequest.Builder().build());
+    }
+
+    @Override
+    protected void onDestroy() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.destroy();
+        if (tts != null) { tts.stop(); tts.shutdown(); }
+        super.onDestroy();
+    }
 }

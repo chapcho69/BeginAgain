@@ -240,13 +240,23 @@ public class ReadingNoteActivity extends AppCompatActivity implements TextToSpee
     @Override
     protected void onResume() {
         super.onResume();
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.resume();
         if (!isPlayingAll) loadNotes();
     }
 
-    private void initAds() {
-        MobileAds.initialize(this, initializationStatus -> {});
+    @Override
+    protected void onPause() {
         AdView adView = findViewById(R.id.adView);
-        if (adView != null) adView.loadAd(new AdRequest.Builder().build());
+        if (adView != null) adView.pause();
+        if (isPlayingAll) stopPlayback();
+        super.onPause();
+    }
+
+    private void initAds() {
+        com.google.android.gms.ads.MobileAds.initialize(this, initializationStatus -> {});
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.loadAd(new com.google.android.gms.ads.AdRequest.Builder().build());
     }
 
     @Override
@@ -285,6 +295,8 @@ public class ReadingNoteActivity extends AppCompatActivity implements TextToSpee
 
     @Override
     protected void onDestroy() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.destroy();
         if (tts != null) { tts.stop(); tts.shutdown(); }
         super.onDestroy();
     }

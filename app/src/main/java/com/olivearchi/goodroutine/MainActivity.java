@@ -116,8 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             if (destination.getId() == R.id.FirstFragment) {
-                List<TodoItem> list = viewModel.getTodoList().getValue();
-                updateAppTitle(list != null ? list.size() : 0);
+                updateAppTitle();
             }
         });
 
@@ -129,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         viewModel.getTodoList().observe(this, habits -> {
-            updateAppTitle(habits != null ? habits.size() : 0);
+            updateAppTitle();
         });
 
         checkNotificationPermission();
@@ -146,26 +145,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void updateAppTitle(int count) {
-        String customName = getSharedPreferences("AppPrefs", MODE_PRIVATE).getString("appName", "Begin Again");
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(customName + "(" + count + ")");
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (viewModel != null) {
-            viewModel.backupData();
-        }
-    }
-
     private void initAds() {
-        MobileAds.initialize(this, initializationStatus -> {});
+        com.google.android.gms.ads.MobileAds.initialize(this, initializationStatus -> {});
         AdView adView = findViewById(R.id.adView);
         if (adView != null) {
-            AdRequest adRequest = new AdRequest.Builder().build();
+            com.google.android.gms.ads.AdRequest adRequest = new com.google.android.gms.ads.AdRequest.Builder().build();
             adView.loadAd(adRequest);
         }
     }
@@ -176,6 +160,32 @@ public class MainActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.resume();
+        updateAppTitle();
+    }
+
+    @Override
+    protected void onPause() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.pause();
+        super.onPause();
+        if (viewModel != null) {
+            viewModel.backupData();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.destroy();
+        if (tempTts != null) tempTts.shutdown();
+        super.onDestroy();
     }
 
     private void showAddTaskDialog() {
@@ -451,12 +461,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        if (tempTts != null) tempTts.shutdown();
-        super.onDestroy();
-    }
-
     private void showBackupOptions() {
         String[] options = {getString(R.string.btn_chooser_share), getString(R.string.btn_chooser_save)};
         new AlertDialog.Builder(this)
@@ -506,7 +510,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.msg_save_success, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Log.e("MainActivity", "Save to URI failed", e);
-            Toast.makeText(this, R.string.msg_save_success, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.msg_export_fail, Toast.LENGTH_SHORT).show();
         }
     }
 

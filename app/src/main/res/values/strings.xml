@@ -50,7 +50,7 @@
     <string name="feature_japanese">일본어</string>
     <string name="feature_search">찾기</string>
     <string name="feature_secret">비밀노트</string>
-    <string name="feature_dashboard">성장\n대시보드</string>
+    <string name="feature_dashboard">통계</string>
     <string name="feature_wordmap">어휘 Map</string>
     <string name="feature_settings">설정</string>
 

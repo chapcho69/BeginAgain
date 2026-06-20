@@ -38,13 +38,13 @@ public class MemoDetailActivity extends AppCompatActivity implements TextToSpeec
         setSupportActionBar(findViewById(R.id.toolbar_memo_detail));
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("메모 상세보기");
+            getSupportActionBar().setTitle(R.string.feature_memo);
         }
 
         ((TextView)findViewById(R.id.text_memo_view_title)).setText(item.getTitle());
         ((TextView)findViewById(R.id.text_memo_view_content)).setText(item.getContent());
-        ((TextView)findViewById(R.id.text_memo_view_remarks)).setText("비고: " + item.getRemarks());
-        ((TextView)findViewById(R.id.text_memo_view_date)).setText("작성일: " + item.getCreatedAt());
+        ((TextView)findViewById(R.id.text_memo_view_remarks)).setText(getString(R.string.label_remarks) + ": " + item.getRemarks());
+        ((TextView)findViewById(R.id.text_memo_view_date)).setText(getString(R.string.label_last_modified) + ": " + item.getCreatedAt());
 
         MaterialButton btnEdit = findViewById(R.id.btn_memo_view_edit);
         btnEdit.setOnClickListener(v -> {
@@ -79,7 +79,9 @@ public class MemoDetailActivity extends AppCompatActivity implements TextToSpeec
                 if (!savedVoiceName.isEmpty()) {
                     for (Voice v : voices) {
                         if (v.getName().equals(savedVoiceName)) {
-                            tts.setVoice(v); voiceSet = true; break;
+                            tts.setVoice(v);
+                            voiceSet = true;
+                            break;
                         }
                     }
                 }
@@ -113,7 +115,23 @@ public class MemoDetailActivity extends AppCompatActivity implements TextToSpeec
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.resume();
+    }
+
+    @Override
+    protected void onPause() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.pause();
+        super.onPause();
+    }
+
+    @Override
     protected void onDestroy() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.destroy();
         if (tts != null) {
             tts.stop();
             tts.shutdown();
@@ -122,16 +140,16 @@ public class MemoDetailActivity extends AppCompatActivity implements TextToSpeec
     }
 
     private void shareContent(String title, String content) {
-        String shareText = "제목: " + title + "\n\n" + content + "\n\nReflection from BeginAgain";
+        String shareText = getString(R.string.label_title) + ": " + title + "\n\n" + content + "\n\nReflection from BeginAgain";
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, shareText);
-        startActivity(Intent.createChooser(intent, "내용 공유하기"));
+        startActivity(Intent.createChooser(intent, getString(R.string.btn_share)));
     }
 
 
     private void initAds() {
-        MobileAds.initialize(this, initializationStatus -> {});
+        com.google.android.gms.ads.MobileAds.initialize(this, initializationStatus -> {});
         AdView adView = findViewById(R.id.adView);
         if (adView != null) adView.loadAd(new AdRequest.Builder().build());
     }

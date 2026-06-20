@@ -556,13 +556,27 @@ public class SelectionActivity extends AppCompatActivity {
         refreshHoneycomb();
     }
 
-    @Override protected void onResume() { super.onResume(); updateAppTitle(); }
-    @Override protected void onPause() { super.onPause(); if (viewModel != null) viewModel.backupData(); }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.resume();
+        updateAppTitle();
+        refreshHoneycomb();
+    }
+
+    @Override
+    protected void onPause() {
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.pause();
+        super.onPause();
+        if (viewModel != null) viewModel.backupData();
+    }
 
     private void initAds() {
-        MobileAds.initialize(this, status -> {});
+        com.google.android.gms.ads.MobileAds.initialize(this, status -> {});
         AdView adView = findViewById(R.id.adView);
-        if (adView != null) adView.loadAd(new AdRequest.Builder().build());
+        if (adView != null) adView.loadAd(new com.google.android.gms.ads.AdRequest.Builder().build());
     }
 
     @Override public boolean onCreateOptionsMenu(Menu menu) { getMenuInflater().inflate(R.menu.menu_main, menu); return true; }
@@ -981,6 +995,8 @@ public class SelectionActivity extends AppCompatActivity {
     }
 
     @Override protected void onDestroy() { 
+        AdView adView = findViewById(R.id.adView);
+        if (adView != null) adView.destroy();
         soundHandler.removeCallbacksAndMessages(null);
         if (clickSoundPlayer != null) {
             clickSoundPlayer.release();
