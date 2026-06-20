@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -143,12 +144,19 @@ public class ReadingNoteActivity extends AppCompatActivity implements TextToSpee
     private void showAutoPlayOverlay(ReadingNoteItem item) {
         if (autoPlayDialog != null) autoPlayDialog.dismiss();
         View view = getLayoutInflater().inflate(R.layout.activity_reading_note_detail, null);
+        view.setBackgroundColor(ContextCompat.getColor(this, R.color.app_background));
         ((TextView)view.findViewById(R.id.text_detail_book_title)).setText(item.getBookTitle());
         ((TextView)view.findViewById(R.id.text_detail_content)).setText(item.getContent());
         ((TextView)view.findViewById(R.id.text_detail_remarks)).setText(item.getRemarks());
         ((TextView)view.findViewById(R.id.text_detail_date)).setText(item.getModifiedDateTime());
+        
         view.findViewById(R.id.layout_detail_buttons).setVisibility(View.GONE);
-        autoPlayDialog = new AlertDialog.Builder(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+        view.findViewById(R.id.adView).setVisibility(View.GONE);
+        if (view.findViewById(R.id.toolbar_detail) != null) {
+            ((View)view.findViewById(R.id.toolbar_detail).getParent()).setVisibility(View.GONE);
+        }
+
+        autoPlayDialog = new AlertDialog.Builder(this, android.R.style.Theme_Light_NoTitleBar_Fullscreen)
                 .setView(view).setCancelable(true).setOnCancelListener(dialog -> stopPlayback()).create();
         autoPlayDialog.show();
         repeatCount = 0;
@@ -157,9 +165,9 @@ public class ReadingNoteActivity extends AppCompatActivity implements TextToSpee
 
     private void startNoteSequence(ReadingNoteItem item) {
         int q = TextToSpeech.QUEUE_FLUSH;
-        speakText(getString(R.string.label_word) + ": " + item.getBookTitle(), q, "Part_W");
+        speakText(item.getBookTitle(), q, "Part_W");
         String finalId = "Final_" + repeatCount;
-        speakText(getString(R.string.label_content) + ": " + item.getContent(), TextToSpeech.QUEUE_ADD, finalId);
+        speakText(item.getContent(), TextToSpeech.QUEUE_ADD, finalId);
     }
 
     @Override

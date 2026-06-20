@@ -143,11 +143,18 @@ public class MemorizationActivity extends AppCompatActivity implements TextToSpe
     private void showAutoPlayOverlay(MemorizationItem item) {
         if (autoPlayDialog != null) autoPlayDialog.dismiss();
         View view = getLayoutInflater().inflate(R.layout.activity_memorization_detail, null);
+        view.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, R.color.app_background));
         ((TextView)view.findViewById(R.id.text_memo_detail_keyword)).setText(item.getKeyword());
         ((TextView)view.findViewById(R.id.text_memo_detail_title)).setText(item.getTitle());
         ((TextView)view.findViewById(R.id.text_memo_detail_content)).setText(item.getContent());
+        
         view.findViewById(R.id.layout_memo_detail_buttons).setVisibility(View.GONE);
-        autoPlayDialog = new AlertDialog.Builder(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+        view.findViewById(R.id.adView).setVisibility(View.GONE);
+        if (view.findViewById(R.id.toolbar_memo_detail) != null) {
+            ((View)view.findViewById(R.id.toolbar_memo_detail).getParent()).setVisibility(View.GONE);
+        }
+
+        autoPlayDialog = new AlertDialog.Builder(this, android.R.style.Theme_Light_NoTitleBar_Fullscreen)
                 .setView(view).setCancelable(true).setOnCancelListener(dialog -> stopPlayback()).create();
         autoPlayDialog.show();
         repeatCount = 0;
@@ -156,9 +163,9 @@ public class MemorizationActivity extends AppCompatActivity implements TextToSpe
 
     private void startItemSequence(MemorizationItem item) {
         int q = TextToSpeech.QUEUE_FLUSH;
-        speakText(getString(R.string.label_title) + ": " + item.getTitle(), q, "Part_W");
+        speakText(item.getTitle(), q, "Part_W");
         String finalId = "Final_" + repeatCount;
-        speakText(getString(R.string.label_content) + ": " + item.getContent(), TextToSpeech.QUEUE_ADD, finalId);
+        speakText(item.getContent(), TextToSpeech.QUEUE_ADD, finalId);
     }
 
     @Override
