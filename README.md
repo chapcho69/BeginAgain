@@ -24,10 +24,35 @@
 - 내 기록이 볼모가 되지 않는 앱을 만들고 싶었습니다.
 
 **App 화면**
+Loading 화면
+<img width="1080" height="2408" alt="01" src="https://github.com/user-attachments/assets/66b25b8e-cf5d-4536-b350-4c636f6cb399" />
 
-<img width="233" height="479" alt="image" src="https://github.com/user-attachments/assets/d489e791-31cc-400e-807c-555b6abc8756" />
-<img width="230" height="452" alt="image" src="https://github.com/user-attachments/assets/fe65bd1e-bcc8-4be3-b76b-0b35ffc79103" />
-<img width="238" height="452" alt="image" src="https://github.com/user-attachments/assets/754af439-cc4c-40ff-8ab3-5f1940285f21" />
-<img width="233" height="482" alt="image" src="https://github.com/user-attachments/assets/05609d83-e0b9-478b-b85a-a517027ddcc2" />
-<img width="234" height="471" alt="image" src="https://github.com/user-attachments/assets/92a46244-ed80-49a4-81b5-9cadb0a31ece" />
-<img width="235" height="418" alt="image" src="https://github.com/user-attachments/assets/3d661727-f868-45ea-85e5-ee16dc040623" />
+메뉴 화면, 위치 이동, 색상 변경
+<img width="1080" height="2408" alt="02" src="https://github.com/user-attachments/assets/f07bb66d-b6f3-43e6-adfb-a11955463374" />
+
+독서 노트, 추가, 수정, 삭제
+<img width="1080" height="2131" alt="03" src="https://github.com/user-attachments/assets/8469e861-77f2-4f1f-9e56-3637f493c209" />
+
+독서 노트 - 내용보기, 듣기, 수정
+<img width="1080" height="2124" alt="04" src="https://github.com/user-attachments/assets/6d21fdf5-3719-49b3-a619-e4b73dd9618e" />
+
+통계(Dashboard) - 최근 1년 루틴 수행 Heat-map, 독서노트, 메모 통계
+<img width="1080" height="2408" alt="05" src="https://github.com/user-attachments/assets/373a73a7-fbf3-46ef-b8bf-977f5d8698a4" />
+
+검색 - 최근 검색
+<img width="1077" height="2273" alt="06" src="https://github.com/user-attachments/assets/68397b0d-a41d-43b8-9342-70ae7e21ced3" />
+
+검색 상세 - 검색어 하이라이트
+<img width="1080" height="2128" alt="07" src="https://github.com/user-attachments/assets/b8f94999-c575-4763-ae60-2250fc365e77" />
+
+습관 - 추가, 수정, 삭제
+<img width="1080" height="2156" alt="08" src="https://github.com/user-attachments/assets/250bb946-1750-448b-9feb-933f3904c835" />
+
+어휘 Map - 자주 사용되는 단어
+<img width="1080" height="2121" alt="09" src="https://github.com/user-attachments/assets/abdabde2-ed8a-4493-9727-bb8cfe3cd361" />
+
+데이터 관리 - 데이터 내보내기, 가져오기
+<img width="1080" height="2125" alt="10" src="https://github.com/user-attachments/assets/eb412081-57db-43e4-bfe2-26f65834ee2f" />
+
+단어장 관리 - 영단어 내보내기/가져오기, 일단어 내보내기/가져오기, 종복 관리
+<img width="1080" height="2142" alt="11" src="https://github.com/user-attachments/assets/027de818-28db-4f6e-958e-9eac17bdcc84" />
