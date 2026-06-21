@@ -1,18 +1,31 @@
 package com.olivearchi.goodroutine;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.Voice;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -46,10 +59,10 @@ public class MemorizationDetailActivity extends AppCompatActivity implements Tex
             getSupportActionBar().setTitle(R.string.feature_memorization);
         }
 
-        ((android.widget.TextView)findViewById(R.id.text_memo_detail_keyword)).setText(SearchHighlightUtils.getHighlightedText(item.getKeyword()));
-        ((android.widget.TextView)findViewById(R.id.text_memo_detail_title)).setText(SearchHighlightUtils.getHighlightedText(item.getTitle()));
-        ((android.widget.TextView)findViewById(R.id.text_memo_detail_content)).setText(SearchHighlightUtils.getHighlightedText(item.getContent()));
-        ((android.widget.TextView)findViewById(R.id.text_memo_detail_date)).setText(getString(R.string.label_last_modified) + ": " + item.getUpdatedAt());
+        ((TextView)findViewById(R.id.text_memo_detail_keyword)).setText(SearchHighlightUtils.getHighlightedText(item.getKeyword()));
+        ((TextView)findViewById(R.id.text_memo_detail_title)).setText(SearchHighlightUtils.getHighlightedText(item.getTitle()));
+        ((TextView)findViewById(R.id.text_memo_detail_content)).setText(SearchHighlightUtils.getHighlightedText(item.getContent()));
+        ((TextView)findViewById(R.id.text_memo_detail_date)).setText(getString(R.string.label_last_modified) + ": " + item.getUpdatedAt());
 
         MaterialButton btnEdit = findViewById(R.id.btn_memo_detail_edit);
         btnEdit.setOnClickListener(v -> {
@@ -63,10 +76,82 @@ public class MemorizationDetailActivity extends AppCompatActivity implements Tex
         btnTts.setOnClickListener(v -> speakText(item.getContent()));
 
         MaterialButton btnShare = findViewById(R.id.btn_memo_detail_share);
-        btnShare.setOnClickListener(v -> shareContent(item.getTitle(), item.getContent()));
+        btnShare.setOnClickListener(v -> showShareOptions());
 
         tts = new TextToSpeech(this, this);
         initAds();
+    }
+
+    private void showShareOptions() {
+        String[] options = {getString(R.string.btn_chooser_share) + " (Text)", getString(R.string.btn_chooser_share) + " (Image)"};
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle(R.string.btn_share)
+                .setItems(options, (dialog, which) -> {
+                    if (which == 0) {
+                        shareContent(item.getTitle(), item.getContent());
+                    } else {
+                        shareAsImages();
+                    }
+                })
+                .show();
+    }
+
+    private void shareAsImages() {
+        List<String> chunks = splitContentByBytes(item.getContent(), 1500);
+        ArrayList<Uri> imageUris = new ArrayList<>();
+        File cachePath = new File(getCacheDir(), "images");
+        cachePath.mkdirs();
+
+        File[] files = cachePath.listFiles();
+        if (files != null) for (File f : files) f.delete();
+
+        for (int i = 0; i < chunks.size(); i++) {
+            View cardView = LayoutInflater.from(this).inflate(R.layout.layout_reading_note_card, null);
+            ((TextView)cardView.findViewById(R.id.card_book_title)).setText(item.getTitle() + (chunks.size() > 1 ? " (" + (i + 1) + "/" + chunks.size() + ")" : ""));
+            ((TextView)cardView.findViewById(R.id.card_content)).setText(chunks.get(i));
+            ((TextView)cardView.findViewById(R.id.card_date)).setText(item.getUpdatedAt());
+
+            cardView.measure(View.MeasureSpec.makeMeasureSpec(1200, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+            cardView.layout(0, 0, cardView.getMeasuredWidth(), cardView.getMeasuredHeight());
+
+            Bitmap bitmap = Bitmap.createBitmap(cardView.getMeasuredWidth(), cardView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            cardView.draw(canvas);
+
+            try {
+                File file = new File(cachePath, "memorization_card_" + i + ".png");
+                FileOutputStream stream = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                stream.close();
+                imageUris.add(FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", file));
+            } catch (IOException e) { Log.e("MemorizationDetail", "Image fail", e); }
+        }
+
+        if (!imageUris.isEmpty()) {
+            Intent intent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+            intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris);
+            intent.setType("image/png");
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(Intent.createChooser(intent, getString(R.string.btn_share)));
+        }
+    }
+
+    private List<String> splitContentByBytes(String content, int maxBytes) {
+        List<String> chunks = new ArrayList<>();
+        if (content == null || content.isEmpty()) return chunks;
+        int currentStart = 0;
+        while (currentStart < content.length()) {
+            int currentEnd = currentStart, currentBytes = 0;
+            while (currentEnd < content.length()) {
+                int charBytes = String.valueOf(content.charAt(currentEnd)).getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
+                if (currentBytes + charBytes > maxBytes) break;
+                currentBytes += charBytes;
+                currentEnd++;
+            }
+            chunks.add(content.substring(currentStart, currentEnd));
+            currentStart = currentEnd;
+        }
+        return chunks;
     }
 
     private void shareContent(String title, String content) {

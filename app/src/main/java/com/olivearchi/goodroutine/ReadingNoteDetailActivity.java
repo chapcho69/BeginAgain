@@ -24,6 +24,8 @@ import com.google.android.gms.ads.MobileAds;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -81,66 +83,100 @@ public class ReadingNoteDetailActivity extends AppCompatActivity implements Text
     }
 
     private void showShareOptions() {
-        String[] options = {"텍스트 공유하기", "카드 이미지로 공유하기"};
+        String[] options = {getString(R.string.btn_chooser_share) + " (Text)", getString(R.string.btn_chooser_share) + " (Image)"};
         new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle("공유하기")
+                .setTitle(R.string.btn_share)
                 .setItems(options, (dialog, which) -> {
                     if (which == 0) {
                         shareContent(item.getBookTitle(), item.getContent());
                     } else {
-                        shareAsImage();
+                        shareAsImages();
                     }
                 })
                 .show();
     }
 
-    private void shareAsImage() {
-        View cardView = LayoutInflater.from(this).inflate(R.layout.layout_reading_note_card, null);
-        TextView tvTitle = cardView.findViewById(R.id.card_book_title);
-        TextView tvContent = cardView.findViewById(R.id.card_content);
-        TextView tvDate = cardView.findViewById(R.id.card_date);
+    private void shareAsImages() {
+        List<String> chunks = splitContentByBytes(item.getContent(), 1500);
+        ArrayList<Uri> imageUris = new ArrayList<>();
+        File cachePath = new File(getCacheDir(), "images");
+        cachePath.mkdirs();
 
-        tvTitle.setText(item.getBookTitle());
-        tvContent.setText(item.getContent());
-        tvDate.setText(item.getModifiedDateTime());
+        // Clean up previous share images
+        File[] files = cachePath.listFiles();
+        if (files != null) for (File f : files) f.delete();
 
-        // Measure and layout the view
-        cardView.measure(View.MeasureSpec.makeMeasureSpec(1200, View.MeasureSpec.EXACTLY),
-                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-        cardView.layout(0, 0, cardView.getMeasuredWidth(), cardMeasuredHeight(cardView));
+        for (int i = 0; i < chunks.size(); i++) {
+            View cardView = LayoutInflater.from(this).inflate(R.layout.layout_reading_note_card, null);
+            TextView tvTitle = cardView.findViewById(R.id.card_book_title);
+            TextView tvContent = cardView.findViewById(R.id.card_content);
+            TextView tvDate = cardView.findViewById(R.id.card_date);
 
-        // Create bitmap
-        Bitmap bitmap = Bitmap.createBitmap(cardView.getMeasuredWidth(), cardView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        cardView.draw(canvas);
-
-        // Save and share
-        try {
-            File cachePath = new File(getCacheDir(), "images");
-            cachePath.mkdirs();
-            File file = new File(cachePath, "reading_note_card.png");
-            FileOutputStream stream = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            stream.close();
-
-            Uri contentUri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", file);
-            if (contentUri != null) {
-                Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                shareIntent.setDataAndType(contentUri, getContentResolver().getType(contentUri));
-                shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
-                shareIntent.putExtra(Intent.EXTRA_TEXT, "[" + item.getBookTitle() + "]...Reflection from BeginAgain..");
-                startActivity(Intent.createChooser(shareIntent, "카드 이미지 공유하기"));
+            String displayTitle = item.getBookTitle();
+            if (chunks.size() > 1) {
+                displayTitle += " (" + (i + 1) + "/" + chunks.size() + ")";
             }
-        } catch (IOException e) {
-            Log.e("ReadingNoteDetail", "Image share failed", e);
+            tvTitle.setText(displayTitle);
+            tvContent.setText(chunks.get(i));
+            tvDate.setText(item.getModifiedDateTime());
+
+            cardView.measure(View.MeasureSpec.makeMeasureSpec(1200, View.MeasureSpec.EXACTLY),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+            cardView.layout(0, 0, cardView.getMeasuredWidth(), cardView.getMeasuredHeight());
+
+            Bitmap bitmap = Bitmap.createBitmap(cardView.getMeasuredWidth(), cardView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            cardView.draw(canvas);
+
+            try {
+                File file = new File(cachePath, "reading_note_card_" + i + ".png");
+                FileOutputStream stream = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                stream.close();
+                
+                Uri contentUri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", file);
+                imageUris.add(contentUri);
+            } catch (IOException e) {
+                Log.e("ReadingNoteDetail", "Image creation failed at index " + i, e);
+            }
+        }
+
+        if (!imageUris.isEmpty()) {
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
+            shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris);
+            shareIntent.setType("image/png");
+            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.btn_share)));
+        } else {
             Toast.makeText(this, "이미지 생성 실패", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private int cardMeasuredHeight(View v) {
-        return v.getMeasuredHeight();
+    private List<String> splitContentByBytes(String content, int maxBytes) {
+        List<String> chunks = new ArrayList<>();
+        if (content == null || content.isEmpty()) return chunks;
+
+        byte[] fullBytes = content.getBytes(java.nio.charset.StandardCharsets.UTF_8);
+        if (fullBytes.length <= maxBytes) {
+            chunks.add(content);
+            return chunks;
+        }
+
+        int currentStart = 0;
+        while (currentStart < content.length()) {
+            int currentEnd = currentStart;
+            int currentBytes = 0;
+            while (currentEnd < content.length()) {
+                int charBytes = String.valueOf(content.charAt(currentEnd)).getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
+                if (currentBytes + charBytes > maxBytes) break;
+                currentBytes += charBytes;
+                currentEnd++;
+            }
+            chunks.add(content.substring(currentStart, currentEnd));
+            currentStart = currentEnd;
+        }
+        return chunks;
     }
 
     private void shareContent(String title, String content) {

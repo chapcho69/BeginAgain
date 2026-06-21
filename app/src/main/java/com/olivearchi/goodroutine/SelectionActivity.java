@@ -324,8 +324,8 @@ public class SelectionActivity extends AppCompatActivity {
             ImageView bg = (ImageView) slots[i].getChildAt(0);
             String type = slotAssignments[i];
 
-            // 2. Decide if this slot has honey (Randomly 20% of slots)
-            boolean hasHoney = random.nextFloat() < 0.25f;
+            // 2. Decide if this slot has honey (Randomly 50% of slots)
+            boolean hasHoney = random.nextFloat() < 0.50f;
             
             if (hasHoney) {
                 ImageView honeyView = new ImageView(this);
