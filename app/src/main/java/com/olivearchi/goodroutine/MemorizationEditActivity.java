@@ -84,9 +84,9 @@ public class MemorizationEditActivity extends AppCompatActivity {
         }
 
         // Setup ByteCounter AFTER setting initial text
-        setupByteCounter(editTitle, layoutTitle, 100, getString(R.string.label_title));
-        setupByteCounter(editKeyword, layoutKeyword, 200, getString(R.string.label_keyword));
-        setupByteCounter(editContent, layoutContent, 2000, getString(R.string.label_content));
+        setupByteCounter(editTitle, layoutTitle, 200, getString(R.string.label_title));
+        setupByteCounter(editKeyword, layoutKeyword, 400, getString(R.string.label_keyword));
+        setupByteCounter(editContent, layoutContent, 8192, getString(R.string.label_content));
 
         btnSave.setOnClickListener(v -> {
             if (saveMemo()) finish();

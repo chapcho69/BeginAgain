@@ -306,12 +306,16 @@ public class SelectionActivity extends AppCompatActivity {
 
     private void refreshHoneycomb() {
         TodoDbHelper db = new TodoDbHelper(this);
+        java.util.Random random = new java.util.Random(12345); // Seed for consistency
+        
         for (int i = 0; i < MAX_SLOTS; i++) {
             if (slots[i] == null) continue;
-            // Remove existing buttons but keep background ImageView
+            
+            // 1. Clean up existing views but keep slot background
             for (int j = 0; j < slots[i].getChildCount(); j++) {
                 View child = slots[i].getChildAt(j);
-                if (child instanceof MaterialButton) {
+                // Keep only the very first ImageView which is the slot background
+                if (j > 0) {
                     slots[i].removeView(child);
                     j--;
                 }
@@ -319,6 +323,18 @@ public class SelectionActivity extends AppCompatActivity {
 
             ImageView bg = (ImageView) slots[i].getChildAt(0);
             String type = slotAssignments[i];
+
+            // 2. Decide if this slot has honey (Randomly 20% of slots)
+            boolean hasHoney = random.nextFloat() < 0.25f;
+            
+            if (hasHoney) {
+                ImageView honeyView = new ImageView(this);
+                honeyView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+                honeyView.setImageResource(R.drawable.bg_hexagon_honey_overlay);
+                // Honey is slightly more transparent on empty slots
+                honeyView.setAlpha(type == null ? 0.4f : 0.8f);
+                slots[i].addView(honeyView);
+            }
 
             if (type != null) {
                 // Metal background for all feature buttons

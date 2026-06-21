@@ -86,9 +86,9 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
         }
 
         // Setup ByteCounter AFTER setting initial text to avoid filter blocking load
-        setupByteCounter(editBookTitle, layoutBookTitle, 100, getString(R.string.label_word));
-        setupByteCounter(editContent, layoutContent, 2000, getString(R.string.label_content));
-        setupByteCounter(editRemarks, layoutRemarks, 1000, getString(R.string.label_remarks));
+        setupByteCounter(editBookTitle, layoutBookTitle, 200, getString(R.string.label_word));
+        setupByteCounter(editContent, layoutContent, 8192, getString(R.string.label_content));
+        setupByteCounter(editRemarks, layoutRemarks, 2000, getString(R.string.label_remarks));
 
         btnSave.setOnClickListener(v -> {
             if (saveNote()) finish();

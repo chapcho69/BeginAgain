@@ -80,9 +80,9 @@ public class MemoEditActivity extends AppCompatActivity {
         }
 
         // Setup ByteCounter AFTER setting initial text
-        setupByteCounter(editTitle, layoutTitle, 200, "제목");
-        setupByteCounter(editContent, layoutContent, 2000, "내용");
-        setupByteCounter(editRemarks, layoutRemarks, 1000, "비고");
+        setupByteCounter(editTitle, layoutTitle, 200, getString(R.string.label_title));
+        setupByteCounter(editContent, layoutContent, 8192, getString(R.string.label_content));
+        setupByteCounter(editRemarks, layoutRemarks, 2000, getString(R.string.label_remarks));
 
         btnSave.setOnClickListener(v -> { if (saveMemo()) finish(); });
 
