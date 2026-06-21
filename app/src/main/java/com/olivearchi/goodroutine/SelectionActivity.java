@@ -411,7 +411,7 @@ public class SelectionActivity extends AppCompatActivity {
                         break;
                     case "dashboard":
                         label = getString(R.string.feature_dashboard);
-                        iconRes = R.drawable.ic_clover;
+                        iconRes = R.drawable.ic_bar_chart;
                         clickListener = v -> startActivity(new Intent(this, DashboardActivity.class));
                         break;
                     case "wordmap":
