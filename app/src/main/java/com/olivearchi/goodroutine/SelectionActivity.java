@@ -87,6 +87,11 @@ public class SelectionActivity extends AppCompatActivity {
     private static final int LONG_PRESS_TIME = 3000;
     private android.view.GestureDetector gestureDetector;
 
+    private final List<ImageView> activeBees = new ArrayList<>();
+    private final Handler beeHandler = new Handler(Looper.getMainLooper());
+    private final Runnable beeRunnable = this::manageSwarm;
+    private int maxBees = 1;
+
     private final ActivityResultLauncher<String[]> filePickerLauncher = registerForActivityResult(
             new ActivityResultContracts.OpenDocument(),
             uri -> { if (uri != null) restoreFromUri(uri); }
@@ -174,7 +179,7 @@ public class SelectionActivity extends AppCompatActivity {
         });
 
         clickSoundPlayer = MediaPlayer.create(this, R.raw.mouse_click_01);
-
+        
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() { showExitConfirmation(); }
@@ -306,15 +311,13 @@ public class SelectionActivity extends AppCompatActivity {
 
     private void refreshHoneycomb() {
         TodoDbHelper db = new TodoDbHelper(this);
-        java.util.Random random = new java.util.Random(12345); // Seed for consistency
+        java.util.Random random = new java.util.Random();
         
         for (int i = 0; i < MAX_SLOTS; i++) {
             if (slots[i] == null) continue;
             
-            // 1. Clean up existing views but keep slot background
             for (int j = 0; j < slots[i].getChildCount(); j++) {
                 View child = slots[i].getChildAt(j);
-                // Keep only the very first ImageView which is the slot background
                 if (j > 0) {
                     slots[i].removeView(child);
                     j--;
@@ -324,19 +327,17 @@ public class SelectionActivity extends AppCompatActivity {
             ImageView bg = (ImageView) slots[i].getChildAt(0);
             String type = slotAssignments[i];
 
-            // 2. Decide if this slot has honey (Randomly 50% of slots)
-            boolean hasHoney = random.nextFloat() < 0.50f;
-            
-            if (hasHoney) {
-                ImageView honeyView = new ImageView(this);
-                honeyView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
-                honeyView.setImageResource(R.drawable.bg_hexagon_honey_overlay);
-                // Honey is slightly more transparent on empty slots
-                honeyView.setAlpha(type == null ? 0.4f : 0.8f);
-                slots[i].addView(honeyView);
-            }
-
+            // 2. Honey in almost all functional slots (90% probability)
             if (type != null) {
+                boolean hasHoney = random.nextFloat() < 0.90f;
+                if (hasHoney) {
+                    ImageView honeyView = new ImageView(this);
+                    honeyView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+                    honeyView.setImageResource(R.drawable.bg_hexagon_honey_overlay);
+                    honeyView.setAlpha(0.8f);
+                    slots[i].addView(honeyView);
+                }
+
                 // Metal background for all feature buttons
                 bg.setImageResource(R.drawable.bg_hexagon_metal);
                 Integer tintColorObj = featureColors.get(type);
@@ -579,12 +580,14 @@ public class SelectionActivity extends AppCompatActivity {
         if (adView != null) adView.resume();
         updateAppTitle();
         refreshHoneycomb();
+        beeHandler.postDelayed(beeRunnable, 2000);
     }
 
     @Override
     protected void onPause() {
         AdView adView = findViewById(R.id.adView);
         if (adView != null) adView.pause();
+        beeHandler.removeCallbacks(beeRunnable);
         super.onPause();
         if (viewModel != null) viewModel.backupData();
     }
@@ -1116,5 +1119,103 @@ public class SelectionActivity extends AppCompatActivity {
                 .setMessage(content)
                 .setPositiveButton("확인", null)
                 .show();
+    }
+
+    private void manageSwarm() {
+        if (activeBees.size() < maxBees) {
+            spawnBee();
+        }
+        // Change desired swarm size occasionally
+        if (new Random().nextFloat() < 0.1f) {
+            maxBees = new Random().nextInt(4) + 1; // 1 to 4
+        }
+        beeHandler.postDelayed(beeRunnable, 2000 + new Random().nextInt(3000));
+    }
+
+    private void spawnBee() {
+        ImageView bee = new ImageView(this);
+        bee.setImageResource(R.drawable.ic_bee);
+        int size = (int) (48 * getResources().getDisplayMetrics().density); // 1.5x size
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(size, size);
+        bee.setLayoutParams(lp);
+        bee.setElevation(30f);
+        
+        if (!(honeycombContainer instanceof androidx.constraintlayout.widget.ConstraintLayout)) return;
+        androidx.constraintlayout.widget.ConstraintLayout container = (androidx.constraintlayout.widget.ConstraintLayout) honeycombContainer;
+        container.addView(bee);
+        activeBees.add(bee);
+
+        // Find functional slots as targets
+        List<Integer> targetSlots = new ArrayList<>();
+        for (int i = 0; i < MAX_SLOTS; i++) {
+            if (slotAssignments[i] != null) {
+                targetSlots.add(i);
+            }
+        }
+
+        if (targetSlots.isEmpty()) {
+            container.removeView(bee);
+            activeBees.remove(bee);
+            return;
+        }
+
+        int targetIndex = targetSlots.get(new Random().nextInt(targetSlots.size()));
+        View targetView = slots[targetIndex];
+
+        // Start from random edge
+        Random rnd = new Random();
+        float startX = rnd.nextBoolean() ? -200 : container.getWidth() + 200;
+        float startY = rnd.nextFloat() * container.getHeight();
+        bee.setX(startX);
+        bee.setY(startY);
+
+        float targetX = targetView.getX() + targetView.getWidth() / 2f - size / 2f;
+        float targetY = targetView.getY() + targetView.getHeight() / 2f - size / 2f;
+
+        // Animate to target
+        float dx = targetX - startX;
+        float dy = targetY - startY;
+        float angle = (float) Math.toDegrees(Math.atan2(dy, dx)) + 90;
+
+        bee.setRotation(angle);
+        bee.animate()
+                .x(targetX)
+                .y(targetY)
+                .setDuration(3000 + rnd.nextInt(2000))
+                .withEndAction(() -> {
+                    // Working hover
+                    bee.animate()
+                            .scaleX(1.3f).scaleY(1.3f)
+                            .setDuration(600)
+                            .withEndAction(() -> {
+                                bee.animate()
+                                        .scaleX(1.0f).scaleY(1.0f)
+                                        .setDuration(600)
+                                        .withEndAction(() -> {
+                                            // Fly off to another edge
+                                            float exitX = rnd.nextBoolean() ? -300 : container.getWidth() + 300;
+                                            float exitY = rnd.nextFloat() * container.getHeight();
+                                            float dx2 = exitX - bee.getX();
+                                            float dy2 = exitY - bee.getY();
+                                            bee.setRotation((float) Math.toDegrees(Math.atan2(dy2, dx2)) + 90);
+                                            
+                                            bee.animate()
+                                                    .x(exitX).y(exitY)
+                                                    .setDuration(2500)
+                                                    .withEndAction(() -> {
+                                                        container.removeView(bee);
+                                                        activeBees.remove(bee);
+                                                    }).start();
+                                        }).start();
+                            }).start();
+                }).start();
+    }
+
+    private void initBee() {
+        // Obsolete, replaced by manageSwarm/spawnBee
+    }
+
+    private void startBeeFlight() {
+        // Obsolete
     }
 }

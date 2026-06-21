@@ -46,10 +46,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void playTypingSound() {
-        if (mediaPlayer != null) {
-            mediaPlayer.seekTo(0);
-            mediaPlayer.start();
-        }
+        // Sound effect removed as requested
     }
 
     private void startTypingAnimation() {
