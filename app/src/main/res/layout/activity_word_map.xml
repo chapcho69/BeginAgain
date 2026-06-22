@@ -8,12 +8,15 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/app_background"
+        app:elevation="0dp">
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_word_map"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="어휘 Map" />
+            app:title="@string/feature_wordmap"
+            app:titleTextColor="#333333" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,6 +7,19 @@
     android:background="@color/app_background"
     android:fitsSystemWindows="true">
 
+    <TextView
+        android:id="@+id/text_usage_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F0F7FF"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="4dp"
+        android:textSize="12sp"
+        android:textColor="@color/pastel_blue"
+        android:gravity="end"
+        android:text="내용 (0% 사용 중)"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_reading_edit"
         android:layout_width="match_parent"
@@ -15,7 +28,7 @@
         android:fillViewport="true"
         android:isScrollContainer="true"
         app:layout_constraintBottom_toTopOf="@id/layout_edit_buttons"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/text_usage_indicator">
 
         <LinearLayout
             android:layout_width="match_parent"

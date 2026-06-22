@@ -9,6 +9,7 @@ import android.text.Spanned;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
 import android.widget.Toast;
 
@@ -144,10 +145,17 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
-                updateHintWithByteCount(layout, s.toString(), maxBytes, baseHint);
+                updateHintWithByteCount(editText, layout, s.toString(), maxBytes, baseHint);
             }
         });
-        updateHintWithByteCount(layout, editText.getText().toString(), maxBytes, baseHint);
+
+        editText.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                updateHintWithByteCount(editText, layout, editText.getText().toString(), maxBytes, baseHint);
+            }
+        });
+
+        updateHintWithByteCount(editText, layout, editText.getText().toString(), maxBytes, baseHint);
     }
 
     private int findMaxCharsForBytes(CharSequence source, int maxBytes) {
@@ -159,10 +167,17 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
         return source.length();
     }
 
-    private void updateHintWithByteCount(TextInputLayout layout, String text, int maxBytes, String baseHint) {
+    private void updateHintWithByteCount(EditText editText, TextInputLayout layout, String text, int maxBytes, String baseHint) {
         int bytes = text.getBytes(StandardCharsets.UTF_8).length;
         int percent = Math.min(100, (int)((bytes / (float)maxBytes) * 100));
-        layout.setHint(String.format(java.util.Locale.getDefault(), getString(R.string.msg_byte_usage), baseHint, percent));
+        String usage = String.format(java.util.Locale.getDefault(), getString(R.string.msg_byte_usage), baseHint, percent);
+        layout.setHint(usage);
+        
+        // Update fixed indicator at the top if focused
+        TextView indicator = findViewById(R.id.text_usage_indicator);
+        if (indicator != null && editText.hasFocus()) {
+            indicator.setText(usage);
+        }
     }
 
     private void setupVerticalScroll(android.view.View view) {

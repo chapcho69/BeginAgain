@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import androidx.core.widget.NestedScrollView;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -106,9 +107,9 @@ public class MemoEditActivity extends AppCompatActivity {
         editText.setFilters(new InputFilter[]{new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-                int destBytes = dest.toString().getBytes().length;
-                int sourceBytes = source.subSequence(start, end).toString().getBytes().length;
-                int replacedBytes = dest.subSequence(dstart, dend).toString().getBytes().length;
+                int destBytes = dest.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
+                int sourceBytes = source.subSequence(start, end).toString().getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
+                int replacedBytes = dest.subSequence(dstart, dend).toString().getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
                 if (destBytes + sourceBytes - replacedBytes > maxBytes) {
                     if (dest.length() == 0 && source.length() > 0 && sourceBytes > maxBytes) return null;
                     return "";
@@ -122,14 +123,29 @@ public class MemoEditActivity extends AppCompatActivity {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
-                int bytes = s.toString().getBytes().length;
-                int percent = Math.min(100, (int)((bytes / (float)maxBytes) * 100));
-                layout.setHint(baseHint + " (" + percent + "% 사용 중)");
+                updateUsage(editText, layout, s.toString(), maxBytes, baseHint);
             }
         });
-        int initialBytes = (editText.getText() != null) ? editText.getText().toString().getBytes().length : 0;
-        int initialPercent = Math.min(100, (int)((initialBytes / (float)maxBytes) * 100));
-        layout.setHint(baseHint + " (" + initialPercent + "% 사용 중)");
+
+        editText.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                updateUsage(editText, layout, editText.getText().toString(), maxBytes, baseHint);
+            }
+        });
+
+        updateUsage(editText, layout, (editText.getText() != null) ? editText.getText().toString() : "", maxBytes, baseHint);
+    }
+
+    private void updateUsage(EditText editText, TextInputLayout layout, String text, int maxBytes, String baseHint) {
+        int bytes = text.getBytes(java.nio.charset.StandardCharsets.UTF_8).length;
+        int percent = Math.min(100, (int)((bytes / (float)maxBytes) * 100));
+        String usage = baseHint + " (" + percent + "% 사용 중)";
+        layout.setHint(usage);
+        
+        TextView indicator = findViewById(R.id.text_usage_indicator);
+        if (indicator != null && editText.hasFocus()) {
+            indicator.setText(usage);
+        }
     }
 
     private void setupVerticalScroll(android.view.View view) {

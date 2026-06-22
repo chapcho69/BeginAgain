@@ -5,6 +5,24 @@
         <item name="android:fontFamily">serif</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
+
+        <!-- Toolbar / AppBar Background -->
+        <item name="colorPrimaryContainer">@color/app_background</item>
+        <item name="colorSurface">@color/app_background</item>
+        <item name="android:windowBackground">@color/app_background</item>
+
+        <!-- Title text color (should be dark for light background) -->
+        <item name="colorOnSurface">#333333</item>
+        <item name="colorOnPrimaryContainer">#333333</item>
+
+        <!-- Action Bar / Toolbar Styling -->
+        <item name="toolbarStyle">@style/Widget.GoodRoutine.Toolbar</item>
+    </style>
+
+    <style name="Widget.GoodRoutine.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="background">@color/app_background</item>
+        <item name="titleTextColor">#333333</item>
+        <item name="navigationIconTint">#333333</item>
     </style>
 
     <style name="Theme.GoodRoutine" parent="Base.Theme.GoodRoutine" />
