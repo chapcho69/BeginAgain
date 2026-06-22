@@ -43,6 +43,7 @@ public class MemoDetailActivity extends AppCompatActivity implements TextToSpeec
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeHelper.applyTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memo_detail);
 

@@ -3,6 +3,7 @@ package com.olivearchi.goodroutine;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -134,6 +135,7 @@ public class SelectionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeHelper.applyTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection);
 
@@ -844,6 +846,7 @@ public class SelectionActivity extends AppCompatActivity {
                 getString(R.string.other_settings_rename),
                 getString(R.string.other_settings_tts_speed),
                 getString(R.string.other_settings_tts_voice),
+                "테마 설정",
                 getString(R.string.other_settings_reset_pos)
         };
         new AlertDialog.Builder(this)
@@ -853,9 +856,28 @@ public class SelectionActivity extends AppCompatActivity {
                         case 0: showRenameAppDialog(); break;
                         case 1: showTtsSpeedDialog(); break;
                         case 2: showTtsVoiceDialog(); break;
-                        case 3: confirmResetPositions(); break;
+                        case 3: showThemeDialog(); break;
+                        case 4: confirmResetPositions(); break;
                     }
                 }).show();
+    }
+
+    private void showThemeDialog() {
+        String[] themes = {"기본", "Black & White", "푸른 바다 느낌", "숲 느낌"};
+        SharedPreferences prefs = getSharedPreferences(ThemeHelper.PREF_NAME, MODE_PRIVATE);
+        int current = prefs.getInt(ThemeHelper.KEY_THEME, ThemeHelper.THEME_DEFAULT);
+
+        new AlertDialog.Builder(this)
+                .setTitle("테마 설정")
+                .setSingleChoiceItems(themes, current, (dialog, which) -> {
+                    ThemeHelper.setTheme(this, which);
+                    dialog.dismiss();
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+                })
+                .setNegativeButton(R.string.button_cancel, null)
+                .show();
     }
 
     private void confirmResetPositions() {

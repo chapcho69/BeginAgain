@@ -1,29 +1,43 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base styling -->
     <style name="Base.Theme.GoodRoutine" parent="Theme.Material3.Light.NoActionBar">
-        <!-- Customize your light theme here. -->
         <item name="android:fontFamily">serif</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
+    </style>
 
-        <!-- Toolbar / AppBar Background -->
-        <item name="colorPrimaryContainer">@color/app_background</item>
-        <item name="colorSurface">@color/app_background</item>
+    <!-- 1. 기본 테마 (Greenish White) -->
+    <style name="Theme.GoodRoutine.Default" parent="Base.Theme.GoodRoutine">
+        <item name="mainBackgroundColor">@color/app_background</item>
+        <item name="mainTextColor">#333333</item>
+        <item name="secondaryTextColor">#666666</item>
         <item name="android:windowBackground">@color/app_background</item>
-
-        <!-- Title text color (should be dark for light background) -->
-        <item name="colorOnSurface">#333333</item>
-        <item name="colorOnPrimaryContainer">#333333</item>
-
-        <!-- Action Bar / Toolbar Styling -->
-        <item name="toolbarStyle">@style/Widget.GoodRoutine.Toolbar</item>
     </style>
 
-    <style name="Widget.GoodRoutine.Toolbar" parent="Widget.Material3.Toolbar">
-        <item name="background">@color/app_background</item>
-        <item name="titleTextColor">#333333</item>
-        <item name="navigationIconTint">#333333</item>
+    <!-- 2. Black & White -->
+    <style name="Theme.GoodRoutine.BlackWhite" parent="Base.Theme.GoodRoutine">
+        <item name="mainBackgroundColor">#FFFFFF</item>
+        <item name="mainTextColor">#000000</item>
+        <item name="secondaryTextColor">#444444</item>
+        <item name="android:windowBackground">#FFFFFF</item>
     </style>
 
-    <style name="Theme.GoodRoutine" parent="Base.Theme.GoodRoutine" />
+    <!-- 3. 푸른 바다 느낌 -->
+    <style name="Theme.GoodRoutine.Sea" parent="Base.Theme.GoodRoutine">
+        <item name="mainBackgroundColor">#81D4FA</item>
+        <item name="mainTextColor">#FFFFFF</item>
+        <item name="secondaryTextColor">#E1F5FE</item>
+        <item name="android:windowBackground">#81D4FA</item>
+    </style>
+
+    <!-- 4. 숲 느낌 -->
+    <style name="Theme.GoodRoutine.Forest" parent="Base.Theme.GoodRoutine">
+        <item name="mainBackgroundColor">#81C784</item>
+        <item name="mainTextColor">#FFFFFF</item>
+        <item name="secondaryTextColor">#E8F5E9</item>
+        <item name="android:windowBackground">#81C784</item>
+    </style>
+
+    <!-- Legacy Compatibility -->
+    <style name="Theme.GoodRoutine" parent="Theme.GoodRoutine.Default" />
 </resources>

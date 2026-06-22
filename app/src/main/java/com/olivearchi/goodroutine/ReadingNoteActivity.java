@@ -54,6 +54,7 @@ public class ReadingNoteActivity extends AppCompatActivity implements TextToSpee
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeHelper.applyTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reading_note);
 
