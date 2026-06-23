@@ -245,6 +245,42 @@ public class MemorizationActivity extends AppCompatActivity implements TextToSpe
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_list, menu);
+        MenuItem favoriteItem = menu.findItem(R.id.action_filter_favorite);
+        if (favoriteItem != null) {
+            favoriteItem.setIcon(isFavoriteFilterActive ? R.drawable.ic_star_filled : R.drawable.ic_star_border);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_home) {
+            stopPlayback();
+            Intent intent = new Intent(this, SelectionActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            return true;
+        } else if (id == R.id.action_filter_favorite) {
+            isFavoriteFilterActive = !isFavoriteFilterActive;
+            invalidateOptionsMenu();
+            loadMemos();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        stopPlayback();
+        finish();
+        return true;
+    }
+
+    @Override
     protected void onPause() {
         AdView adView = findViewById(R.id.adView);
         if (adView != null) adView.pause();
