@@ -50,6 +50,7 @@
     <string name="feature_secret">秘密ノート</string>
     <string name="feature_dashboard">統計</string>
     <string name="feature_wordmap">語彙マップ</string>
+    <string name="feature_peek">のぞき見</string>
     <string name="feature_settings">設定</string>
 
     <string name="filter_all">すべて</string>

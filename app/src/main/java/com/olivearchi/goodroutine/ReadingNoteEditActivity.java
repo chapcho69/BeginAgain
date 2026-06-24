@@ -1,27 +1,40 @@
 package com.olivearchi.goodroutine;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Layout;
 import android.text.Spanned;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import androidx.core.widget.NestedScrollView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.core.widget.NestedScrollView;
 
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
+import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,6 +52,29 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
     private TextInputEditText editBookTitle, editContent, editRemarks;
     private TextInputLayout layoutBookTitle, layoutContent, layoutRemarks;
     private NestedScrollView scrollView;
+    
+    private Uri photoUri;
+    private File photoFile;
+
+    private final ActivityResultLauncher<Uri> cameraLauncher = registerForActivityResult(
+            new ActivityResultContracts.TakePicture(),
+            success -> {
+                if (success && photoFile != null) {
+                    runTextRecognition(photoFile);
+                }
+            }
+    );
+
+    private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+                if (isGranted) {
+                    openCamera();
+                } else {
+                    Toast.makeText(this, "카메라 권한이 필요합니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +102,15 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
         MaterialButton btnSave = findViewById(R.id.btn_save_note);
         MaterialButton btnAddNext = findViewById(R.id.btn_add_next);
         MaterialButton btnDelete = findViewById(R.id.btn_delete_note);
+        MaterialButton btnOcr = findViewById(R.id.btn_ocr_camera);
+
+        btnOcr.setOnClickListener(v -> {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                openCamera();
+            } else {
+                requestPermissionLauncher.launch(android.Manifest.permission.CAMERA);
+            }
+        });
 
         currentItem = (ReadingNoteItem) getIntent().getSerializableExtra("note_item");
 
@@ -87,7 +132,7 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
             btnDelete.setVisibility(View.GONE);
         }
 
-        // Setup ByteCounter AFTER setting initial text to avoid filter blocking load
+        // Setup ByteCounter AFTER setting initial text
         setupByteCounter(editBookTitle, layoutBookTitle, 200, getString(R.string.label_word));
         setupByteCounter(editContent, layoutContent, 8192, getString(R.string.label_content));
         setupByteCounter(editRemarks, layoutRemarks, 2000, getString(R.string.label_remarks));
@@ -123,6 +168,16 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
         initAds();
     }
 
+    private void openCamera() {
+        try {
+            photoFile = File.createTempFile("ocr_", ".jpg", getCacheDir());
+            photoUri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", photoFile);
+            cameraLauncher.launch(photoUri);
+        } catch (IOException e) {
+            Log.e("OCR", "File creation failed", e);
+        }
+    }
+
     private void setupByteCounter(EditText editText, TextInputLayout layout, int maxBytes, String baseHint) {
         editText.setFilters(new InputFilter[]{new InputFilter() {
             @Override
@@ -130,11 +185,8 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
                 int destBytes = dest.toString().getBytes(StandardCharsets.UTF_8).length;
                 int sourceBytes = source.subSequence(start, end).toString().getBytes(StandardCharsets.UTF_8).length;
                 int replacedBytes = dest.subSequence(dstart, dend).toString().getBytes(StandardCharsets.UTF_8).length;
-                
                 if (destBytes + sourceBytes - replacedBytes > maxBytes) {
-                    if (dest.length() == 0 && source.length() > 0) {
-                        return source.subSequence(0, findMaxCharsForBytes(source, maxBytes));
-                    }
+                    if (dest.length() == 0 && source.length() > 0) return source.subSequence(0, findMaxCharsForBytes(source, maxBytes));
                     return "";
                 }
                 return null;
@@ -174,7 +226,6 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
         String usage = String.format(java.util.Locale.getDefault(), getString(R.string.msg_byte_usage), baseHint, percent);
         layout.setHint(usage);
         
-        // Update fixed indicator at the top if focused
         TextView indicator = findViewById(R.id.text_usage_indicator);
         if (indicator != null && editText.hasFocus()) {
             indicator.setText(usage);
@@ -207,9 +258,7 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
                         if (pos < 0) return;
                         int line = layout.getLineForOffset(pos);
                         int lineTop = layout.getLineTop(line);
-                        int lineBottom = layout.getLineBottom(line);
-
-                        // Calculate cursor position relative to the ScrollView's child (the LinearLayout)
+                        
                         int[] viewLocation = new int[2];
                         int[] scrollLocation = new int[2];
                         editText.getLocationInWindow(viewLocation);
@@ -221,7 +270,6 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
 
                         int scrollHeight = scrollView.getHeight();
                         if (scrollHeight > 0) {
-                            // Aim to keep cursor at 30% from the top of the visible area
                             int targetScrollY = cursorYInScroll - (int)(scrollHeight * 0.3);
                             if (targetScrollY < 0) targetScrollY = 0;
                             scrollView.smoothScrollTo(0, targetScrollY);
@@ -238,6 +286,33 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
         if (adView != null) {
             AdRequest adRequest = new AdRequest.Builder().build();
             adView.loadAd(adRequest);
+        }
+    }
+
+    private void runTextRecognition(File file) {
+        try {
+            InputImage image = InputImage.fromFilePath(this, Uri.fromFile(file));
+            TextRecognizer recognizer = TextRecognition.getClient(new KoreanTextRecognizerOptions.Builder().build());
+
+            recognizer.process(image)
+                    .addOnSuccessListener(result -> {
+                        String text = result.getText();
+                        if (!text.isEmpty()) {
+                            String current = (editContent.getText() != null) ? editContent.getText().toString() : "";
+                            if (!current.isEmpty()) current += "\n";
+                            editContent.setText(current + text);
+                            Toast.makeText(this, "문자 인식 완료", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "인식된 글자가 없습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                        file.delete();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(this, "인식 실패: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        file.delete();
+                    });
+        } catch (IOException e) {
+            Log.e("OCR", "Image processing failed", e);
         }
     }
 

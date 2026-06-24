@@ -84,39 +84,60 @@ public class ReadingNoteDetailActivity extends AppCompatActivity implements Text
     }
 
     private void showShareOptions() {
-        String[] options = {getString(R.string.btn_chooser_share) + " (Text)", getString(R.string.btn_chooser_share) + " (Image)"};
+        String[] options = {
+                getString(R.string.btn_chooser_share) + " (Text)",
+                "기본 카드로 공유",
+                "바다 테마 카드로 공유",
+                "숲 테마 카드로 공유",
+                "Classic Dark 카드로 공유"
+        };
         new androidx.appcompat.app.AlertDialog.Builder(this)
                 .setTitle(R.string.btn_share)
                 .setItems(options, (dialog, which) -> {
                     if (which == 0) {
                         shareContent(item.getBookTitle(), item.getContent());
                     } else {
-                        shareAsImages();
+                        int bgColor = 0xFFFFFFFF;
+                        int textColor = 0xFF333333;
+                        if (which == 2) { bgColor = 0xFF81D4FA; textColor = 0xFFFFFFFF; }
+                        else if (which == 3) { bgColor = 0xFF81C784; textColor = 0xFFFFFFFF; }
+                        else if (which == 4) { bgColor = 0xFF333333; textColor = 0xFFFFFFFF; }
+                        shareAsImages(bgColor, textColor);
                     }
                 })
                 .show();
     }
 
-    private void shareAsImages() {
+    private void shareAsImages(int bgColor, int textColor) {
         List<String> chunks = splitContentByBytes(item.getContent(), 1500);
         ArrayList<Uri> imageUris = new ArrayList<>();
         File cachePath = new File(getCacheDir(), "images");
         cachePath.mkdirs();
 
-        // Clean up previous share images
         File[] files = cachePath.listFiles();
         if (files != null) for (File f : files) f.delete();
 
         for (int i = 0; i < chunks.size(); i++) {
             View cardView = LayoutInflater.from(this).inflate(R.layout.layout_reading_note_card, null);
+            View container = cardView.findViewById(R.id.card_container);
+            if (container instanceof androidx.cardview.widget.CardView) {
+                ((androidx.cardview.widget.CardView)container).setCardBackgroundColor(bgColor);
+            }
+            
+            TextView tvHeader = cardView.findViewById(R.id.card_header_text); // Need to add ID
             TextView tvTitle = cardView.findViewById(R.id.card_book_title);
             TextView tvContent = cardView.findViewById(R.id.card_content);
             TextView tvDate = cardView.findViewById(R.id.card_date);
+            TextView tvTag = cardView.findViewById(R.id.card_tag); // Need to add ID
+            
+            // Set Text Colors
+            tvTitle.setTextColor(textColor);
+            tvContent.setTextColor(textColor);
+            if (tvHeader != null) tvHeader.setTextColor(textColor);
+            if (tvTag != null) tvTag.setTextColor(textColor);
 
             String displayTitle = item.getBookTitle();
-            if (chunks.size() > 1) {
-                displayTitle += " (" + (i + 1) + "/" + chunks.size() + ")";
-            }
+            if (chunks.size() > 1) displayTitle += " (" + (i + 1) + "/" + chunks.size() + ")";
             tvTitle.setText(displayTitle);
             tvContent.setText(chunks.get(i));
             tvDate.setText(item.getModifiedDateTime());
@@ -134,24 +155,21 @@ public class ReadingNoteDetailActivity extends AppCompatActivity implements Text
                 FileOutputStream stream = new FileOutputStream(file);
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 stream.close();
-                
-                Uri contentUri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", file);
-                imageUris.add(contentUri);
-            } catch (IOException e) {
-                Log.e("ReadingNoteDetail", "Image creation failed at index " + i, e);
-            }
+                imageUris.add(FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", file));
+            } catch (IOException e) { Log.e("ReadingNoteDetail", "Image fail", e); }
         }
 
         if (!imageUris.isEmpty()) {
-            Intent shareIntent = new Intent();
-            shareIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
+            Intent shareIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
             shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris);
             shareIntent.setType("image/png");
             shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(Intent.createChooser(shareIntent, getString(R.string.btn_share)));
-        } else {
-            Toast.makeText(this, "이미지 생성 실패", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void shareAsImages() {
+        shareAsImages(0xFFFFFFFF, 0xFF333333);
     }
 
     private List<String> splitContentByBytes(String content, int maxBytes) {

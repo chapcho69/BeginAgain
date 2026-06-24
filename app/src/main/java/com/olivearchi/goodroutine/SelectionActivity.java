@@ -198,7 +198,7 @@ public class SelectionActivity extends AppCompatActivity {
     private void loadSlotAssignments() {
         TodoDbHelper db = new TodoDbHelper(this);
         List<FeatureItem> features = db.getAllFeatures();
-        String[] requiredKeys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard", "wordmap"};
+        String[] requiredKeys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard", "wordmap", "peek"};
         
         for (int i = 0; i < MAX_SLOTS; i++) slotAssignments[i] = null;
         featureColors.clear();
@@ -219,6 +219,7 @@ public class SelectionActivity extends AppCompatActivity {
             slotAssignments[startIdx + 9] = "secret";
             slotAssignments[startIdx + 10] = "dashboard";
             slotAssignments[startIdx + 11] = "wordmap";
+            slotAssignments[startIdx + 12] = "peek";
             
             // Default color is Pastel Blue for all except search
             int defaultColor = ContextCompat.getColor(this, R.color.pastel_blue);
@@ -284,6 +285,7 @@ public class SelectionActivity extends AppCompatActivity {
             case "secret": return getString(R.string.feature_secret);
             case "dashboard": return getString(R.string.feature_dashboard);
             case "wordmap": return getString(R.string.feature_wordmap);
+            case "peek": return getString(R.string.feature_peek);
             default: return "";
         }
     }
@@ -293,7 +295,7 @@ public class SelectionActivity extends AppCompatActivity {
         db.resetFeaturePositions();
         
         for (int i = 0; i < MAX_SLOTS; i++) slotAssignments[i] = null;
-        String[] keys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard", "wordmap"};
+        String[] keys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard", "wordmap", "peek"};
         
         // Arrange 3 features per row starting from 2nd row
         int currentKeyIdx = 0;
@@ -430,6 +432,11 @@ public class SelectionActivity extends AppCompatActivity {
                         label = getString(R.string.feature_search);
                         iconRes = android.R.drawable.ic_menu_search;
                         clickListener = v -> startActivity(new Intent(this, SearchActivity.class));
+                        break;
+                    case "peek":
+                        label = getString(R.string.feature_peek);
+                        iconRes = R.drawable.ic_crown;
+                        clickListener = v -> showPeekDialog();
                         break;
                 }
 
@@ -1239,5 +1246,61 @@ public class SelectionActivity extends AppCompatActivity {
 
     private void startBeeFlight() {
         // Obsolete
+    }
+
+    private void showPeekDialog() {
+        TodoDbHelper db = new TodoDbHelper(this);
+        List<ReadingNoteItem> notes = db.getAllReadingNotes();
+        List<MemoItem> memos = db.getAllMemos();
+
+        List<Object> combined = new ArrayList<>();
+        combined.addAll(notes);
+        combined.addAll(memos);
+
+        if (combined.isEmpty()) {
+            Toast.makeText(this, "보여줄 항목이 없습니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Object randomItem = combined.get(new Random().nextInt(combined.size()));
+        String title = "";
+        String content = "";
+        String typeLabel = "";
+
+        if (randomItem instanceof ReadingNoteItem) {
+            ReadingNoteItem n = (ReadingNoteItem) randomItem;
+            title = n.getBookTitle();
+            content = n.getContent();
+            typeLabel = getString(R.string.feature_reading);
+        } else if (randomItem instanceof MemoItem) {
+            MemoItem m = (MemoItem) randomItem;
+            title = m.getTitle();
+            content = m.getContent();
+            typeLabel = getString(R.string.feature_memo);
+        }
+
+        View dialogView = getLayoutInflater().inflate(R.layout.activity_memo_detail, null);
+        // Hide UI elements not needed for Peek
+        if (dialogView.findViewById(R.id.toolbar_memo_detail) != null) {
+            ((View)dialogView.findViewById(R.id.toolbar_memo_detail).getParent()).setVisibility(View.GONE);
+        }
+        dialogView.findViewById(R.id.layout_memo_detail_btns).setVisibility(View.GONE);
+        dialogView.findViewById(R.id.adView).setVisibility(View.GONE);
+        
+        TextView tvTitle = dialogView.findViewById(R.id.text_memo_view_title);
+        tvTitle.setText("[" + typeLabel + "] " + title);
+        
+        TextView tvContent = dialogView.findViewById(R.id.text_memo_view_content);
+        tvContent.setText(content);
+        
+        dialogView.findViewById(R.id.text_memo_view_remarks).setVisibility(View.GONE);
+        dialogView.findViewById(R.id.text_memo_view_date).setVisibility(View.GONE);
+
+        new AlertDialog.Builder(this)
+                .setTitle("Peek")
+                .setView(dialogView)
+                .setPositiveButton("다시 보기", (dialog, which) -> showPeekDialog())
+                .setNegativeButton(R.string.button_close, null)
+                .show();
     }
 }

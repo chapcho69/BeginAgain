@@ -1185,19 +1185,26 @@ public class TodoDbHelper extends SQLiteOpenHelper {
         Map<String, Integer> stats = new HashMap<>();
         SQLiteDatabase db = this.getReadableDatabase();
         
-        // Total unique books count
         Cursor cursor1 = db.rawQuery("SELECT COUNT(DISTINCT " + COLUMN_BOOK_TITLE + ") FROM " + TABLE_READING_NOTES, null);
-        if (cursor1.moveToFirst()) {
-            stats.put("total_books", cursor1.getInt(0));
-        }
+        if (cursor1.moveToFirst()) stats.put("total_books", cursor1.getInt(0));
         cursor1.close();
 
-        // Total passages count
         Cursor cursor2 = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_READING_NOTES, null);
-        if (cursor2.moveToFirst()) {
-            stats.put("total_passages", cursor2.getInt(0));
-        }
+        if (cursor2.moveToFirst()) stats.put("total_passages", cursor2.getInt(0));
         cursor2.close();
+
+        // New: Total character count for achievement feeling
+        long totalChars = 0;
+        Cursor c3 = db.rawQuery("SELECT SUM(length(" + COLUMN_NOTE_CONTENT + ")) FROM " + TABLE_READING_NOTES, null);
+        if (c3.moveToFirst()) totalChars += c3.getLong(0);
+        c3.close();
+        Cursor c4 = db.rawQuery("SELECT SUM(length(" + COLUMN_M_CONTENT + ")) FROM " + TABLE_MEMOS, null);
+        if (c4.moveToFirst()) totalChars += c4.getLong(0);
+        c4.close();
+        Cursor c5 = db.rawQuery("SELECT SUM(length(" + COLUMN_MEMO_CONTENT + ")) FROM " + TABLE_MEMORIZATION, null);
+        if (c5.moveToFirst()) totalChars += c5.getLong(0);
+        c5.close();
+        stats.put("total_characters", (int)totalChars);
         
         db.close();
         return stats;

@@ -17,6 +17,7 @@
         android:backgroundTint="#F0F7FF">
 
         <TextView
+            android:id="@+id/card_header_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Begin Again Reading Note"
@@ -68,6 +69,7 @@
                 android:layout_alignParentLeft="true"/>
 
             <TextView
+                android:id="@+id/card_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="#매일매일_성장하는_나"

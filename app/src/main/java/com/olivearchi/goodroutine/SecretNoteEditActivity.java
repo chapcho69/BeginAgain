@@ -82,8 +82,8 @@ public class SecretNoteEditActivity extends AppCompatActivity {
         }
 
         setupByteCounter(editTitle, layoutTitle, 200, getString(R.string.label_title));
-        setupByteCounter(editContent, layoutContent, 2000, getString(R.string.label_content));
-        setupByteCounter(editRemarks, layoutRemarks, 1000, getString(R.string.label_remarks));
+        setupByteCounter(editContent, layoutContent, 8192, getString(R.string.label_content));
+        setupByteCounter(editRemarks, layoutRemarks, 2000, getString(R.string.label_remarks));
 
         btnSave.setOnClickListener(v -> { if (saveNote()) finish(); });
 

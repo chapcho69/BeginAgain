@@ -50,6 +50,7 @@
     <string name="feature_secret">私密笔记</string>
     <string name="feature_dashboard">统计</string>
     <string name="feature_wordmap">词汇地图</string>
+    <string name="feature_peek">窥视</string>
     <string name="feature_settings">设置</string>
 
     <string name="filter_all">全部</string>

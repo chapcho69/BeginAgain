@@ -82,15 +82,23 @@ public class DashboardActivity extends AppCompatActivity {
         
         Integer books = stats.get("total_books");
         Integer passages = stats.get("total_passages");
+        Integer totalChars = stats.get("total_characters");
         
         TextView tv = new TextView(this);
         tv.setTextSize(16);
         tv.setTextColor(0xFF333333);
         tv.setLineSpacing(8f, 1f);
-        tv.setText(String.format(java.util.Locale.getDefault(), 
+        
+        String summary = String.format(java.util.Locale.getDefault(), 
                 getString(R.string.stats_reading_summary), 
                 (books != null ? books : 0), 
-                (passages != null ? passages : 0)));
+                (passages != null ? passages : 0));
+        
+        if (totalChars != null && totalChars > 0) {
+            summary += "\n• 누적 지식량: " + String.format(java.util.Locale.getDefault(), "%,d", totalChars) + "자";
+        }
+        
+        tv.setText(summary);
         container.addView(tv);
     }
 
