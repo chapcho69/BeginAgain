@@ -5,19 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background">
+    android:background="?attr/mainBackgroundColor">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/app_background"
+        android:background="?attr/mainBackgroundColor"
         app:elevation="0dp">
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_memo_detail"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="메모 상세 보기"
-            app:titleTextColor="#333333" />
+            app:titleTextColor="?attr/mainTextColor" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,7 +41,7 @@
                     android:id="@+id/text_memo_view_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:textColor="?attr/mainTextColor"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     tools:text="메모 제목" />
@@ -57,7 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="8dp"
-                    android:textColor="#333333"
+                    android:textColor="?attr/mainTextColor"
                     android:textSize="18sp"
                     tools:text="메모 상세 내용이 표시됩니다." />
 
@@ -68,7 +68,7 @@
                     android:layout_marginTop="24dp"
                     android:background="#F9F9F9"
                     android:padding="12dp"
-                    android:textColor="#666666"
+                    android:textColor="?attr/secondaryTextColor"
                     android:textSize="14sp"
                     tools:text="비고 내용" />
 
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:gravity="end"
-                    android:textColor="#999999"
+                    android:textColor="?attr/secondaryTextColor"
                     android:textSize="12sp"
                     tools:text="작성일: 2023-10-27" />
 

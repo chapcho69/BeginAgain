@@ -283,6 +283,16 @@ public class ReadingNoteDetailActivity extends AppCompatActivity implements Text
         com.google.android.gms.ads.MobileAds.initialize(this, initializationStatus -> {});
         AdView adView = findViewById(R.id.adView);
         if (adView != null) {
+            adView.setAdListener(new com.google.android.gms.ads.AdListener() {
+                @Override
+                public void onAdFailedToLoad(@androidx.annotation.NonNull com.google.android.gms.ads.LoadAdError adError) {
+                    adView.setVisibility(View.GONE);
+                }
+                @Override
+                public void onAdLoaded() {
+                    adView.setVisibility(View.VISIBLE);
+                }
+            });
             com.google.android.gms.ads.AdRequest adRequest = new com.google.android.gms.ads.AdRequest.Builder().build();
             adView.loadAd(adRequest);
         }

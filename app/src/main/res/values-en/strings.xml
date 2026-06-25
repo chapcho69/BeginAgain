@@ -50,7 +50,7 @@
     <string name="feature_secret">Secret Note</string>
     <string name="feature_dashboard">Dashboard</string>
     <string name="feature_wordmap">Vocabulary Map</string>
-    <string name="feature_peek">Peek</string>
+    <string name="feature_pick">Pick</string>
     <string name="feature_settings">Settings</string>
 
     <string name="filter_all">All</string>

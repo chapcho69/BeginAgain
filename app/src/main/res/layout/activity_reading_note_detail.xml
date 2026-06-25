@@ -5,20 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background"
+    android:background="?attr/mainBackgroundColor"
     android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/app_background"
+        android:background="?attr/mainBackgroundColor"
         app:elevation="0dp">
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_detail"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/feature_reading"
-            app:titleTextColor="#333333" />
+            app:titleTextColor="?attr/mainTextColor" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +42,7 @@
                     android:id="@+id/text_detail_book_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#333333"
+                    android:textColor="?attr/mainTextColor"
                     android:textSize="18sp"
                     android:textStyle="bold|italic"
                     tools:text="책 제목" />
@@ -58,7 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="6dp"
-                    android:textColor="#000000"
+                    android:textColor="?attr/mainTextColor"
                     android:textSize="17sp"
                     tools:text="내용이 여기에 표시됩니다." />
 
@@ -69,7 +69,7 @@
                     android:layout_marginTop="24dp"
                     android:background="#F9F9F9"
                     android:padding="12dp"
-                    android:textColor="#666666"
+                    android:textColor="?attr/secondaryTextColor"
                     android:textSize="14sp"
                     tools:text="비고 내용" />
 
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:gravity="end"
-                    android:textColor="#999999"
+                    android:textColor="?attr/secondaryTextColor"
                     android:textSize="12sp"
                     tools:text="수정일: 2023-10-27" />
 

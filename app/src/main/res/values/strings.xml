@@ -52,7 +52,7 @@
     <string name="feature_secret">비밀노트</string>
     <string name="feature_dashboard">통계</string>
     <string name="feature_wordmap">어휘 Map</string>
-    <string name="feature_peek">Peek</string>
+    <string name="feature_pick">Pick</string>
     <string name="feature_settings">설정</string>
 
     <string name="filter_all">전체</string>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,10 +53,20 @@ public class TodayTaskListActivity extends AppCompatActivity {
     }
 
     private void initAds() {
-        MobileAds.initialize(this, initializationStatus -> {});
+        com.google.android.gms.ads.MobileAds.initialize(this, initializationStatus -> {});
         AdView adView = findViewById(R.id.adView);
         if (adView != null) {
-            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.setAdListener(new com.google.android.gms.ads.AdListener() {
+                @Override
+                public void onAdFailedToLoad(@androidx.annotation.NonNull com.google.android.gms.ads.LoadAdError adError) {
+                    adView.setVisibility(View.GONE);
+                }
+                @Override
+                public void onAdLoaded() {
+                    adView.setVisibility(View.VISIBLE);
+                }
+            });
+            com.google.android.gms.ads.AdRequest adRequest = new com.google.android.gms.ads.AdRequest.Builder().build();
             adView.loadAd(adRequest);
         }
     }

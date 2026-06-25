@@ -73,7 +73,7 @@ public class SelectionActivity extends AppCompatActivity {
     }
 
     private TodoViewModel viewModel;
-    private TextToSpeech tempTts;
+    private TextToSpeech tts;
     private static final int MAX_SLOTS = 40;
     private final FrameLayout[] slots = new FrameLayout[MAX_SLOTS];
     private final String[] slotAssignments = new String[MAX_SLOTS]; // index 0 to MAX_SLOTS-1
@@ -155,6 +155,10 @@ public class SelectionActivity extends AppCompatActivity {
         refreshHoneycomb();
         initAds();
         setupScatteredBackground();
+        
+        tts = new TextToSpeech(this, status -> {
+            if (status == TextToSpeech.SUCCESS) tts.setLanguage(Locale.KOREAN);
+        });
 
         honeycombContainer = findViewById(R.id.honeycomb_grid);
 
@@ -198,7 +202,7 @@ public class SelectionActivity extends AppCompatActivity {
     private void loadSlotAssignments() {
         TodoDbHelper db = new TodoDbHelper(this);
         List<FeatureItem> features = db.getAllFeatures();
-        String[] requiredKeys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard", "wordmap", "peek"};
+        String[] requiredKeys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard", "wordmap", "pick"};
         
         for (int i = 0; i < MAX_SLOTS; i++) slotAssignments[i] = null;
         featureColors.clear();
@@ -219,7 +223,7 @@ public class SelectionActivity extends AppCompatActivity {
             slotAssignments[startIdx + 9] = "secret";
             slotAssignments[startIdx + 10] = "dashboard";
             slotAssignments[startIdx + 11] = "wordmap";
-            slotAssignments[startIdx + 12] = "peek";
+            slotAssignments[startIdx + 12] = "pick";
             
             // Default color is Pastel Blue for all except search
             int defaultColor = ContextCompat.getColor(this, R.color.pastel_blue);
@@ -230,10 +234,14 @@ public class SelectionActivity extends AppCompatActivity {
         } else {
             Set<String> assignedKeys = new HashSet<>();
             for (FeatureItem f : features) {
+                String featureId = f.getFeatureId();
+                // Migration: Peek -> Pick
+                if ("peek".equals(featureId)) featureId = "pick";
+                
                 if (f.getPosition() >= 0 && f.getPosition() < MAX_SLOTS) {
-                    slotAssignments[f.getPosition()] = f.getFeatureId();
-                    featureColors.put(f.getFeatureId(), f.getColor());
-                    assignedKeys.add(f.getFeatureId());
+                    slotAssignments[f.getPosition()] = featureId;
+                    featureColors.put(featureId, f.getColor());
+                    assignedKeys.add(featureId);
                 }
             }
             
@@ -285,7 +293,7 @@ public class SelectionActivity extends AppCompatActivity {
             case "secret": return getString(R.string.feature_secret);
             case "dashboard": return getString(R.string.feature_dashboard);
             case "wordmap": return getString(R.string.feature_wordmap);
-            case "peek": return getString(R.string.feature_peek);
+            case "pick": return getString(R.string.feature_pick);
             default: return "";
         }
     }
@@ -295,7 +303,7 @@ public class SelectionActivity extends AppCompatActivity {
         db.resetFeaturePositions();
         
         for (int i = 0; i < MAX_SLOTS; i++) slotAssignments[i] = null;
-        String[] keys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard", "wordmap", "peek"};
+        String[] keys = {"routine", "memo", "english", "reading", "today", "memorization", "search", "japanese", "settings", "secret", "dashboard", "wordmap", "pick"};
         
         // Arrange 3 features per row starting from 2nd row
         int currentKeyIdx = 0;
@@ -433,15 +441,17 @@ public class SelectionActivity extends AppCompatActivity {
                         iconRes = android.R.drawable.ic_menu_search;
                         clickListener = v -> startActivity(new Intent(this, SearchActivity.class));
                         break;
-                    case "peek":
-                        label = getString(R.string.feature_peek);
+                    case "pick":
+                        label = getString(R.string.feature_pick);
                         iconRes = R.drawable.ic_crown;
-                        clickListener = v -> showPeekDialog();
+                        clickListener = v -> showPickDialog();
                         break;
                 }
 
                 btn.setText(label);
-                btn.setIcon(ContextCompat.getDrawable(this, iconRes));
+                if (iconRes != 0) {
+                    btn.setIcon(ContextCompat.getDrawable(this, iconRes));
+                }
                 
                 final View.OnClickListener originalListener = clickListener;
                 final String featureId = type;
@@ -604,7 +614,19 @@ public class SelectionActivity extends AppCompatActivity {
     private void initAds() {
         com.google.android.gms.ads.MobileAds.initialize(this, status -> {});
         AdView adView = findViewById(R.id.adView);
-        if (adView != null) adView.loadAd(new com.google.android.gms.ads.AdRequest.Builder().build());
+        if (adView != null) {
+            adView.setAdListener(new com.google.android.gms.ads.AdListener() {
+                @Override
+                public void onAdFailedToLoad(@androidx.annotation.NonNull com.google.android.gms.ads.LoadAdError adError) {
+                    adView.setVisibility(View.GONE);
+                }
+                @Override
+                public void onAdLoaded() {
+                    adView.setVisibility(View.VISIBLE);
+                }
+            });
+            adView.loadAd(new com.google.android.gms.ads.AdRequest.Builder().build());
+        }
     }
 
     @Override public boolean onCreateOptionsMenu(Menu menu) { getMenuInflater().inflate(R.menu.menu_main, menu); return true; }
@@ -1018,28 +1040,34 @@ public class SelectionActivity extends AppCompatActivity {
     }
 
     private void showAdvancedTtsVoiceDialog() {
-        if (tempTts != null) tempTts.shutdown();
-        tempTts = new TextToSpeech(this, status -> {
-            if (status == TextToSpeech.SUCCESS) {
-                Set<Voice> allVoices = tempTts.getVoices();
-                List<Voice> koVoices = new ArrayList<>();
-                if (allVoices != null) for (Voice v : allVoices) if (v.getLocale().getLanguage().equals("ko")) koVoices.add(v);
-                if (koVoices.isEmpty()) { runOnUiThread(() -> Toast.makeText(this, "한국어 목소리가 없습니다.", Toast.LENGTH_SHORT).show()); return; }
-                String[] voiceNames = new String[koVoices.size()];
-                for (int i = 0; i < koVoices.size(); i++) voiceNames[i] = koVoices.get(i).getName();
-                String currentVoiceName = getSharedPreferences("AppPrefs", MODE_PRIVATE).getString("ttsVoiceName", "");
-                int initialChecked = -1;
-                for (int i = 0; i < voiceNames.length; i++) if (voiceNames[i].equals(currentVoiceName)) initialChecked = i;
-                final int checkedItem = initialChecked;
-                runOnUiThread(() -> new AlertDialog.Builder(this).setTitle("TTS 목소리 상세 선택").setSingleChoiceItems(voiceNames, checkedItem, (dialog, which) -> {
-                    getSharedPreferences("AppPrefs", MODE_PRIVATE).edit().putString("ttsVoiceName", voiceNames[which]).apply();
-                    dialog.dismiss();
-                    Toast.makeText(this, "목소리가 설정되었습니다.", Toast.LENGTH_SHORT).show();
-                }).setPositiveButton("시스템 설정", (dialog, which) -> {
-                    try { startActivity(new Intent("com.android.settings.TTS_SETTINGS")); } catch (Exception e) { Toast.makeText(this, "설정 화면을 열 수 없습니다.", Toast.LENGTH_SHORT).show(); }
-                }).setNegativeButton("취소", null).show());
-            }
-        });
+        if (tts != null) {
+            // Check if tts is already initialized
+        }
+        
+        // We reuse the class-level tts object
+        Set<Voice> allVoices = tts.getVoices();
+        List<Voice> koVoices = new ArrayList<>();
+        if (allVoices != null) for (Voice v : allVoices) if (v.getLocale().getLanguage().equals("ko")) koVoices.add(v);
+        
+        if (koVoices.isEmpty()) {
+            Toast.makeText(this, "한국어 목소리가 없습니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        
+        String[] voiceNames = new String[koVoices.size()];
+        for (int i = 0; i < koVoices.size(); i++) voiceNames[i] = koVoices.get(i).getName();
+        String currentVoiceName = getSharedPreferences("AppPrefs", MODE_PRIVATE).getString("ttsVoiceName", "");
+        int initialChecked = -1;
+        for (int i = 0; i < voiceNames.length; i++) if (voiceNames[i].equals(currentVoiceName)) initialChecked = i;
+        final int checkedItem = initialChecked;
+        
+        new AlertDialog.Builder(this).setTitle("TTS 목소리 상세 선택").setSingleChoiceItems(voiceNames, checkedItem, (dialog, which) -> {
+            getSharedPreferences("AppPrefs", MODE_PRIVATE).edit().putString("ttsVoiceName", voiceNames[which]).apply();
+            dialog.dismiss();
+            Toast.makeText(this, "목소리가 설정되었습니다.", Toast.LENGTH_SHORT).show();
+        }).setPositiveButton("시스템 설정", (dialog, which) -> {
+            try { startActivity(new Intent("com.android.settings.TTS_SETTINGS")); } catch (Exception e) { Toast.makeText(this, "설정 화면을 열 수 없습니다.", Toast.LENGTH_SHORT).show(); }
+        }).setNegativeButton("취소", null).show();
     }
 
     @Override protected void onDestroy() { 
@@ -1050,7 +1078,10 @@ public class SelectionActivity extends AppCompatActivity {
             clickSoundPlayer.release();
             clickSoundPlayer = null;
         }
-        if (tempTts != null) tempTts.shutdown(); 
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
         super.onDestroy(); 
     }
     private void showBackupOptions() {
@@ -1248,7 +1279,7 @@ public class SelectionActivity extends AppCompatActivity {
         // Obsolete
     }
 
-    private void showPeekDialog() {
+    private void showPickDialog() {
         TodoDbHelper db = new TodoDbHelper(this);
         List<ReadingNoteItem> notes = db.getAllReadingNotes();
         List<MemoItem> memos = db.getAllMemos();
@@ -1280,11 +1311,11 @@ public class SelectionActivity extends AppCompatActivity {
         }
 
         View dialogView = getLayoutInflater().inflate(R.layout.activity_memo_detail, null);
-        // Hide UI elements not needed for Peek
+        // Theme attributes (?attr/...) in layout will handle colors
+        
         if (dialogView.findViewById(R.id.toolbar_memo_detail) != null) {
             ((View)dialogView.findViewById(R.id.toolbar_memo_detail).getParent()).setVisibility(View.GONE);
         }
-        dialogView.findViewById(R.id.layout_memo_detail_btns).setVisibility(View.GONE);
         dialogView.findViewById(R.id.adView).setVisibility(View.GONE);
         
         TextView tvTitle = dialogView.findViewById(R.id.text_memo_view_title);
@@ -1296,11 +1327,30 @@ public class SelectionActivity extends AppCompatActivity {
         dialogView.findViewById(R.id.text_memo_view_remarks).setVisibility(View.GONE);
         dialogView.findViewById(R.id.text_memo_view_date).setVisibility(View.GONE);
 
+        final String finalContent = content;
+        // Setup TTS Button in Pick Dialog
+        MaterialButton btnTts = dialogView.findViewById(R.id.btn_memo_view_tts);
+        if (btnTts != null) {
+            btnTts.setOnClickListener(v -> {
+                if (tts != null) {
+                    float speed = getSharedPreferences("AppPrefs", MODE_PRIVATE).getFloat("ttsSpeed", 1.0f);
+                    tts.setSpeechRate(speed);
+                    tts.speak(finalContent, TextToSpeech.QUEUE_FLUSH, null, "PickTTS");
+                }
+            });
+        }
+        
+        // Hide unnecessary buttons for Pick mode
+        dialogView.findViewById(R.id.btn_memo_view_edit).setVisibility(View.GONE);
+        dialogView.findViewById(R.id.btn_memo_view_share).setVisibility(View.GONE);
+
         new AlertDialog.Builder(this)
-                .setTitle("Peek")
+                .setTitle("Pick")
                 .setView(dialogView)
-                .setPositiveButton("다시 보기", (dialog, which) -> showPeekDialog())
-                .setNegativeButton(R.string.button_close, null)
+                .setPositiveButton("다시 보기", (dialog, which) -> showPickDialog())
+                .setNegativeButton(R.string.button_close, (dialog, which) -> {
+                    if (tts != null) tts.stop();
+                })
                 .show();
     }
 }

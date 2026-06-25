@@ -158,10 +158,20 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void initAds() {
-        MobileAds.initialize(this, initializationStatus -> {});
+        com.google.android.gms.ads.MobileAds.initialize(this, initializationStatus -> {});
         AdView adView = findViewById(R.id.adView);
         if (adView != null) {
-            adView.loadAd(new AdRequest.Builder().build());
+            adView.setAdListener(new com.google.android.gms.ads.AdListener() {
+                @Override
+                public void onAdFailedToLoad(@androidx.annotation.NonNull com.google.android.gms.ads.LoadAdError adError) {
+                    adView.setVisibility(View.GONE);
+                }
+                @Override
+                public void onAdLoaded() {
+                    adView.setVisibility(View.VISIBLE);
+                }
+            });
+            adView.loadAd(new com.google.android.gms.ads.AdRequest.Builder().build());
         }
     }
 
