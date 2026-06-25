@@ -58,6 +58,10 @@ public class SecretNoteEditActivity extends AppCompatActivity {
         setupVerticalScroll(editContent);
         setupVerticalScroll(editRemarks);
 
+        setupFocusScroll(editTitle, scrollView);
+        setupFocusScroll(editContent, scrollView);
+        setupFocusScroll(editRemarks, scrollView);
+
         keepCursorCentered(editContent, scrollView);
         keepCursorCentered(editRemarks, scrollView);
 
@@ -101,6 +105,28 @@ public class SecretNoteEditActivity extends AppCompatActivity {
         });
         
         initAds();
+    }
+
+    private void setupFocusScroll(View view, NestedScrollView scrollView) {
+        view.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                v.postDelayed(() -> {
+                    int[] loc = new int[2];
+                    v.getLocationInWindow(loc);
+                    int[] scrollLoc = new int[2];
+                    scrollView.getLocationInWindow(scrollLoc);
+                    int y = loc[1] - scrollLoc[1] + scrollView.getScrollY();
+                    scrollView.smoothScrollTo(0, Math.max(0, y - 100));
+                }, 300);
+            }
+            if (v instanceof EditText) {
+                TextInputLayout layout = (TextInputLayout) v.getParent().getParent();
+                int max = (v == editTitle) ? 200 : (v == editContent ? 8192 : 2000);
+                String base = (v == editTitle) ? getString(R.string.label_title) : 
+                              (v == editContent ? getString(R.string.label_content) : getString(R.string.label_remarks));
+                updateHintWithByteCount((EditText)v, layout, ((EditText)v).getText().toString(), max, base);
+            }
+        });
     }
 
     private void setupByteCounter(EditText editText, TextInputLayout layout, int maxBytes, String baseHint) {

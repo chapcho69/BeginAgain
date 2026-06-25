@@ -59,6 +59,11 @@ public class MemorizationEditActivity extends AppCompatActivity {
         layoutContent = (TextInputLayout) editContent.getParent().getParent();
 
         setupVerticalScroll(editContent);
+        
+        setupFocusScroll(editTitle, scrollView);
+        setupFocusScroll(editKeyword, scrollView);
+        setupFocusScroll(editContent, scrollView);
+
         keepCursorCentered(editContent, scrollView);
 
         MaterialButton btnSave = findViewById(R.id.btn_memo_save);
@@ -119,6 +124,28 @@ public class MemorizationEditActivity extends AppCompatActivity {
         });
         
         initAds();
+    }
+
+    private void setupFocusScroll(View view, NestedScrollView scrollView) {
+        view.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                v.postDelayed(() -> {
+                    int[] loc = new int[2];
+                    v.getLocationInWindow(loc);
+                    int[] scrollLoc = new int[2];
+                    scrollView.getLocationInWindow(scrollLoc);
+                    int y = loc[1] - scrollLoc[1] + scrollView.getScrollY();
+                    scrollView.smoothScrollTo(0, Math.max(0, y - 100));
+                }, 300);
+            }
+            if (v instanceof EditText) {
+                TextInputLayout layout = (TextInputLayout) v.getParent().getParent();
+                int max = (v == editTitle) ? 200 : (v == editKeyword ? 400 : 8192);
+                String base = (v == editTitle) ? getString(R.string.label_title) : 
+                              (v == editKeyword ? getString(R.string.label_keyword) : getString(R.string.label_content));
+                updateHintWithByteCount((EditText)v, layout, ((EditText)v).getText().toString(), max, base);
+            }
+        });
     }
 
     private void setupByteCounter(EditText editText, TextInputLayout layout, int maxBytes, String baseHint) {

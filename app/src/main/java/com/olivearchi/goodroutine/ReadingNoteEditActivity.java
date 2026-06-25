@@ -96,6 +96,11 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
         setupVerticalScroll(editContent);
         setupVerticalScroll(editRemarks);
 
+        // Ensure focused field is visible when keyboard appears
+        setupFocusScroll(editBookTitle, scrollView);
+        setupFocusScroll(editContent, scrollView);
+        setupFocusScroll(editRemarks, scrollView);
+
         keepCursorCentered(editContent, scrollView);
         keepCursorCentered(editRemarks, scrollView);
 
@@ -166,6 +171,34 @@ public class ReadingNoteEditActivity extends AppCompatActivity {
         });
         
         initAds();
+    }
+
+    private void setupFocusScroll(View view, NestedScrollView scrollView) {
+        view.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                v.postDelayed(() -> {
+                    int[] loc = new int[2];
+                    v.getLocationInWindow(loc);
+                    int[] scrollLoc = new int[2];
+                    scrollView.getLocationInWindow(scrollLoc);
+                    int y = loc[1] - scrollLoc[1] + scrollView.getScrollY();
+                    scrollView.smoothScrollTo(0, Math.max(0, y - 100));
+                }, 300);
+            }
+            // Update hint logic when focus changes
+            if (v instanceof EditText) {
+                TextInputLayout layout = null;
+                if (v == editBookTitle) layout = layoutBookTitle;
+                else if (v == editContent) layout = layoutContent;
+                else if (v == editRemarks) layout = layoutRemarks;
+                if (layout != null) {
+                    int max = (v == editBookTitle) ? 200 : (v == editContent ? 8192 : 2000);
+                    String base = (v == editBookTitle) ? getString(R.string.label_word) : 
+                                  (v == editContent ? getString(R.string.label_content) : getString(R.string.label_remarks));
+                    updateHintWithByteCount((EditText)v, layout, ((EditText)v).getText().toString(), max, base);
+                }
+            }
+        });
     }
 
     private void openCamera() {
