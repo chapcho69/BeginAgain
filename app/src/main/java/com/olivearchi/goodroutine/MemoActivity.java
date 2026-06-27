@@ -143,7 +143,12 @@ public class MemoActivity extends AppCompatActivity implements TextToSpeech.OnIn
     private void showAutoPlayOverlay(MemoItem item) {
         if (autoPlayDialog != null) autoPlayDialog.dismiss();
         View view = getLayoutInflater().inflate(R.layout.activity_memo_detail, null);
-        view.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, R.color.app_background));
+        
+        // Use theme background color
+        android.util.TypedValue typedValue = new android.util.TypedValue();
+        getTheme().resolveAttribute(R.attr.mainBackgroundColor, typedValue, true);
+        view.setBackgroundColor(typedValue.data);
+
         ((TextView)view.findViewById(R.id.text_memo_view_title)).setText(item.getTitle());
         ((TextView)view.findViewById(R.id.text_memo_view_content)).setText(item.getContent());
         ((TextView)view.findViewById(R.id.text_memo_view_remarks)).setText(item.getRemarks());

@@ -74,10 +74,19 @@ public class MemorizationDetailActivity extends AppCompatActivity implements Tex
         });
 
         MaterialButton btnTts = findViewById(R.id.btn_memo_detail_tts);
-        btnTts.setOnClickListener(v -> speakText(item.getContent()));
+        btnTts.setOnClickListener(v -> {
+            String content = (item.getContent() != null) ? item.getContent() : "";
+            speakText(content);
+        });
 
         MaterialButton btnShare = findViewById(R.id.btn_memo_detail_share);
-        btnShare.setOnClickListener(v -> showShareOptions());
+        btnShare.setOnClickListener(v -> {
+            if (item.getContent() == null || item.getContent().isEmpty()) {
+                Toast.makeText(this, "공유할 내용이 없습니다.", Toast.LENGTH_SHORT).show();
+            } else {
+                showShareOptions();
+            }
+        });
 
         tts = new TextToSpeech(this, this);
         initAds();
@@ -107,10 +116,24 @@ public class MemorizationDetailActivity extends AppCompatActivity implements Tex
         if (files != null) for (File f : files) f.delete();
 
         for (int i = 0; i < chunks.size(); i++) {
-            View cardView = LayoutInflater.from(this).inflate(R.layout.layout_reading_note_card, null);
-            ((TextView)cardView.findViewById(R.id.card_book_title)).setText(item.getTitle() + (chunks.size() > 1 ? " (" + (i + 1) + "/" + chunks.size() + ")" : ""));
-            ((TextView)cardView.findViewById(R.id.card_content)).setText(chunks.get(i));
-            ((TextView)cardView.findViewById(R.id.card_date)).setText(item.getUpdatedAt());
+            View cardView = LayoutInflater.from(this).inflate(R.layout.final_share_card, null);
+            
+            TextView tvTitle = cardView.findViewById(R.id.card_book_title);
+            TextView tvContent = cardView.findViewById(R.id.card_content);
+            TextView tvDate = cardView.findViewById(R.id.card_date);
+            TextView tvTag = cardView.findViewById(R.id.card_tag);
+
+            String displayTitle = (item.getTitle() != null) ? item.getTitle() : "";
+            if (chunks.size() > 1) displayTitle += " (" + (i + 1) + "/" + chunks.size() + ")";
+            
+            if (tvTitle != null) tvTitle.setText(displayTitle);
+            if (tvContent != null) tvContent.setText(chunks.get(i));
+            if (tvDate != null) tvDate.setText(item.getUpdatedAt());
+
+            if (tvTag != null) {
+                String rawTag = (item.getTitle() != null) ? item.getTitle() : "";
+                tvTag.setText("#" + rawTag.trim().replace(" ", "_"));
+            }
 
             cardView.measure(View.MeasureSpec.makeMeasureSpec(1200, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
             cardView.layout(0, 0, cardView.getMeasuredWidth(), cardView.getMeasuredHeight());

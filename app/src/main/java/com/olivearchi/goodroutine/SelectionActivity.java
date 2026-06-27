@@ -208,24 +208,17 @@ public class SelectionActivity extends AppCompatActivity {
         featureColors.clear();
 
         if (features.isEmpty()) {
-            // Initial/Default Setup - Starting from 2nd row
-            // First row has 4 slots (0, 1, 2, 3), so 2nd row starts at index 4
-            int startIdx = 4;
-            slotAssignments[startIdx] = "routine";
-            slotAssignments[startIdx + 1] = "memo";
-            slotAssignments[startIdx + 2] = "english";
-            slotAssignments[startIdx + 3] = "reading";
-            slotAssignments[startIdx + 4] = "search";
-            slotAssignments[startIdx + 5] = "today";
-            slotAssignments[startIdx + 6] = "japanese";
-            slotAssignments[startIdx + 7] = "memorization";
-            slotAssignments[startIdx + 8] = "settings";
-            slotAssignments[startIdx + 9] = "secret";
-            slotAssignments[startIdx + 10] = "dashboard";
-            slotAssignments[startIdx + 11] = "wordmap";
-            slotAssignments[startIdx + 12] = "pick";
+            // arrange 3 features per row starting from row 2
+            int currentKeyIdx = 0;
+            int[] rowStarts = {4, 9, 13, 18, 22, 27, 31, 36};
             
-            // Default color is Pastel Blue for all except search
+            for (int rowStart : rowStarts) {
+                for (int i = 0; i < 3 && currentKeyIdx < requiredKeys.length; i++) {
+                    slotAssignments[rowStart + i] = requiredKeys[currentKeyIdx++];
+                }
+                if (currentKeyIdx >= requiredKeys.length) break;
+            }
+
             int defaultColor = ContextCompat.getColor(this, R.color.pastel_blue);
             for (String key : requiredKeys) {
                 featureColors.put(key, key.equals("search") ? 0xFFB0BEC5 : defaultColor);
@@ -1331,13 +1324,7 @@ public class SelectionActivity extends AppCompatActivity {
         // Setup TTS Button in Pick Dialog
         MaterialButton btnTts = dialogView.findViewById(R.id.btn_memo_view_tts);
         if (btnTts != null) {
-            btnTts.setOnClickListener(v -> {
-                if (tts != null) {
-                    float speed = getSharedPreferences("AppPrefs", MODE_PRIVATE).getFloat("ttsSpeed", 1.0f);
-                    tts.setSpeechRate(speed);
-                    tts.speak(finalContent, TextToSpeech.QUEUE_FLUSH, null, "PickTTS");
-                }
-            });
+            btnTts.setOnClickListener(v -> speakPickText(finalContent));
         }
         
         // Hide unnecessary buttons for Pick mode
@@ -1347,10 +1334,41 @@ public class SelectionActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle("Pick")
                 .setView(dialogView)
-                .setPositiveButton("다시 보기", (dialog, which) -> showPickDialog())
+                .setPositiveButton("다시 보기", (dialog, which) -> {
+                    if (tts != null) tts.stop();
+                    showPickDialog();
+                })
                 .setNegativeButton(R.string.button_close, (dialog, which) -> {
                     if (tts != null) tts.stop();
                 })
+                .setOnCancelListener(dialog -> {
+                    if (tts != null) tts.stop();
+                })
                 .show();
+    }
+
+    private void speakPickText(String text) {
+        if (tts != null) {
+            float speed = getSharedPreferences("AppPrefs", MODE_PRIVATE).getFloat("ttsSpeed", 1.0f);
+            int voiceType = getSharedPreferences("AppPrefs", MODE_PRIVATE).getInt("ttsVoiceType", 0);
+            tts.setSpeechRate(speed);
+            boolean voiceSet = false;
+            Set<Voice> voices = tts.getVoices();
+            if (voices != null) {
+                for (Voice v : voices) {
+                    if (v.getLocale().getLanguage().equals("ko")) {
+                        String name = v.getName().toLowerCase();
+                        if (voiceType == 1) {
+                            if (name.contains("male") || name.contains("남성") || name.contains("-b")) { tts.setVoice(v); voiceSet = true; break; }
+                        } else {
+                            if (name.contains("female") || name.contains("여성") || name.contains("-a")) { tts.setVoice(v); voiceSet = true; break; }
+                        }
+                    }
+                }
+            }
+            if (!voiceSet) tts.setPitch(voiceType == 0 ? 1.0f : 0.75f);
+            else tts.setPitch(1.0f);
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "PickTTS");
+        }
     }
 }

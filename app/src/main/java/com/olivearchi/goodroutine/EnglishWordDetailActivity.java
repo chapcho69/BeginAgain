@@ -39,6 +39,7 @@ public class EnglishWordDetailActivity extends AppCompatActivity implements Text
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeHelper.applyTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_english_word_detail);
 

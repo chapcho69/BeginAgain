@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map;
 
 public class TodoDbHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "todos.db";
@@ -870,6 +869,20 @@ public class TodoDbHelper extends SQLiteOpenHelper {
         c.close();
         db.close();
         return list;
+    }
+
+    public SecretNoteItem getSecretNoteById(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.query(TABLE_SECRET_NOTES, null, COLUMN_S_ID + " = ?", new String[]{String.valueOf(id)}, null, null, null);
+        SecretNoteItem item = null;
+        if (c.moveToFirst()) {
+            item = new SecretNoteItem(c.getString(c.getColumnIndexOrThrow(COLUMN_S_TITLE)), c.getString(c.getColumnIndexOrThrow(COLUMN_S_CONTENT)), c.getString(c.getColumnIndexOrThrow(COLUMN_S_REMARKS)), c.getString(c.getColumnIndexOrThrow(COLUMN_S_CREATED_AT)));
+            item.setId(c.getLong(c.getColumnIndexOrThrow(COLUMN_S_ID)));
+            item.setFavorite(c.getInt(c.getColumnIndexOrThrow(COLUMN_S_FAVORITE)) == 1);
+        }
+        c.close();
+        db.close();
+        return item;
     }
 
     public void updateSecretNote(SecretNoteItem item) {

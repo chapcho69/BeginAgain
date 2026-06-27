@@ -19,19 +19,41 @@ public class SecretNoteDetailActivity extends AppCompatActivity {
     }
 
     private SecretNoteItem item;
+    private TodoDbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeHelper.applyTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secret_note_detail);
 
-        item = (SecretNoteItem) getIntent().getSerializableExtra("note_item");
-        if (item == null) { finish(); return; }
+        dbHelper = new TodoDbHelper(this);
+        long id = getIntent().getLongExtra("note_id", -1);
+        if (id != -1) {
+            item = dbHelper.getSecretNoteById(id);
+        }
 
-        ((TextView)findViewById(R.id.text_secret_view_title)).setText(item.getTitle());
-        ((TextView)findViewById(R.id.text_secret_view_content)).setText(item.getContent());
-        ((TextView)findViewById(R.id.text_secret_view_remarks)).setText("비고: " + item.getRemarks());
-        ((TextView)findViewById(R.id.text_secret_view_date)).setText("작성일: " + item.getCreatedAt());
+        if (item == null) {
+            android.widget.Toast.makeText(this, "항목을 불러올 수 없습니다.", android.widget.Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        setSupportActionBar(findViewById(R.id.toolbar_secret_detail));
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(R.string.feature_secret);
+        }
+
+        String title = (item.getTitle() != null) ? item.getTitle() : "";
+        String content = (item.getContent() != null) ? item.getContent() : "";
+        String remarks = (item.getRemarks() != null) ? item.getRemarks() : "";
+        String date = (item.getCreatedAt() != null) ? item.getCreatedAt() : "";
+
+        ((TextView)findViewById(R.id.text_secret_view_title)).setText(SearchHighlightUtils.getHighlightedText(title));
+        ((TextView)findViewById(R.id.text_secret_view_content)).setText(SearchHighlightUtils.getHighlightedText(content));
+        ((TextView)findViewById(R.id.text_secret_view_remarks)).setText(SearchHighlightUtils.getHighlightedText("비고: " + remarks));
+        ((TextView)findViewById(R.id.text_secret_view_date)).setText("작성일: " + date);
 
         MaterialButton btnEdit = findViewById(R.id.btn_secret_detail_edit);
         btnEdit.setOnClickListener(v -> {
@@ -61,5 +83,11 @@ public class SecretNoteDetailActivity extends AppCompatActivity {
             com.google.android.gms.ads.AdRequest adRequest = new com.google.android.gms.ads.AdRequest.Builder().build();
             adView.loadAd(adRequest);
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

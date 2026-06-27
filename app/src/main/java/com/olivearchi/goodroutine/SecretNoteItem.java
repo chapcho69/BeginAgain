@@ -3,6 +3,7 @@ package com.olivearchi.goodroutine;
 import java.io.Serializable;
 
 public class SecretNoteItem implements Serializable {
+    private static final long serialVersionUID = 1L;
     private long id;
     private String title;
     private String content;

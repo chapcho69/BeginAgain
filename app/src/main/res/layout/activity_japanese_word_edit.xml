@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background"
+    android:background="?attr/mainBackgroundColor"
     android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/app_background"
+        android:background="?attr/mainBackgroundColor"
         app:elevation="0dp">
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_japanese_edit"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/title_add_japanese"
-            app:titleTextColor="#333333" />
+            app:titleTextColor="?attr/mainTextColor" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView

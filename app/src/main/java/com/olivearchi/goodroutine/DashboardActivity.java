@@ -86,7 +86,11 @@ public class DashboardActivity extends AppCompatActivity {
         
         TextView tv = new TextView(this);
         tv.setTextSize(16);
-        tv.setTextColor(0xFF333333);
+        
+        android.util.TypedValue typedValue = new android.util.TypedValue();
+        getTheme().resolveAttribute(R.attr.mainTextColor, typedValue, true);
+        tv.setTextColor(typedValue.data);
+        
         tv.setLineSpacing(8f, 1f);
         
         String summary = String.format(java.util.Locale.getDefault(), 
@@ -139,6 +143,10 @@ public class DashboardActivity extends AppCompatActivity {
             label.setText(month);
             label.setLayoutParams(new LinearLayout.LayoutParams(200, LinearLayout.LayoutParams.WRAP_CONTENT));
             
+            android.util.TypedValue typedValue = new android.util.TypedValue();
+            getTheme().resolveAttribute(R.attr.mainTextColor, typedValue, true);
+            label.setTextColor(typedValue.data);
+            
             View bar = new View(this);
             int barWidth = (int) ((count / (float) max) * 400); 
             if (barWidth < 10) barWidth = 10;
@@ -149,6 +157,7 @@ public class DashboardActivity extends AppCompatActivity {
 
             TextView valText = new TextView(this);
             valText.setText(count + unit);
+            valText.setTextColor(typedValue.data);
 
             row.addView(label);
             row.addView(bar);

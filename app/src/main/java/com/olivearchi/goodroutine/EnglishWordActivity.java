@@ -165,11 +165,17 @@ public class EnglishWordActivity extends AppCompatActivity implements TextToSpee
     private void showAutoPlayOverlay(EnglishWordItem item) {
         if (autoPlayDialog != null) autoPlayDialog.dismiss();
         View view = getLayoutInflater().inflate(R.layout.activity_english_word_detail, null);
+        
+        // Use theme background color
+        android.util.TypedValue typedValue = new android.util.TypedValue();
+        getTheme().resolveAttribute(R.attr.mainBackgroundColor, typedValue, true);
+        view.setBackgroundColor(typedValue.data);
+
         ((TextView)view.findViewById(R.id.text_english_word)).setText(item.getWord());
         ((TextView)view.findViewById(R.id.text_english_meaning)).setText(item.getMeaning());
         ((TextView)view.findViewById(R.id.text_english_example)).setText(item.getExample());
         view.findViewById(R.id.layout_english_btns).setVisibility(View.GONE);
-        autoPlayDialog = new AlertDialog.Builder(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+        autoPlayDialog = new AlertDialog.Builder(this, android.R.style.Theme_Light_NoTitleBar_Fullscreen)
                 .setView(view).setCancelable(true).setOnCancelListener(dialog -> stopPlayback()).create();
         autoPlayDialog.show();
         repeatCount = 0;

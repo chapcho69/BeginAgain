@@ -145,7 +145,12 @@ public class ReadingNoteActivity extends AppCompatActivity implements TextToSpee
     private void showAutoPlayOverlay(ReadingNoteItem item) {
         if (autoPlayDialog != null) autoPlayDialog.dismiss();
         View view = getLayoutInflater().inflate(R.layout.activity_reading_note_detail, null);
-        view.setBackgroundColor(ContextCompat.getColor(this, R.color.app_background));
+        
+        // Use theme background color
+        android.util.TypedValue typedValue = new android.util.TypedValue();
+        getTheme().resolveAttribute(R.attr.mainBackgroundColor, typedValue, true);
+        view.setBackgroundColor(typedValue.data);
+
         ((TextView)view.findViewById(R.id.text_detail_book_title)).setText(item.getBookTitle());
         ((TextView)view.findViewById(R.id.text_detail_content)).setText(item.getContent());
         ((TextView)view.findViewById(R.id.text_detail_remarks)).setText(item.getRemarks());

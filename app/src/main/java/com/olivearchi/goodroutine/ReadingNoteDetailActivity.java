@@ -74,10 +74,19 @@ public class ReadingNoteDetailActivity extends AppCompatActivity implements Text
         });
 
         MaterialButton btnTts = findViewById(R.id.btn_detail_tts);
-        btnTts.setOnClickListener(v -> speakText(item.getContent()));
+        btnTts.setOnClickListener(v -> {
+            String content = (item.getContent() != null) ? item.getContent() : "";
+            speakText(content);
+        });
 
         MaterialButton btnShare = findViewById(R.id.btn_detail_share);
-        btnShare.setOnClickListener(v -> showShareOptions());
+        btnShare.setOnClickListener(v -> {
+            if (item.getContent() == null || item.getContent().isEmpty()) {
+                Toast.makeText(this, "공유할 내용이 없습니다.", Toast.LENGTH_SHORT).show();
+            } else {
+                showShareOptions();
+            }
+        });
 
         tts = new TextToSpeech(this, this);
         initAds();
@@ -118,29 +127,35 @@ public class ReadingNoteDetailActivity extends AppCompatActivity implements Text
         if (files != null) for (File f : files) f.delete();
 
         for (int i = 0; i < chunks.size(); i++) {
-            View cardView = LayoutInflater.from(this).inflate(R.layout.layout_reading_note_card, null);
-            View container = cardView.findViewById(R.id.card_container);
+            View cardView = LayoutInflater.from(this).inflate(R.layout.final_share_card, null);
+            View container = cardView.findViewById(R.id.card_container_v2);
             if (container instanceof androidx.cardview.widget.CardView) {
                 ((androidx.cardview.widget.CardView)container).setCardBackgroundColor(bgColor);
             }
             
-            TextView tvHeader = cardView.findViewById(R.id.card_header_text); // Need to add ID
+            TextView tvHeader = cardView.findViewById(R.id.card_header_text);
             TextView tvTitle = cardView.findViewById(R.id.card_book_title);
             TextView tvContent = cardView.findViewById(R.id.card_content);
             TextView tvDate = cardView.findViewById(R.id.card_date);
-            TextView tvTag = cardView.findViewById(R.id.card_tag); // Need to add ID
+            TextView tvTag = cardView.findViewById(R.id.card_tag);
             
             // Set Text Colors
-            tvTitle.setTextColor(textColor);
-            tvContent.setTextColor(textColor);
+            if (tvTitle != null) tvTitle.setTextColor(textColor);
+            if (tvContent != null) tvContent.setTextColor(textColor);
             if (tvHeader != null) tvHeader.setTextColor(textColor);
             if (tvTag != null) tvTag.setTextColor(textColor);
 
-            String displayTitle = item.getBookTitle();
+            String displayTitle = (item.getBookTitle() != null) ? item.getBookTitle() : "";
             if (chunks.size() > 1) displayTitle += " (" + (i + 1) + "/" + chunks.size() + ")";
-            tvTitle.setText(displayTitle);
-            tvContent.setText(chunks.get(i));
-            tvDate.setText(item.getModifiedDateTime());
+            if (tvTitle != null) tvTitle.setText(displayTitle);
+            if (tvContent != null) tvContent.setText(chunks.get(i));
+            if (tvDate != null) tvDate.setText(item.getModifiedDateTime());
+
+            // Set Tag (Replace default with book title)
+            String rawTag = (item.getBookTitle() != null) ? item.getBookTitle() : "";
+            if (tvTag != null) {
+                tvTag.setText("#" + rawTag.trim().replace(" ", "_"));
+            }
 
             cardView.measure(View.MeasureSpec.makeMeasureSpec(1200, View.MeasureSpec.EXACTLY),
                     View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));

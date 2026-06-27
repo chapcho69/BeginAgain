@@ -4,25 +4,32 @@ plugins {
 
 android {
     namespace = "com.olivearchi.goodroutine"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.olivearchi.goodroutine"
         minSdk = 24
-        targetSdk = 36
-        versionCode = 8
-        versionName = "4.8"
+        targetSdk = 35
+        versionCode = 31
+        versionName = "5.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        
+        ndk {
+            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
+        }
+    }
+
+    bundle {
+        language { enableSplit = false }
+        density { enableSplit = false }
+        abi { enableSplit = false }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
+            isShrinkResources = false
             signingConfig = signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -37,12 +44,9 @@ android {
     buildFeatures {
         viewBinding = true
     }
-}
-
-androidComponents {
-    onVariants { variant ->
-        variant.outputs.forEach { output ->
-            output.outputFileName.set("app2-${variant.name}.apk")
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
         }
     }
 }
@@ -56,6 +60,8 @@ dependencies {
     implementation(libs.navigation.ui)
     implementation(libs.play.services.ads)
     implementation(libs.mlkit.text.recognition)
+    implementation("com.google.mlkit:text-recognition-korean:16.0.1")
+    implementation("com.google.android.play:feature-delivery:2.1.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Begin Again</string>
-    <string name="app_version">4.8</string>
-    <string name="build_date">2026-06-12 (Rev.8)</string>
+    <string name="app_version">5.0.1</string>
+    <string name="build_date">2026-06-27 (Rev.11)</string>
     <string name="action_settings">설정</string>
     <string name="action_home">홈</string>
     <string name="action_backup">데이터 보관</string>
@@ -54,6 +54,10 @@
     <string name="feature_wordmap">어휘 Map</string>
     <string name="feature_pick">Pick</string>
     <string name="feature_settings">설정</string>
+
+    <!-- AdMob IDs -->
+    <string name="admob_app_id">ca-app-pub-2726657770670880~1788476962</string>
+    <string name="admob_unit_id">ca-app-pub-2726657770670880/4458872336</string>
 
     <string name="filter_all">전체</string>
     <string name="filter_month">최근 1개월</string>

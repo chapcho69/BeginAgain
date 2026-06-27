@@ -158,7 +158,7 @@ public class SecretNoteActivity extends AppCompatActivity {
 
         adapter = new SecretNoteAdapter(currentNotes, item -> {
             Intent intent = new Intent(this, SecretNoteDetailActivity.class);
-            intent.putExtra("note_item", item);
+            intent.putExtra("note_id", item.getId());
             startActivity(intent);
         }, (item, newState) -> {
             dbHelper.toggleSecretNoteFavorite(item.getId(), newState);

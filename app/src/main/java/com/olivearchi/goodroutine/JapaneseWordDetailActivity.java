@@ -39,6 +39,7 @@ public class JapaneseWordDetailActivity extends AppCompatActivity implements Tex
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeHelper.applyTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_japanese_word_detail);
 

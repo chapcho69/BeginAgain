@@ -36,7 +36,7 @@
                 android:text="@string/title_dashboard_heatmap"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#333333" />
+                android:textColor="?attr/mainTextColor" />
 
             <HorizontalScrollView
                 android:id="@+id/scroll_heatmap"
@@ -62,7 +62,7 @@
                 android:text="@string/title_dashboard_reading"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#333333" />
+                android:textColor="?attr/mainTextColor" />
 
             <LinearLayout
                 android:id="@+id/layout_reading_stats"
@@ -83,7 +83,7 @@
                 android:text="@string/title_dashboard_memo"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#333333" />
+                android:textColor="?attr/mainTextColor" />
 
             <LinearLayout
                 android:id="@+id/layout_memo_stats"
@@ -104,7 +104,7 @@
                 android:text="@string/title_dashboard_memorization"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#333333" />
+                android:textColor="?attr/mainTextColor" />
 
             <LinearLayout
                 android:id="@+id/layout_memorization_stats"
@@ -120,7 +120,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="4dp"
                 app:adSize="BANNER"
-                app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+                app:adUnitId="@string/admob_unit_id" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

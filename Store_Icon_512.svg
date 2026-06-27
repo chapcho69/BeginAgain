@@ -1,0 +1,12 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: Signature Greenish White -->
+  <rect width="512" height="512" rx="100" fill="#DEF0DE"/>
+
+  <!-- Central Hexagon: Dark Green -->
+  <path d="M256,80 L408,168 L408,344 L256,432 L104,344 L104,168 Z" fill="#2E7D32"/>
+
+  <!-- Bicycle Icon: White (Scaled and Centered) -->
+  <g transform="translate(144,144) scale(9.3)">
+    <path d="M15.5,12c2.48,0 4.5,2.02 4.5,4.5s-2.02,4.5 -4.5,4.5c-2.48,0 -4.5,-2.02 -4.5,-4.5S13.02,12 15.5,12zM15.5,19c1.38,0 2.5,-1.12 2.5,-2.5s-1.12,-2.5 -2.5,-2.5s-2.5,1.12 -2.5,2.5S14.12,19 15.5,19zM5,12c2.48,0 4.5,2.02 4.5,4.5S7.48,21 5,21s-4.5,-2.02 -4.5,-4.5S2.52,12 5,12zM5,19c1.38,0 2.5,-1.12 2.5,-2.5S6.38,14 5,14s-2.5,1.12 -2.5,2.5S3.62,19 5,19zM10.8,12.2l-2.4,-3.6h2.2l2,3.6h2.2l-1.6,-6h-5.2l-0.8,2h-2.2v-2h3.4l1.2,-3h4.4l2,7.2h3.2v2h-4.8z" fill="#FFFFFF"/>
+  </g>
+</svg>

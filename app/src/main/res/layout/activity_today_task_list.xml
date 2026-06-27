@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp"
-            android:background="#F5F5F5"
+            android:background="?attr/mainBackgroundColor"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="#333333"
+                android:textColor="?attr/mainTextColor"
                 tools:text="소요시간 합계: 120분" />
 
             <TextView
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            ads:adUnitId="@string/admob_unit_id"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

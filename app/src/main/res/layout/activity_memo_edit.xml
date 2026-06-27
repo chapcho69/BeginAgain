@@ -4,18 +4,18 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background"
+    android:background="?attr/mainBackgroundColor"
     android:fitsSystemWindows="true">
 
     <TextView
         android:id="@+id/text_usage_indicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/app_background"
+        android:background="?attr/mainBackgroundColor"
         android:paddingHorizontal="16dp"
         android:paddingVertical="4dp"
         android:textSize="12sp"
-        android:textColor="#333333"
+        android:textColor="?attr/mainTextColor"
         android:gravity="end"
         android:visibility="visible"
         app:layout_constraintTop_toTopOf="parent" />
@@ -117,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        ads:adUnitId="@string/admob_unit_id"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

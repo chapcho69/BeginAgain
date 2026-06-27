@@ -24,18 +24,18 @@
 
     <!-- 3. 푸른 바다 느낌 -->
     <style name="Theme.GoodRoutine.Sea" parent="Base.Theme.GoodRoutine">
-        <item name="mainBackgroundColor">#81D4FA</item>
-        <item name="mainTextColor">#FFFFFF</item>
-        <item name="secondaryTextColor">#E1F5FE</item>
-        <item name="android:windowBackground">#81D4FA</item>
+        <item name="mainBackgroundColor">#B3E5FC</item>
+        <item name="mainTextColor">#01579B</item>
+        <item name="secondaryTextColor">#0288D1</item>
+        <item name="android:windowBackground">#B3E5FC</item>
     </style>
 
     <!-- 4. 숲 느낌 -->
     <style name="Theme.GoodRoutine.Forest" parent="Base.Theme.GoodRoutine">
-        <item name="mainBackgroundColor">#81C784</item>
-        <item name="mainTextColor">#FFFFFF</item>
-        <item name="secondaryTextColor">#E8F5E9</item>
-        <item name="android:windowBackground">#81C784</item>
+        <item name="mainBackgroundColor">#C8E6C9</item>
+        <item name="mainTextColor">#1B5E20</item>
+        <item name="secondaryTextColor">#388E3C</item>
+        <item name="android:windowBackground">#C8E6C9</item>
     </style>
 
     <!-- Legacy Compatibility -->

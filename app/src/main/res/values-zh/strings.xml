@@ -51,6 +51,8 @@
     <string name="feature_dashboard">统计</string>
     <string name="feature_wordmap">词汇地图</string>
     <string name="feature_pick">挑选 (Pick)</string>
+    <string name="admob_app_id">ca-app-pub-2726657770670880~1788476962</string>
+    <string name="admob_unit_id">ca-app-pub-2726657770670880/4458872336</string>
     <string name="feature_settings">设置</string>
 
     <string name="filter_all">全部</string>
