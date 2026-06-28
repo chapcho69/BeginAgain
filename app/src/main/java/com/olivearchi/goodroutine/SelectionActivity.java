@@ -89,9 +89,6 @@ public class SelectionActivity extends AppCompatActivity {
     private android.view.GestureDetector gestureDetector;
 
     private final List<ImageView> activeBees = new ArrayList<>();
-    private final Handler beeHandler = new Handler(Looper.getMainLooper());
-    private final Runnable beeRunnable = this::manageSwarm;
-    private int maxBees = 1;
 
     private final ActivityResultLauncher<String[]> filePickerLauncher = registerForActivityResult(
             new ActivityResultContracts.OpenDocument(),
@@ -154,7 +151,6 @@ public class SelectionActivity extends AppCompatActivity {
         loadSlotAssignments();
         refreshHoneycomb();
         initAds();
-        setupScatteredBackground();
         
         tts = new TextToSpeech(this, status -> {
             if (status == TextToSpeech.SUCCESS) tts.setLanguage(Locale.KOREAN);
@@ -538,26 +534,6 @@ public class SelectionActivity extends AppCompatActivity {
         return true;
     };
 
-    private void setupScatteredBackground() {
-        FrameLayout container = findViewById(R.id.background_container);
-        if (container == null) return;
-        Random random = new Random();
-        int count = 7;
-        for (int i = 0; i < count; i++) {
-            TextView tv = new TextView(this);
-            tv.setText("Begin Again");
-            tv.setTextSize(20 + random.nextInt(60));
-            tv.setTypeface(null, android.graphics.Typeface.BOLD_ITALIC);
-            tv.setTextColor(i == count - 1 ? 0x66FF0000 : 0xFFEEEEEE);
-            tv.setRotation(-45 + random.nextInt(90));
-            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(-2, -2);
-            params.gravity = Gravity.TOP | Gravity.START;
-            params.leftMargin = random.nextInt(Math.max(1, getResources().getDisplayMetrics().widthPixels - 200));
-            params.topMargin = random.nextInt(Math.max(1, getResources().getDisplayMetrics().heightPixels - 300));
-            container.addView(tv, params);
-        }
-    }
-
     private void playClickSound() {
         if (clickSoundPlayer != null) {
             clickSoundPlayer.seekTo(0);
@@ -580,7 +556,7 @@ public class SelectionActivity extends AppCompatActivity {
     }
 
     private void updateAppTitle() {
-        String customName = getSharedPreferences("AppPrefs", MODE_PRIVATE).getString("appName", "Begin Again");
+        String customName = getSharedPreferences("AppPrefs", MODE_PRIVATE).getString("appName", getString(R.string.app_name));
         if (getSupportActionBar() != null) getSupportActionBar().setTitle(customName);
         refreshHoneycomb();
     }
@@ -592,14 +568,12 @@ public class SelectionActivity extends AppCompatActivity {
         if (adView != null) adView.resume();
         updateAppTitle();
         refreshHoneycomb();
-        beeHandler.postDelayed(beeRunnable, 2000);
     }
 
     @Override
     protected void onPause() {
         AdView adView = findViewById(R.id.adView);
         if (adView != null) adView.pause();
-        beeHandler.removeCallbacks(beeRunnable);
         super.onPause();
         if (viewModel != null) viewModel.backupData();
     }
@@ -1172,104 +1146,6 @@ public class SelectionActivity extends AppCompatActivity {
                 .setMessage(content)
                 .setPositiveButton("확인", null)
                 .show();
-    }
-
-    private void manageSwarm() {
-        if (activeBees.size() < maxBees) {
-            spawnBee();
-        }
-        // Change desired swarm size occasionally
-        if (new Random().nextFloat() < 0.1f) {
-            maxBees = new Random().nextInt(4) + 1; // 1 to 4
-        }
-        beeHandler.postDelayed(beeRunnable, 2000 + new Random().nextInt(3000));
-    }
-
-    private void spawnBee() {
-        ImageView bee = new ImageView(this);
-        bee.setImageResource(R.drawable.ic_bee);
-        int size = (int) (48 * getResources().getDisplayMetrics().density); // 1.5x size
-        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(size, size);
-        bee.setLayoutParams(lp);
-        bee.setElevation(30f);
-        
-        if (!(honeycombContainer instanceof androidx.constraintlayout.widget.ConstraintLayout)) return;
-        androidx.constraintlayout.widget.ConstraintLayout container = (androidx.constraintlayout.widget.ConstraintLayout) honeycombContainer;
-        container.addView(bee);
-        activeBees.add(bee);
-
-        // Find functional slots as targets
-        List<Integer> targetSlots = new ArrayList<>();
-        for (int i = 0; i < MAX_SLOTS; i++) {
-            if (slotAssignments[i] != null) {
-                targetSlots.add(i);
-            }
-        }
-
-        if (targetSlots.isEmpty()) {
-            container.removeView(bee);
-            activeBees.remove(bee);
-            return;
-        }
-
-        int targetIndex = targetSlots.get(new Random().nextInt(targetSlots.size()));
-        View targetView = slots[targetIndex];
-
-        // Start from random edge
-        Random rnd = new Random();
-        float startX = rnd.nextBoolean() ? -200 : container.getWidth() + 200;
-        float startY = rnd.nextFloat() * container.getHeight();
-        bee.setX(startX);
-        bee.setY(startY);
-
-        float targetX = targetView.getX() + targetView.getWidth() / 2f - size / 2f;
-        float targetY = targetView.getY() + targetView.getHeight() / 2f - size / 2f;
-
-        // Animate to target
-        float dx = targetX - startX;
-        float dy = targetY - startY;
-        float angle = (float) Math.toDegrees(Math.atan2(dy, dx)) + 90;
-
-        bee.setRotation(angle);
-        bee.animate()
-                .x(targetX)
-                .y(targetY)
-                .setDuration(3000 + rnd.nextInt(2000))
-                .withEndAction(() -> {
-                    // Working hover
-                    bee.animate()
-                            .scaleX(1.3f).scaleY(1.3f)
-                            .setDuration(600)
-                            .withEndAction(() -> {
-                                bee.animate()
-                                        .scaleX(1.0f).scaleY(1.0f)
-                                        .setDuration(600)
-                                        .withEndAction(() -> {
-                                            // Fly off to another edge
-                                            float exitX = rnd.nextBoolean() ? -300 : container.getWidth() + 300;
-                                            float exitY = rnd.nextFloat() * container.getHeight();
-                                            float dx2 = exitX - bee.getX();
-                                            float dy2 = exitY - bee.getY();
-                                            bee.setRotation((float) Math.toDegrees(Math.atan2(dy2, dx2)) + 90);
-                                            
-                                            bee.animate()
-                                                    .x(exitX).y(exitY)
-                                                    .setDuration(2500)
-                                                    .withEndAction(() -> {
-                                                        container.removeView(bee);
-                                                        activeBees.remove(bee);
-                                                    }).start();
-                                        }).start();
-                            }).start();
-                }).start();
-    }
-
-    private void initBee() {
-        // Obsolete, replaced by manageSwarm/spawnBee
-    }
-
-    private void startBeeFlight() {
-        // Obsolete
     }
 
     private void showPickDialog() {

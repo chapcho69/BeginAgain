@@ -17,5 +17,15 @@ public class GoodRoutineApp extends Application {
     public void onCreate() {
         super.onCreate();
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        initializeDefaultSettings();
+    }
+
+    private void initializeDefaultSettings() {
+        android.content.SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        if (!prefs.contains("appName")) {
+            // First run: Set default localized app name
+            String defaultName = getString(R.string.app_name);
+            prefs.edit().putString("appName", defaultName).apply();
+        }
     }
 }

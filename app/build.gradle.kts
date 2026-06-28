@@ -10,8 +10,8 @@ android {
         applicationId = "com.olivearchi.goodroutine"
         minSdk = 24
         targetSdk = 35
-        versionCode = 31
-        versionName = "5.0.1"
+        versionCode = 36
+        versionName = "5.0.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         

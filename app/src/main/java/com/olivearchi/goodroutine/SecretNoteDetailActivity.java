@@ -2,6 +2,7 @@ package com.olivearchi.goodroutine;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,15 +46,27 @@ public class SecretNoteDetailActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(R.string.feature_secret);
         }
 
-        String title = (item.getTitle() != null) ? item.getTitle() : "";
-        String content = (item.getContent() != null) ? item.getContent() : "";
-        String remarks = (item.getRemarks() != null) ? item.getRemarks() : "";
-        String date = (item.getCreatedAt() != null) ? item.getCreatedAt() : "";
+        String title = "";
+        String content = "";
+        String remarks = "";
+        String date = "";
 
-        ((TextView)findViewById(R.id.text_secret_view_title)).setText(SearchHighlightUtils.getHighlightedText(title));
-        ((TextView)findViewById(R.id.text_secret_view_content)).setText(SearchHighlightUtils.getHighlightedText(content));
-        ((TextView)findViewById(R.id.text_secret_view_remarks)).setText(SearchHighlightUtils.getHighlightedText("비고: " + remarks));
-        ((TextView)findViewById(R.id.text_secret_view_date)).setText("작성일: " + date);
+        try {
+            title = (item.getTitle() != null) ? item.getTitle() : "";
+            content = (item.getContent() != null) ? item.getContent() : "";
+            remarks = (item.getRemarks() != null) ? item.getRemarks() : "";
+            date = (item.getCreatedAt() != null) ? item.getCreatedAt() : "";
+
+            ((TextView)findViewById(R.id.text_secret_view_title)).setText(SearchHighlightUtils.getHighlightedText(title));
+            ((TextView)findViewById(R.id.text_secret_view_content)).setText(SearchHighlightUtils.getHighlightedText(content));
+            ((TextView)findViewById(R.id.text_secret_view_remarks)).setText(SearchHighlightUtils.getHighlightedText("비고: " + remarks));
+            ((TextView)findViewById(R.id.text_secret_view_date)).setText("작성일: " + date);
+        } catch (Exception e) {
+            Log.e("SecretNoteDetail", "UI setup error", e);
+            // Fallback for safety
+            ((TextView)findViewById(R.id.text_secret_view_title)).setText(title);
+            ((TextView)findViewById(R.id.text_secret_view_content)).setText(content);
+        }
 
         MaterialButton btnEdit = findViewById(R.id.btn_secret_detail_edit);
         btnEdit.setOnClickListener(v -> {

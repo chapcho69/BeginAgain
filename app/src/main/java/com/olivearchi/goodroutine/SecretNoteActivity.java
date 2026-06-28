@@ -51,6 +51,8 @@ public class SecretNoteActivity extends AppCompatActivity {
         ThemeHelper.applyTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secret_note);
+        
+        SearchHighlightUtils.clearQuery(); // Clear highlights when entering secret notes from main grid
 
         setSupportActionBar(findViewById(R.id.toolbar_secret_list));
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);

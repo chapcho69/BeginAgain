@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
     private void updateAppTitle() {
         List<TodoItem> list = viewModel.getTodoList().getValue();
         int count = list != null ? list.size() : 0;
-        String customName = getSharedPreferences("AppPrefs", MODE_PRIVATE).getString("appName", "Begin Again");
+        String customName = getSharedPreferences("AppPrefs", MODE_PRIVATE).getString("appName", getString(R.string.app_name));
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(customName + "(" + count + ")");
         }
