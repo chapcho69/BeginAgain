@@ -235,21 +235,19 @@ public class TodayTaskEditActivity extends AppCompatActivity {
     }
 
     private void initAds() {
-        com.google.android.gms.ads.MobileAds.initialize(this, initializationStatus -> {});
         AdView adView = findViewById(R.id.adView);
         if (adView != null) {
             adView.setAdListener(new com.google.android.gms.ads.AdListener() {
                 @Override
                 public void onAdFailedToLoad(@androidx.annotation.NonNull com.google.android.gms.ads.LoadAdError adError) {
-                    adView.setVisibility(android.view.View.GONE);
+                    adView.setVisibility(View.GONE);
                 }
                 @Override
                 public void onAdLoaded() {
-                    adView.setVisibility(android.view.View.VISIBLE);
+                    adView.setVisibility(View.VISIBLE);
                 }
             });
-            com.google.android.gms.ads.AdRequest adRequest = new com.google.android.gms.ads.AdRequest.Builder().build();
-            adView.loadAd(adRequest);
+            adView.loadAd(new com.google.android.gms.ads.AdRequest.Builder().build());
         }
     }
 

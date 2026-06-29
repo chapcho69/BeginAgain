@@ -24,26 +24,6 @@
             android:textStyle="bold|italic"
             android:fontFamily="serif" />
 
-        <TextView
-            android:id="@+id/text_splash_line2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:textSize="29sp"
-            android:textColor="#888888"
-            android:textStyle="bold"
-            android:fontFamily="serif" />
-
-        <TextView
-            android:id="@+id/text_splash_line3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="29sp"
-            android:textColor="#888888"
-            android:textStyle="bold"
-            android:fontFamily="serif" />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

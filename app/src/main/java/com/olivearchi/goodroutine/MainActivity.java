@@ -147,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initAds() {
-        com.google.android.gms.ads.MobileAds.initialize(this, initializationStatus -> {});
         AdView adView = findViewById(R.id.adView);
         if (adView != null) {
             adView.setAdListener(new com.google.android.gms.ads.AdListener() {
@@ -160,8 +159,7 @@ public class MainActivity extends AppCompatActivity {
                     adView.setVisibility(View.VISIBLE);
                 }
             });
-            com.google.android.gms.ads.AdRequest adRequest = new com.google.android.gms.ads.AdRequest.Builder().build();
-            adView.loadAd(adRequest);
+            adView.loadAd(new com.google.android.gms.ads.AdRequest.Builder().build());
         }
     }
 
@@ -551,12 +549,49 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private int aboutClickCount = 0;
     private void showAboutDialog() {
         String version = getString(R.string.app_version);
         String buildDate = getString(R.string.build_date);
+        aboutClickCount = 0;
+
+        TextView messageView = new TextView(this);
+        messageView.setText("버전: " + version + "\n마지막 빌드: " + buildDate + "\n제작자 정보: Routine Maker\n문의: managedswsvc@gmail.com");
+        messageView.setPadding(60, 40, 60, 20);
+        messageView.setTextSize(16);
+        messageView.setLineSpacing(10, 1);
+        
+        android.util.TypedValue typedValue = new android.util.TypedValue();
+        getTheme().resolveAttribute(R.attr.mainTextColor, typedValue, true);
+        messageView.setTextColor(typedValue.data);
+
+        messageView.setOnClickListener(v -> {
+            aboutClickCount++;
+            if (aboutClickCount >= 7) {
+                aboutClickCount = 0;
+                showIntentionDialog();
+            }
+        });
+
         new AlertDialog.Builder(this)
                 .setTitle("About")
-                .setMessage("버전: " + version + "\n마지막 빌드: " + buildDate + "\n제작자 정보: Routine Maker\n문의: managedswsvc@gmail.com")
+                .setView(messageView)
+                .setPositiveButton(R.string.button_close, null)
+                .show();
+    }
+
+    private void showIntentionDialog() {
+        String content = "제작 의도\n" +
+                "- 책에서 발견한 아름다운 구절을 수집하기 위함\n" +
+                "  자주 보고 듣고 싶을때 도움 되는 App을 만들고자 함.\n" +
+                "+ \"좋은 사람이 되려면, 좋은 루틴을 가져야 한다.\"는 말에 감명 받아, 루틴 수행 이력 추가.\n" +
+                "+ 시간 관리 습관을 키우기 위해 \"해야 할 일들\" 기능 추가.\n" +
+                "+ \"뇌 용량을 키우는 용도\"로 암기를 위한 항목 기능 추가.(메모장,영단어,일단어)\n" +
+                "+ 검색 기능 추가.";
+
+        new AlertDialog.Builder(this)
+                .setTitle("제작 의도")
+                .setMessage(content)
                 .setPositiveButton(R.string.button_close, null)
                 .show();
     }

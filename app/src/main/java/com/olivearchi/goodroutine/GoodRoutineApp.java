@@ -17,6 +17,7 @@ public class GoodRoutineApp extends Application {
     public void onCreate() {
         super.onCreate();
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        com.google.android.gms.ads.MobileAds.initialize(this, status -> {});
         initializeDefaultSettings();
     }
 

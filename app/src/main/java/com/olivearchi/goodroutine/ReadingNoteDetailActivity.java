@@ -295,7 +295,6 @@ public class ReadingNoteDetailActivity extends AppCompatActivity implements Text
     }
 
     private void initAds() {
-        com.google.android.gms.ads.MobileAds.initialize(this, initializationStatus -> {});
         AdView adView = findViewById(R.id.adView);
         if (adView != null) {
             adView.setAdListener(new com.google.android.gms.ads.AdListener() {
@@ -308,8 +307,7 @@ public class ReadingNoteDetailActivity extends AppCompatActivity implements Text
                     adView.setVisibility(View.VISIBLE);
                 }
             });
-            com.google.android.gms.ads.AdRequest adRequest = new com.google.android.gms.ads.AdRequest.Builder().build();
-            adView.loadAd(adRequest);
+            adView.loadAd(new com.google.android.gms.ads.AdRequest.Builder().build());
         }
     }
 

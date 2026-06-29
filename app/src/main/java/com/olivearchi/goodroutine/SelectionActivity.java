@@ -579,12 +579,12 @@ public class SelectionActivity extends AppCompatActivity {
     }
 
     private void initAds() {
-        com.google.android.gms.ads.MobileAds.initialize(this, status -> {});
         AdView adView = findViewById(R.id.adView);
         if (adView != null) {
             adView.setAdListener(new com.google.android.gms.ads.AdListener() {
                 @Override
                 public void onAdFailedToLoad(@androidx.annotation.NonNull com.google.android.gms.ads.LoadAdError adError) {
+                    Log.e("Ads", "Failed: " + adError.getMessage());
                     adView.setVisibility(View.GONE);
                 }
                 @Override
@@ -676,10 +676,10 @@ public class SelectionActivity extends AppCompatActivity {
 
     private void showSettingsDialog() {
         String[] categories = {
-                getString(R.string.settings_category_data),
-                getString(R.string.settings_category_word),
-                getString(R.string.settings_category_other),
-                getString(R.string.settings_category_language),
+                getString(R.string.settings_category_data) + " +",
+                getString(R.string.settings_category_word) + " +",
+                getString(R.string.settings_category_other) + " +",
+                getString(R.string.settings_category_language) + " +",
                 getString(R.string.action_about)
         };
         new AlertDialog.Builder(this)
@@ -722,8 +722,8 @@ public class SelectionActivity extends AppCompatActivity {
 
     private void showDataManagementOptions() {
         String[] options = {
-                getString(R.string.data_mgmt_backup_dat),
-                getString(R.string.data_mgmt_restore_dat),
+                getString(R.string.data_mgmt_backup_dat) + " +",
+                getString(R.string.data_mgmt_restore_dat) + " +",
                 getString(R.string.data_mgmt_export_sqlite),
                 getString(R.string.data_mgmt_restore_sqlite)
         };
@@ -794,12 +794,12 @@ public class SelectionActivity extends AppCompatActivity {
 
     private void showWordManagementOptions() {
         String[] options = {
-                getString(R.string.word_mgmt_import_en),
-                getString(R.string.word_mgmt_import_ja),
+                getString(R.string.word_mgmt_import_en) + " +",
+                getString(R.string.word_mgmt_import_ja) + " +",
                 getString(R.string.word_mgmt_dedup_en),
                 getString(R.string.word_mgmt_dedup_ja),
-                getString(R.string.word_mgmt_export_en),
-                getString(R.string.word_mgmt_export_ja),
+                getString(R.string.word_mgmt_export_en) + " +",
+                getString(R.string.word_mgmt_export_ja) + " +",
                 getString(R.string.word_mgmt_clear_en),
                 getString(R.string.word_mgmt_clear_ja)
         };
@@ -840,9 +840,9 @@ public class SelectionActivity extends AppCompatActivity {
     private void showOtherSettingsOptions() {
         String[] options = {
                 getString(R.string.other_settings_rename),
-                getString(R.string.other_settings_tts_speed),
-                getString(R.string.other_settings_tts_voice),
-                "테마 설정",
+                getString(R.string.other_settings_tts_speed) + " +",
+                getString(R.string.other_settings_tts_voice) + " +",
+                "테마 설정 +",
                 getString(R.string.other_settings_reset_pos)
         };
         new AlertDialog.Builder(this)
@@ -1121,14 +1121,34 @@ public class SelectionActivity extends AppCompatActivity {
         }).setNegativeButton("취소", null).show();
     }
 
+    private int aboutClickCount = 0;
     private void showAboutDialog() {
         String version = getString(R.string.app_version);
         String buildDate = getString(R.string.build_date);
+        aboutClickCount = 0;
+
+        TextView messageView = new TextView(this);
+        messageView.setText("버전: " + version + "\n마지막 빌드: " + buildDate + "\n제작자 정보: Routine Maker\n문의: managedswsvc@gmail.com");
+        messageView.setPadding(60, 40, 60, 20);
+        messageView.setTextSize(16);
+        messageView.setLineSpacing(10, 1);
+        
+        android.util.TypedValue typedValue = new android.util.TypedValue();
+        getTheme().resolveAttribute(R.attr.mainTextColor, typedValue, true);
+        messageView.setTextColor(typedValue.data);
+
+        messageView.setOnClickListener(v -> {
+            aboutClickCount++;
+            if (aboutClickCount >= 7) {
+                aboutClickCount = 0;
+                showIntentionDialog();
+            }
+        });
+
         new AlertDialog.Builder(this)
                 .setTitle("About")
-                .setMessage("버전: " + version + "\n마지막 빌드: " + buildDate + "\n제작자 정보: Routine Maker\n문의: managedswsvc@gmail.com")
+                .setView(messageView)
                 .setPositiveButton("확인", null)
-                .setNeutralButton("제작의도", (dialog, which) -> showIntentionDialog())
                 .show();
     }
 

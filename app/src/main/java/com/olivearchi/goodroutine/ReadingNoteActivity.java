@@ -260,7 +260,6 @@ public class ReadingNoteActivity extends AppCompatActivity implements TextToSpee
     }
 
     private void initAds() {
-        com.google.android.gms.ads.MobileAds.initialize(this, initializationStatus -> {});
         AdView adView = findViewById(R.id.adView);
         if (adView != null) {
             adView.setAdListener(new com.google.android.gms.ads.AdListener() {
