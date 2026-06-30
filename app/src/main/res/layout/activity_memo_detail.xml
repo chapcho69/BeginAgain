@@ -100,7 +100,8 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="4dp"
                 android:text="@string/btn_edit"
-                app:backgroundTint="@color/btn_edit" />
+                android:textColor="?attr/buttonTextColor"
+                app:backgroundTint="?attr/buttonBackgroundColor" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_memo_view_share"
@@ -109,8 +110,10 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="4dp"
                 android:text="@string/btn_share"
-                app:backgroundTint="#81D4FA"
-                app:icon="@android:drawable/ic_menu_share" />
+                android:textColor="?attr/buttonTextColor"
+                app:backgroundTint="?attr/buttonBackgroundColor"
+                app:icon="@android:drawable/ic_menu_share"
+                app:iconTint="#000000" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_memo_view_tts"
@@ -118,8 +121,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/btn_tts"
-                app:backgroundTint="@color/pastel_blue"
-                app:icon="@drawable/ic_headset" />
+                android:textColor="?attr/buttonTextColor"
+                app:backgroundTint="?attr/buttonBackgroundColor"
+                app:icon="@drawable/ic_headset"
+                app:iconTint="#000000" />
 
         </LinearLayout>
 

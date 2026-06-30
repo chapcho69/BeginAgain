@@ -98,11 +98,13 @@
                 android:layout_weight="0.8"
                 android:layout_marginEnd="4dp"
                 android:text=""
+                android:textColor="?attr/buttonTextColor"
+                app:backgroundTint="?attr/buttonBackgroundColor"
                 app:icon="@drawable/ic_triangle_left"
                 app:iconSize="32dp"
                 app:iconPadding="0dp"
                 app:iconGravity="textStart"
-                app:backgroundTint="#FFD600" />
+                app:iconTint="#000000" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_english_tts"
@@ -111,8 +113,10 @@
                 android:layout_weight="1.5"
                 android:layout_marginEnd="4dp"
                 android:text="@string/btn_tts"
-                app:backgroundTint="#f38b0e"
-                app:icon="@drawable/ic_headset" />
+                android:textColor="?attr/buttonTextColor"
+                app:backgroundTint="?attr/buttonBackgroundColor"
+                app:icon="@drawable/ic_headset"
+                app:iconTint="#000000" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_english_next"
@@ -121,11 +125,13 @@
                 android:layout_weight="0.8"
                 android:layout_marginEnd="4dp"
                 android:text=""
+                android:textColor="?attr/buttonTextColor"
+                app:backgroundTint="?attr/buttonBackgroundColor"
                 app:icon="@drawable/ic_triangle_right"
                 app:iconSize="32dp"
                 app:iconPadding="0dp"
                 app:iconGravity="textStart"
-                app:backgroundTint="#2196F3" />
+                app:iconTint="#000000" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_english_delete"
@@ -133,10 +139,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
                 android:text=""
+                android:textColor="?attr/buttonTextColor"
+                app:backgroundTint="?attr/buttonBackgroundColor"
                 app:icon="@drawable/ic_delete"
                 app:iconPadding="0dp"
                 app:iconGravity="textStart"
-                app:backgroundTint="#D32F2F" />
+                app:iconTint="#000000" />
 
         </LinearLayout>
 

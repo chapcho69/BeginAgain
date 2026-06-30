@@ -85,7 +85,8 @@
                 android:layout_marginTop="24dp"
                 android:text="@string/btn_save"
                 android:padding="12dp"
-                app:backgroundTint="#f38b0e" />
+                android:textColor="?attr/buttonTextColor"
+                app:backgroundTint="?attr/buttonBackgroundColor" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

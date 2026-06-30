@@ -598,7 +598,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showRenameAppDialog() {
         EditText input = new EditText(this);
-        String currentName = getSharedPreferences("AppPrefs", MODE_PRIVATE).getString("appName", "Begin Again");
+        String currentName = getSharedPreferences("AppPrefs", MODE_PRIVATE).getString("appName", getString(R.string.app_name));
         input.setText(currentName);
 
         new AlertDialog.Builder(this)

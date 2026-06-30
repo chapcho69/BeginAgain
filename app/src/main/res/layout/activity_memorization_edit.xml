@@ -98,7 +98,8 @@
             android:layout_marginEnd="4dp"
             android:padding="12dp"
             android:text="@string/btn_add"
-            app:backgroundTint="@color/btn_add" />
+            android:textColor="?attr/buttonTextColor"
+            app:backgroundTint="?attr/buttonBackgroundColor" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_memo_save"
@@ -108,7 +109,8 @@
             android:layout_marginEnd="4dp"
             android:padding="12dp"
             android:text="@string/btn_save"
-            app:backgroundTint="@color/btn_save" />
+            android:textColor="?attr/buttonTextColor"
+            app:backgroundTint="?attr/buttonBackgroundColor" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_memo_delete"
@@ -117,7 +119,8 @@
             android:layout_weight="1"
             android:padding="12dp"
             android:text="@string/btn_delete"
-            app:backgroundTint="@color/btn_delete" />
+            android:textColor="?attr/buttonTextColor"
+            app:backgroundTint="?attr/buttonBackgroundColor" />
 
     </LinearLayout>
 

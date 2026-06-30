@@ -113,7 +113,8 @@
             android:layout_marginEnd="4dp"
             android:padding="12dp"
             android:text="@string/btn_save"
-            app:backgroundTint="@color/btn_save" />
+            android:textColor="?attr/buttonTextColor"
+            app:backgroundTint="?attr/buttonBackgroundColor" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_delete_today_task"
@@ -122,7 +123,8 @@
             android:layout_weight="1"
             android:padding="12dp"
             android:text="@string/btn_delete"
-            app:backgroundTint="@color/btn_delete" />
+            android:textColor="?attr/buttonTextColor"
+            app:backgroundTint="?attr/buttonBackgroundColor" />
 
     </LinearLayout>
 

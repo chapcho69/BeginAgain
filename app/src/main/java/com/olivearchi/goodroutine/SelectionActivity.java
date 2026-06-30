@@ -2,14 +2,21 @@ package com.olivearchi.goodroutine;
 
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.Voice;
 import android.util.Log;
@@ -84,8 +91,10 @@ public class SelectionActivity extends AppCompatActivity {
     private float translateX = 0f, translateY = 0f;
     private View honeycombContainer;
     private final Map<String, Integer> featureColors = new HashMap<>();
+    private final Map<String, String> customFeatureTitles = new HashMap<>();
     private final Handler longPressHandler = new Handler(Looper.getMainLooper());
-    private static final int LONG_PRESS_TIME = 3000;
+    private static final int RENAME_PRESS_TIME = 1500;
+    private static final int COLOR_PRESS_TIME = 2500;
     private android.view.GestureDetector gestureDetector;
 
     private final List<ImageView> activeBees = new ArrayList<>();
@@ -202,6 +211,7 @@ public class SelectionActivity extends AppCompatActivity {
         
         for (int i = 0; i < MAX_SLOTS; i++) slotAssignments[i] = null;
         featureColors.clear();
+        customFeatureTitles.clear();
 
         if (features.isEmpty()) {
             // arrange 3 features per row starting from row 2
@@ -218,6 +228,7 @@ public class SelectionActivity extends AppCompatActivity {
             int defaultColor = ContextCompat.getColor(this, R.color.pastel_blue);
             for (String key : requiredKeys) {
                 featureColors.put(key, key.equals("search") ? 0xFFB0BEC5 : defaultColor);
+                customFeatureTitles.put(key, getFeatureTitle(key));
             }
             saveSlotAssignments();
         } else {
@@ -230,6 +241,7 @@ public class SelectionActivity extends AppCompatActivity {
                 if (f.getPosition() >= 0 && f.getPosition() < MAX_SLOTS) {
                     slotAssignments[f.getPosition()] = featureId;
                     featureColors.put(featureId, f.getColor());
+                    customFeatureTitles.put(featureId, f.getTitle());
                     assignedKeys.add(featureId);
                 }
             }
@@ -241,6 +253,7 @@ public class SelectionActivity extends AppCompatActivity {
                     if (emptySlot != -1) {
                         slotAssignments[emptySlot] = req;
                         featureColors.put(req, req.equals("search") ? 0xFFB0BEC5 : ContextCompat.getColor(this, R.color.pastel_blue));
+                        customFeatureTitles.put(req, getFeatureTitle(req));
                     }
                 }
             }
@@ -263,7 +276,9 @@ public class SelectionActivity extends AppCompatActivity {
             if (featureId != null) {
                 Integer colorObj = featureColors.get(featureId);
                 int color = (colorObj != null) ? colorObj : defaultBlue;
-                db.saveFeature(new FeatureItem(featureId, i, getFeatureTitle(featureId), "", color));
+                String title = customFeatureTitles.get(featureId);
+                if (title == null) title = getFeatureTitle(featureId);
+                db.saveFeature(new FeatureItem(featureId, i, title, "", color));
             }
         }
     }
@@ -366,72 +381,75 @@ public class SelectionActivity extends AppCompatActivity {
                 btn.setTag(i);
 
                 String label = "";
+                String baseTitle = customFeatureTitles.get(type);
+                if (baseTitle == null) baseTitle = getFeatureTitle(type);
+                
                 int iconRes = 0;
                 View.OnClickListener clickListener = null;
 
                 switch (type) {
                     case "routine":
-                        label = getString(R.string.feature_routine) + "\n(" + db.getAllTodos().size() + ")";
+                        label = baseTitle + "\n(" + db.getAllTodos().size() + ")";
                         iconRes = R.drawable.ic_bicycle;
                         clickListener = v -> startActivity(new Intent(this, MainActivity.class));
                         break;
                     case "reading":
-                        label = getString(R.string.feature_reading) + "\n(" + db.getAllReadingNotes().size() + ")";
+                        label = baseTitle + "\n(" + db.getAllReadingNotes().size() + ")";
                         iconRes = R.drawable.ic_open_book;
                         clickListener = v -> startActivity(new Intent(this, ReadingNoteActivity.class));
                         break;
                     case "memo":
-                        label = getString(R.string.feature_memo) + "\n(" + db.getAllMemos().size() + ")";
+                        label = baseTitle + "\n(" + db.getAllMemos().size() + ")";
                         iconRes = R.drawable.ic_note;
                         clickListener = v -> startActivity(new Intent(this, MemoActivity.class));
                         break;
                     case "memorization":
-                        label = getString(R.string.feature_memorization) + "\n(" + db.getAllMemorizations().size() + ")";
+                        label = baseTitle + "\n(" + db.getAllMemorizations().size() + ")";
                         iconRes = R.drawable.ic_edit;
                         clickListener = v -> startActivity(new Intent(this, MemorizationActivity.class));
                         break;
                     case "today":
-                        label = getString(R.string.feature_today) + "\n(" + db.getAllTodayTasks().size() + ")";
+                        label = baseTitle + "\n(" + db.getAllTodayTasks().size() + ")";
                         iconRes = R.drawable.ic_list;
                         clickListener = v -> startActivity(new Intent(this, TodayTaskListActivity.class));
                         break;
                     case "english":
-                        label = getString(R.string.feature_english) + "\n(" + db.getAllEnglishWords().size() + ")";
+                        label = baseTitle + "\n(" + db.getAllEnglishWords().size() + ")";
                         iconRes = R.drawable.ic_headset;
                         clickListener = v -> startActivity(new Intent(this, EnglishWordActivity.class));
                         break;
                     case "japanese":
-                        label = getString(R.string.feature_japanese) + "\n(" + db.getAllJapaneseWords().size() + ")";
+                        label = baseTitle + "\n(" + db.getAllJapaneseWords().size() + ")";
                         iconRes = R.drawable.ic_headset;
                         clickListener = v -> startActivity(new Intent(this, JapaneseWordActivity.class));
                         break;
                     case "secret":
-                        label = getString(R.string.feature_secret) + "\n(" + db.getAllSecretNotes().size() + ")";
+                        label = baseTitle + "\n(" + db.getAllSecretNotes().size() + ")";
                         iconRes = R.drawable.ic_lock;
                         clickListener = v -> startActivity(new Intent(this, SecretNoteActivity.class));
                         break;
                     case "dashboard":
-                        label = getString(R.string.feature_dashboard);
+                        label = baseTitle;
                         iconRes = R.drawable.ic_bar_chart;
                         clickListener = v -> startActivity(new Intent(this, DashboardActivity.class));
                         break;
                     case "wordmap":
-                        label = getString(R.string.feature_wordmap);
+                        label = baseTitle;
                         iconRes = R.drawable.ic_filter_all;
                         clickListener = v -> startActivity(new Intent(this, WordMapActivity.class));
                         break;
                     case "settings":
-                        label = getString(R.string.feature_settings);
+                        label = baseTitle;
                         iconRes = R.drawable.ic_settings;
                         clickListener = v -> showSettingsDialog();
                         break;
                     case "search":
-                        label = getString(R.string.feature_search);
+                        label = baseTitle;
                         iconRes = android.R.drawable.ic_menu_search;
                         clickListener = v -> startActivity(new Intent(this, SearchActivity.class));
                         break;
                     case "pick":
-                        label = getString(R.string.feature_pick);
+                        label = baseTitle;
                         iconRes = R.drawable.ic_crown;
                         clickListener = v -> showPickDialog();
                         break;
@@ -448,12 +466,20 @@ public class SelectionActivity extends AppCompatActivity {
                 btn.setOnTouchListener(new View.OnTouchListener() {
                     private float startX, startY;
                     private boolean dragStarted = false;
-                    private boolean colorPickerShown = false;
+                    private boolean renameTriggered = false;
+                    private boolean colorPickerTriggered = false;
+
+                    private final Runnable renameRunnable = () -> {
+                        if (!dragStarted) {
+                            renameTriggered = true;
+                            playClickSound();
+                        }
+                    };
+
                     private final Runnable colorPickerRunnable = () -> {
                         if (!dragStarted) {
-                            colorPickerShown = true;
+                            colorPickerTriggered = true;
                             playClickSound();
-                            showColorPickerDialog(featureId);
                         }
                     };
 
@@ -464,17 +490,20 @@ public class SelectionActivity extends AppCompatActivity {
                                 startX = event.getRawX();
                                 startY = event.getRawY();
                                 dragStarted = false;
-                                colorPickerShown = false;
-                                longPressHandler.postDelayed(colorPickerRunnable, LONG_PRESS_TIME);
+                                renameTriggered = false;
+                                colorPickerTriggered = false;
+                                longPressHandler.postDelayed(renameRunnable, RENAME_PRESS_TIME);
+                                longPressHandler.postDelayed(colorPickerRunnable, COLOR_PRESS_TIME);
                                 break;
                             case MotionEvent.ACTION_MOVE:
-                                if (!colorPickerShown && !dragStarted) {
+                                if (!dragStarted) {
                                     float diffX = Math.abs(event.getRawX() - startX);
                                     float diffY = Math.abs(event.getRawY() - startY);
-                                    if (diffX > 10 || diffY > 10) {
+                                    if (diffX > 20 || diffY > 20) {
                                         dragStarted = true;
+                                        longPressHandler.removeCallbacks(renameRunnable);
                                         longPressHandler.removeCallbacks(colorPickerRunnable);
-                                        // Start Drag manually
+                                        
                                         ClipData data = ClipData.newPlainText("slot_index", String.valueOf(v.getTag()));
                                         View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
                                         v.startDragAndDrop(data, shadowBuilder, v, 0);
@@ -483,13 +512,20 @@ public class SelectionActivity extends AppCompatActivity {
                                 break;
                             case MotionEvent.ACTION_UP:
                             case MotionEvent.ACTION_CANCEL:
+                                longPressHandler.removeCallbacks(renameRunnable);
                                 longPressHandler.removeCallbacks(colorPickerRunnable);
-                                if (!dragStarted && !colorPickerShown && event.getAction() == MotionEvent.ACTION_UP) {
-                                    v.performClick();
+                                if (!dragStarted && event.getAction() == MotionEvent.ACTION_UP) {
+                                    if (colorPickerTriggered) {
+                                        showColorPickerDialog(featureId);
+                                    } else if (renameTriggered) {
+                                        showRenameFeatureDialog(featureId);
+                                    } else {
+                                        v.performClick();
+                                    }
                                 }
                                 break;
                         }
-                        return true; // Consume touch to handle all phases
+                        return true;
                     }
                 });
 
@@ -549,10 +585,70 @@ public class SelectionActivity extends AppCompatActivity {
 
     private void showExitConfirmation() {
         new AlertDialog.Builder(this).setTitle("앱 종료").setMessage("앱을 종료하시겠습니까?")
-                .setPositiveButton("예", (dialog, which) -> finish())
+                .setPositiveButton("예", (dialog, which) -> {
+                    performAutoBackup();
+                    finish();
+                })
                 .setNegativeButton("아니오", null)
-                .setOnCancelListener(dialog -> finish()) // Exit even if back button is pressed to cancel dialog
+                .setOnCancelListener(dialog -> {
+                    performAutoBackup();
+                    finish();
+                })
                 .show();
+    }
+
+    private void performAutoBackup() {
+        new Thread(() -> {
+            try {
+                File dbFile = getDatabasePath("todos.db");
+                if (!dbFile.exists()) return;
+
+                String fileName = "beenote.db";
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    ContentResolver resolver = getContentResolver();
+                    ContentValues values = new ContentValues();
+                    values.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
+                    values.put(MediaStore.MediaColumns.MIME_TYPE, "application/x-sqlite3");
+                    values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS + "/BeeNote");
+
+                    Uri externalUri = MediaStore.Files.getContentUri("external");
+                    Cursor cursor = resolver.query(externalUri, new String[]{MediaStore.MediaColumns._ID},
+                            MediaStore.MediaColumns.DISPLAY_NAME + "=? AND " + MediaStore.MediaColumns.RELATIVE_PATH + "=?",
+                            new String[]{fileName, Environment.DIRECTORY_DOCUMENTS + "/BeeNote/"}, null);
+
+                    Uri targetUri = null;
+                    if (cursor != null && cursor.moveToFirst()) {
+                        targetUri = ContentUris.withAppendedId(externalUri, cursor.getLong(0));
+                        cursor.close();
+                    } else {
+                        if (cursor != null) cursor.close();
+                        targetUri = resolver.insert(externalUri, values);
+                    }
+
+                    if (targetUri != null) {
+                        try (InputStream is = new FileInputStream(dbFile);
+                             OutputStream os = resolver.openOutputStream(targetUri, "wt")) {
+                            byte[] buffer = new byte[8192];
+                            int len;
+                            while ((len = is.read(buffer)) != -1) os.write(buffer, 0, len);
+                        }
+                    }
+                } else {
+                    File docDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+                    File beeDir = new File(docDir, "BeeNote");
+                    if (!beeDir.exists()) beeDir.mkdirs();
+                    File dest = new File(beeDir, fileName);
+                    try (InputStream is = new FileInputStream(dbFile);
+                         OutputStream os = new FileOutputStream(dest)) {
+                        byte[] buffer = new byte[8192];
+                        int len;
+                        while ((len = is.read(buffer)) != -1) os.write(buffer, 0, len);
+                    }
+                }
+            } catch (Exception e) {
+                Log.e("AutoBackup", "Error", e);
+            }
+        }).start();
     }
 
     private void updateAppTitle() {
@@ -574,6 +670,7 @@ public class SelectionActivity extends AppCompatActivity {
     protected void onPause() {
         AdView adView = findViewById(R.id.adView);
         if (adView != null) adView.pause();
+        performAutoBackup();
         super.onPause();
         if (viewModel != null) viewModel.backupData();
     }
@@ -815,6 +912,28 @@ public class SelectionActivity extends AppCompatActivity {
                 case 7: confirmClearWords(false); break;
             }
         }).show();
+    }
+
+    private void showRenameFeatureDialog(String featureId) {
+        EditText input = new EditText(this);
+        String currentTitle = customFeatureTitles.get(featureId);
+        if (currentTitle == null) currentTitle = getFeatureTitle(featureId);
+        input.setText(currentTitle);
+        
+        new AlertDialog.Builder(this)
+                .setTitle("메뉴 명칭 수정")
+                .setView(input)
+                .setPositiveButton("저장", (dialog, which) -> {
+                    String newTitle = input.getText().toString();
+                    if (!newTitle.isEmpty()) {
+                        customFeatureTitles.put(featureId, newTitle);
+                        saveSlotAssignments();
+                        refreshHoneycomb();
+                        Toast.makeText(this, "명칭이 변경되었습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("취소", null)
+                .show();
     }
 
     private void showColorPickerDialog(String featureId) {
@@ -1066,7 +1185,7 @@ public class SelectionActivity extends AppCompatActivity {
         try {
             Uri contentUri = FileProvider.getUriForFile(this, "com.olivearchi.goodroutine.fileprovider", backupFile);
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setType("application/octet-stream").putExtra(Intent.EXTRA_SUBJECT, "Begin Again - 데이터 백업").putExtra(Intent.EXTRA_STREAM, contentUri).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            shareIntent.setType("application/octet-stream").putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name) + " - 데이터 백업").putExtra(Intent.EXTRA_STREAM, contentUri).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(Intent.createChooser(shareIntent, "백업 파일 보내기"));
         } catch (Exception e) { Toast.makeText(this, "백업 공유 실패", Toast.LENGTH_SHORT).show(); }
     }
@@ -1114,7 +1233,7 @@ public class SelectionActivity extends AppCompatActivity {
 
     private void showRenameAppDialog() {
         EditText input = new EditText(this);
-        input.setText(getSharedPreferences("AppPrefs", MODE_PRIVATE).getString("appName", "Begin Again"));
+        input.setText(getSharedPreferences("AppPrefs", MODE_PRIVATE).getString("appName", getString(R.string.app_name)));
         new AlertDialog.Builder(this).setTitle("App 명칭 수정").setView(input).setPositiveButton("저장", (dialog, which) -> {
             String newName = input.getText().toString();
             if (!newName.isEmpty()) { getSharedPreferences("AppPrefs", MODE_PRIVATE).edit().putString("appName", newName).apply(); updateAppTitle(); }

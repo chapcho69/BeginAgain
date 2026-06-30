@@ -23,7 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/status_ongoing"
-            app:icon="@drawable/ic_filter_inprogress" />
+            android:textColor="?attr/mainTextColor"
+            app:icon="@drawable/ic_filter_inprogress"
+            app:iconTint="#000000" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_filter_all"
@@ -31,7 +33,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/status_all"
-            app:icon="@drawable/ic_filter_all" />
+            android:textColor="?attr/mainTextColor"
+            app:icon="@drawable/ic_filter_all"
+            app:iconTint="#000000" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_filter_done"
@@ -39,7 +43,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/status_done"
-            app:icon="@drawable/ic_filter_done" />
+            android:textColor="?attr/mainTextColor"
+            app:icon="@drawable/ic_filter_done"
+            app:iconTint="#000000" />
 
     </com.google.android.material.button.MaterialButtonToggleGroup>
 

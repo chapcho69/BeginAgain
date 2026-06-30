@@ -50,7 +50,7 @@ public class NotificationReceiver extends BroadcastReceiver {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(android.R.drawable.ic_dialog_info)
-                .setContentTitle("[Begin Again] 할 일 확인")
+                .setContentTitle("[" + context.getString(R.string.app_name) + "] 할 일 확인")
                 .setContentText(subject + "를 수행하셨나요?")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_ALARM)

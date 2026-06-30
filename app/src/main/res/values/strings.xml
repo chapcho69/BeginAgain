@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Bee\'s Note</string>
-    <string name="app_version">5.1.0</string>
-    <string name="build_date">2026-06-29 (Rev.15)</string>
+    <string name="app_name">꿀벌 노트</string>
+    <string name="app_version">5.1.6</string>
+    <string name="build_date">2026-06-29 (Rev.20)</string>
     <string name="action_settings">설정</string>
     <string name="action_home">홈</string>
     <string name="action_backup">데이터 보관</string>

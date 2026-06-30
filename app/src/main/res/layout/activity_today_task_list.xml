@@ -84,6 +84,8 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="66dp"
+        app:tint="#000000"
+        app:backgroundTint="?attr/buttonBackgroundColor"
         app:srcCompat="@android:drawable/ic_input_add"
         android:contentDescription="Add Today Task" />
 

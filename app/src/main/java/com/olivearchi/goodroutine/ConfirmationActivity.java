@@ -42,7 +42,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         TextView detailText = findViewById(R.id.text_confirm_detail);
         TextView timeText = findViewById(R.id.text_confirm_time);
 
-        titleText.setText("[Begin Again]");
+        titleText.setText(getString(R.string.app_name));
         subjectText.setText(getString(R.string.label_title) + " : " + (subject != null ? subject : getString(R.string.title_confirm_none)));
         detailText.setText(getString(R.string.label_content) + " : " + (detail != null ? detail : getString(R.string.title_confirm_none)));
         timeText.setText(getString(R.string.title_confirm_time) + " : " + (time != null ? time : getString(R.string.title_confirm_none)));

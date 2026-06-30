@@ -69,7 +69,8 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
                 android:text="@string/filter_all"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+                android:textColor="?attr/buttonTextColor"
+                app:backgroundTint="?attr/buttonBackgroundColor" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_filter_month"
@@ -77,7 +78,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/filter_month"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+                android:textColor="?attr/buttonTextColor"
+                app:backgroundTint="?attr/buttonBackgroundColor" />
         </LinearLayout>
 
         <com.google.android.gms.ads.AdView

@@ -109,9 +109,11 @@
             android:padding="8dp"
             android:text="OCR"
             android:textSize="12sp"
+            android:textColor="?attr/buttonTextColor"
             app:icon="@android:drawable/ic_menu_camera"
             app:iconSize="18dp"
-            app:backgroundTint="@color/pastel_blue" />
+            app:iconTint="#000000"
+            app:backgroundTint="?attr/buttonBackgroundColor" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_add_next"
@@ -122,7 +124,8 @@
             android:padding="8dp"
             android:text="@string/btn_add"
             android:textSize="12sp"
-            app:backgroundTint="@color/btn_add" />
+            android:textColor="?attr/buttonTextColor"
+            app:backgroundTint="?attr/buttonBackgroundColor" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_save_note"
@@ -133,7 +136,8 @@
             android:padding="8dp"
             android:text="@string/btn_save"
             android:textSize="12sp"
-            app:backgroundTint="@color/btn_save" />
+            android:textColor="?attr/buttonTextColor"
+            app:backgroundTint="?attr/buttonBackgroundColor" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_delete_note"
@@ -143,7 +147,8 @@
             android:padding="8dp"
             app:icon="@drawable/ic_delete"
             app:iconPadding="0dp"
-            app:backgroundTint="@color/btn_delete" />
+            app:iconTint="#000000"
+            app:backgroundTint="?attr/buttonBackgroundColor" />
 
     </LinearLayout>
 

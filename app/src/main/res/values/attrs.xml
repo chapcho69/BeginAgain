@@ -3,4 +3,6 @@
     <attr name="mainBackgroundColor" format="color" />
     <attr name="mainTextColor" format="color" />
     <attr name="secondaryTextColor" format="color" />
+    <attr name="buttonBackgroundColor" format="color" />
+    <attr name="buttonTextColor" format="color" />
 </resources>

@@ -51,7 +51,10 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="4dp"
                 android:text="@string/btn_tts_all"
-                app:icon="@drawable/ic_headset" />
+                android:textColor="?attr/buttonTextColor"
+                app:backgroundTint="?attr/buttonBackgroundColor"
+                app:icon="@drawable/ic_headset"
+                app:iconTint="#000000" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_read_random"
@@ -59,7 +62,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/btn_tts_random"
-                app:icon="@drawable/ic_headset" />
+                android:textColor="?attr/buttonTextColor"
+                app:backgroundTint="?attr/buttonBackgroundColor"
+                app:icon="@drawable/ic_headset"
+                app:iconTint="#000000" />
 
         </LinearLayout>
 
@@ -83,6 +89,8 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="120dp"
+        app:tint="#000000"
+        app:backgroundTint="?attr/buttonBackgroundColor"
         app:srcCompat="@android:drawable/ic_input_add"
         android:contentDescription="Add Reading Note" />
 
